@@ -27,7 +27,7 @@ exports.signout = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect('/user/signin');
+    res.redirect('/user/signin/form');
   });
 }
 
@@ -35,7 +35,7 @@ exports.signup = async (req, res, next) => {
   const body = req.body;
   try {
     const user = await createUser(body);
-    res.redirect('/user/signin');
+    res.redirect('/user/signin/form');
   } catch (error) {
     next(error);
   }
