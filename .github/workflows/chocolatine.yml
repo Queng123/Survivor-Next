@@ -14,7 +14,7 @@ env:
 
 jobs:
   trombi-eslint:
-    name: Check coding style using eslint in `trombi` folder
+    name: Check coding style using eslint in "./trombi" folder
     runs-on: ubuntu-latest
     env:
       trombi: trombi
@@ -35,7 +35,7 @@ jobs:
           npm run lint
 
   trombi-tests:
-    name: Run tests in `trombi` folder
+    name: Launch tests in "./trombi" folder
     runs-on: ubuntu-latest
     env:
       trombi: trombi
@@ -57,7 +57,7 @@ jobs:
 
   push_to_mirror:
     name: Pushes the current repository files to a given mirror repository
-    needs: [trombi-eslint]
+    needs: [trombi-eslint, trombi-tests]
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     steps:
