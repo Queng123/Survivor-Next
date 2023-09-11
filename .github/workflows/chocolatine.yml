@@ -34,6 +34,27 @@ jobs:
           cd ${{ env.trombi }}
           npm run lint
 
+  trombi-tests:
+    name: Run tests in `trombi` folder
+    runs-on: ubuntu-latest
+    env:
+      trombi: trombi
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: |
+          cd ${{ env.trombi }}
+          npm install
+
+      - name: Run tests
+        run: |
+          cd ${{ env.trombi }}
+          npm run test
+
   push_to_mirror:
     name: Pushes the current repository files to a given mirror repository
     needs: [trombi-eslint]
