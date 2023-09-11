@@ -32,6 +32,3 @@ https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-git
 - [ ] 🙅 no, because they aren't needed
 - [ ] 🙋 no, because I need help
 
-## What gif best describes this PR or how it makes you feel?
-
-<!-- note: PRs with deleted sections will be marked invalid -->
