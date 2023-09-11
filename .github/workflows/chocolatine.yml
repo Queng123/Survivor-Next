@@ -32,7 +32,7 @@ jobs:
       - name: Run eslint
         run: |
           cd ${{ env.trombi }}
-          npm run eslint
+          npm run lint
 
   push_to_mirror:
     name: Pushes the current repository files to a given mirror repository
