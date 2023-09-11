@@ -13,8 +13,30 @@ env:
   MIRROR_URL: "git@github.com:EpitechPromo2026/B-SVR-500-NAN-5-1-survivornext-lucas.hauszler.git"
 
 jobs:
+  trombi-eslint:
+    name: Check coding style using eslint in `trombi` folder
+    runs-on: ubuntu-latest
+    env:
+      trombi: trombi
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: |
+          cd ${{ env.trombi }}
+          npm install
+
+      - name: Run eslint
+        run: |
+          cd ${{ env.trombi }}
+          npm run eslint
+
   push_to_mirror:
     name: Pushes the current repository files to a given mirror repository
+    needs: [trombi-eslint]
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     steps:
