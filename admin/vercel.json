@@ -8,8 +8,12 @@
     ],
     "routes": [
         {
+            "src": "/user/signin",
+            "dest": "/dashboard"
+        },
+        {
             "src": "/(.*)",
             "dest": "/"
         }
     ]
-  }
+}
