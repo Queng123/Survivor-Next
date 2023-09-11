@@ -8,12 +8,16 @@
     ],
     "routes": [
         {
-            "src": "/user/signin",
-            "dest": "/dashboard"
+        "src": "/dashboard",
+        "dest": "/index.js"
         },
         {
-            "src": "/(.*)",
-            "dest": "/index.js"
+        "src": "/user/signin",
+        "dest": "/index.js"
+        },
+        {
+        "src": "/(.*)",
+        "dest": "/index.js"
         }
     ]
 }
