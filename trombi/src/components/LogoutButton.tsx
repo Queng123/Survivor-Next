@@ -10,7 +10,7 @@ function LogoutButton() {
   const {t} = useTranslation();
   const navigation = useNavigation();
 
-  const deconnexion = () => {
+  const disconnect = () => {
     navigation.navigate('Login');
     // TODO: remove user token
   };
