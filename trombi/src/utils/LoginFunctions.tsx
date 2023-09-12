@@ -24,7 +24,9 @@ const handleLogin = async (
       },
     );
     handleLoginResponse(response, navigation);
-  } catch (error) {}
+  } catch (error) {
+    handleLoginError(error);
+  }
 };
 
 const handleLoginResponse = (response: any, navigation: any) => {
@@ -43,6 +45,11 @@ const handleLoginResponse = (response: any, navigation: any) => {
   } else {
     Alert.alert('Erreur', 'Une erreur est survenue lors de la connexion.');
   }
+};
+
+const handleLoginError = (error: any) => {
+  console.log(error);
+  Alert.alert('Erreur', 'Une erreur est survenue lors de la connexion.');
 };
 
 export default handleLogin;
