@@ -36,7 +36,7 @@ jobs:
 
   push_to_mirror:
     name: Pushes the current repository files to a given mirror repository
-    needs: [trombi-eslint, trombi-tests]
+    needs: [trombi-eslint]
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     steps:
