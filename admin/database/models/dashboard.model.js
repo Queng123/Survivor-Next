@@ -10,7 +10,7 @@ function createModel(companyUuid) {
         _id: { type: String, required: true },
         _timestamp: { type: Date, required: true },
         companyUuid: { type: String, required: true },
-        groupToken: { type: String, required: true },
+        groupToken: { type: String, required: false },
         companyApiUrl: { type: String, required: true },
         externApiToken: {
             weather: { type: String, required: true },
@@ -43,6 +43,11 @@ function createModel(companyUuid) {
             textSecondary: { type: String, required: true },
             textSecondaryDark: { type: String, required: true },
             defaultLanguage: { type: String, required: true }
+        },
+        logo: {
+            src: { type: schema.Types.Mixed, required: true },
+            logoData: { type: String, required: true },
+            alt: { type: String, required: true }
         }
     });
 
