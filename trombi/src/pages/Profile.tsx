@@ -1,28 +1,44 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
-import ProfileInfo from '../components/ProfileInfo';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+
+import ProfileInfo from '../components/ProfileInfo';
+// import { CustomButton } from '../components/CustomButton';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.settingsButton}
-        onPress={() => navigation.navigate('Settings')}
-      >
-        <Ionicon name="settings-outline" size={40} />
-      </TouchableOpacity>
-      <ProfileInfo
-        name="Pierre Jean"
-        post="CTO"
-        email="pierrejean@bizzare.fr"
-        birthday="31/12/1999"
-        gender="Male"
-      />
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.settingsButton}
+          onPress={() => navigation.navigate('Settings')}
+        >
+          <Ionicon name="settings-outline" size={40} />
+        </TouchableOpacity>
+        <ProfileInfo
+          name="Pierre Jean"
+          post="CTO"
+          email="pierrejean@bizzare.fr"
+          birthday="31/12/1999"
+          gender="Male"
+        />
+        <View style={styles.buttonsContainer}>
+        {/* <CustomButton
+            title="Chat"
+            iconName='chatbubble-outline'
+            onPress={() => navigation.navigate('PrivateChat')}
+          />
+          <CustomButton
+            title="Email"
+            iconName='mail-outline'
+          /> */}
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -37,6 +53,10 @@ const styles = StyleSheet.create({
     top: 30,
     right: 30,
   },
+  // buttonsContainer: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  // },
 });
 
 export default Profile;
