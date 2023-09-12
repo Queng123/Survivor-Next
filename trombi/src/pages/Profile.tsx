@@ -4,9 +4,7 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
 import ProfileInfo from '../components/ProfileInfo';
-import { CustomButton } from '../components/CustomButton';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Linking } from 'react-native';
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
@@ -27,18 +25,6 @@ const Profile: React.FC = () => {
           birthday="31/12/1999"
           gender="Male"
         />
-        {/* <View style={styles.buttonsContainer}>
-        <CustomButton
-            title="Chat"
-            iconName='chatbubble-outline'
-            onPress={() => navigation.navigate('PrivateChat')}
-          />
-          <CustomButton
-            title="Email"
-            iconName='mail-outline'
-            onPress={() => Linking.openURL('mailto:support@example.com') }
-          />
-        </View> */}
       </View>
     </ScrollView>
   );
@@ -54,10 +40,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 30,
     right: 30,
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
 });
 
