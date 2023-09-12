@@ -1,23 +1,23 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 
 import LanguageButton from '../components/LanguageButton';
 
-import { useNavigation } from '@react-navigation/native';
-import { useTranslation } from 'react-i18next';
+import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 
 const Settings = () => {
   const navigation = useNavigation();
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const goBack = () => {
     navigation.goBack();
-  }
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.goBackButton}>
-          <Button title={t('settings.goBack')} onPress={goBack}/>
+          <Button title={t('settings.goBack')} onPress={goBack} />
         </View>
         <Text style={styles.title}>{t('settings.title')}</Text>
       </View>
