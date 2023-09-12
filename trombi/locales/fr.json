@@ -24,7 +24,7 @@
         "name": "Prenom",
         "surname": "Nom",
         "birthDate": "Anniversaire",
-        "gender": "Sexe",
+        "gender": "Genre",
         "email": "Courriel",
         "work": "Profession",
         "logout": "Deconnexion"
