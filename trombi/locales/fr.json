@@ -1,0 +1,32 @@
+{
+    "language": {
+        "en": "Anglais",
+        "fr": "Français"
+    },
+    "any": {
+        "loading": "Chargement"
+    },
+    "login": {
+        "login": "Se connecter",
+        "username": "Identifiant",
+        "password": "Mot de passe"
+    },
+    "home": {
+        "title": "Accueil",
+        "welcome": "Bienvenue"
+    },
+    "trombi": {
+        "title": "Trombi",
+        "search": "Rechercher"
+    },
+    "profile": {
+        "title": "Profil",
+        "name": "Prenom",
+        "surname": "Nom",
+        "birthDate": "Anniversaire",
+        "gender": "Sexe",
+        "email": "Courriel",
+        "work": "Profession",
+        "logout": "Deconnexion"
+    }
+}

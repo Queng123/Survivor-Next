@@ -25,12 +25,16 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import './locales/index';
+import {useTranslation} from 'react-i18next';
+
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
 function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+  const { t } = useTranslation();
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -49,7 +53,7 @@ function Section({children, title}: SectionProps): JSX.Element {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
         ]}>
-        {children}
+        {t("profile.work")}
       </Text>
     </View>
   );
