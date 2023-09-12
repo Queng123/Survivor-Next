@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 import ProfileInfo from '../components/ProfileInfo';
-import { ScrollView } from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
@@ -14,8 +14,7 @@ const Profile: React.FC = () => {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.settingsButton}
-          onPress={() => navigation.navigate('Settings')}
-        >
+          onPress={() => navigation.navigate('Settings')}>
           <Ionicon name="settings-outline" size={40} />
         </TouchableOpacity>
         <ProfileInfo
