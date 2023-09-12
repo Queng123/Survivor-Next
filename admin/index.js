@@ -16,6 +16,7 @@ require('./config/session.config');
 require('./config/passport.config');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(index);
 
 app.listen(3000, () => {
