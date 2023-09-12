@@ -1,22 +1,28 @@
-import React, {useState} from 'react';
-import {View, Text, Button} from 'react-native';
+import React, {useEffect} from 'react';
+import {View} from 'react-native';
 import {useSelector} from 'react-redux';
-import {WidgetData, WidgetViewProps} from './WidgetTypes';
+import {WidgetData} from './WidgetTypes';
 import {store} from './GlobalStore';
-import {v4 as uuid} from 'uuid'
 import { TestWidget } from './TestWidget';
-import { Provider } from 'react-redux';
+import { getWidgetsFromStorage } from './WidgetFunctions';
 
 export const WidgetContainer = (): JSX.Element => {
     const widget = useSelector((state: any) => state.widget);
+
+    useEffect(() => {
+        getWidgetsFromStorage().then((widgets) => {
+            store.dispatch({
+                type: 'widget/importWidgets',
+                payload: widgets,
+            });
+        });
+    }, []);
     
     return (
-        <Provider store={store}>
-            <View>
-            {widget.items.map((item: WidgetData) => (
-                item.widgetType === 'TestWidget' && <TestWidget data={item} key={item.key}/>
-            ))}
-            </View>
-        </Provider>
+        <View>
+        {widget.items.map((item: WidgetData) => (
+            item.widgetType === 'TestWidget' && <TestWidget data={item} key={item.key}/>
+        ))}
+        </View>
     )
 };
