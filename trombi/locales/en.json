@@ -13,5 +13,13 @@
     },
     "profile": {
         "title": "Profile"
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "theme": "Theme",
+        "dark": "dark",
+        "light": "light",
+        "logout": "Logout"
     }
 }
