@@ -1,10 +1,7 @@
 const router = require('express').Router();
 const { ensureAuthenticated } = require('../config/guards.config');
-const { submit } = require('../controllers/dashboard.controller');
+const { submit, submitForm } = require('../controllers/dashboard.controller');
 
-router.get('/', ensureAuthenticated, (req, res) => {
-    res.send('welcome to dashboard');
-});
-
-router.post('/submit', submit);
+router.get('/', ensureAuthenticated, submitForm);
+router.post('/submit', ensureAuthenticated, submit);
 module.exports = router;

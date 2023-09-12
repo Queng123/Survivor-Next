@@ -18,7 +18,7 @@ function createModel(companyUuid) {
             gpt3: { type: String, required: true }
         },
         custom: {
-            background1: { type: String, required: true },
+            "bacground-1": { type: String, required: true },
             background1Dark: { type: String, required: true },
             background2: { type: String, required: true },
             background2Dark: { type: String, required: true },
