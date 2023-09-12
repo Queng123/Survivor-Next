@@ -41,10 +41,16 @@ exports.saveJson = async (dashboard) => {
                 textSecondary: dashboard.custom['text-secondary'],
                 textSecondaryDark: dashboard.custom['text-secondary-dark'],
                 defaultLanguage: dashboard.custom['default-language']
-            }
+            },
+            logo: {
+                src: dashboard.logo['src'],
+                logoData: dashboard.logo['logo-data'],
+                alt: 'Company Logo'
+            },
         });
         const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 
+        console.log(updateData.logo);
         const updatedDashboard = await DashboardModel.findOneAndUpdate(
             { _id: dashboard['company-uuid'] },
             updateData,
