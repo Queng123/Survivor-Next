@@ -1,5 +1,4 @@
 const createModel = require('../database/models/dashboard.model');
-const mongoose = require('mongoose');
 
 exports.saveJson = async (dashboard) => {
     try {
@@ -7,6 +6,7 @@ exports.saveJson = async (dashboard) => {
         const DashboardModel = createModel(collectionName);
         const updateData = new DashboardModel({
             _id: dashboard['company-uuid'],
+            _timestamp: new Date(),
             companyUuid: dashboard['company-uuid'],
             groupToken: dashboard['group-token'],
             companyApiUrl: dashboard['company-api-url'],
@@ -50,7 +50,6 @@ exports.saveJson = async (dashboard) => {
             updateData,
             options
         );
-
         return updatedDashboard;
     } catch (error) {
       throw(error);

@@ -6,6 +6,6 @@ router.get('/', ensureAuthenticated, (req, res) => {
     res.send('welcome to dashboard');
 });
 
-router.post('/submit', submit);
+router.post('/submit', ensureAuthenticated, submit);
 
 module.exports = router;

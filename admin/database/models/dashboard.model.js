@@ -8,6 +8,7 @@ function createModel(companyUuid) {
 
     const dashboardSchema = schema({
         _id: { type: String, required: true },
+        _timestamp: { type: Date, required: true },
         companyUuid: { type: String, required: true },
         groupToken: { type: String, required: true },
         companyApiUrl: { type: String, required: true },
