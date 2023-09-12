@@ -34,7 +34,7 @@ type SectionProps = PropsWithChildren<{
 
 function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -53,7 +53,8 @@ function Section({children, title}: SectionProps): JSX.Element {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
         ]}>
-        {t("profile.work")}
+        {t('profile.work')}
+        {children}
       </Text>
     </View>
   );
