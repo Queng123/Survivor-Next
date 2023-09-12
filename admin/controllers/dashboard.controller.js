@@ -1,4 +1,4 @@
-const { saveJson } = require('../queries/dashboard.queries');
+const { saveJson, saveLogo } = require('../queries/dashboard.queries');
 
 exports.submit = async (req, res, next) => {
     const body = req.body;
