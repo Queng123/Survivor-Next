@@ -12,7 +12,7 @@ exports.createUser = async (user) => {
   try {
     const hashedPassword = await User.hashPassword(user.password);
     const newUser = new User({
-      teamuuid: user.username,
+      teamuuid: user.teamuuid,
       local: {
         password: hashedPassword,
         email: user.email,
