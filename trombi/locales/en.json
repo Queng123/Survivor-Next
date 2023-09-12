@@ -1,0 +1,32 @@
+{
+    "language": {
+        "en": "English",
+        "fr": "French"
+    },
+    "any": {
+        "loading": "Loading..."
+    },
+    "login": {
+        "login": "Login",
+        "username": "Username",
+        "password": "Password"
+    },
+    "home": {
+        "title": "Home",
+        "welcome": "Welcome"
+    },
+    "trombi": {
+        "title": "Trombi",
+        "search": "Search"
+    },
+    "profile": {
+        "title": "Profile",
+        "name": "Name",
+        "surname": "Surname",
+        "birthDate": "Birth date",
+        "gender": "Gender",
+        "email": "Email",
+        "work": "Work",
+        "logout": "Logout"
+    }
+}
