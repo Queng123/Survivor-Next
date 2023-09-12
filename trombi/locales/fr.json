@@ -13,5 +13,10 @@
     },
     "profile": {
         "title": "Profil"
+    },
+    "settings": {
+        "title": "Paramètres",
+        "language": "Langage",
+        "goBack": "Retour"
     }
 }

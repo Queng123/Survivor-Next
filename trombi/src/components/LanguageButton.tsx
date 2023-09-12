@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import '../../locales/index';
 import {useTranslation} from 'react-i18next';
@@ -19,7 +19,7 @@ function LanguageButton(): JSX.Element {
   }, [value, i18n]);
 
   return (
-    <View style={styles.container}>
+    <View>
       <DropDownPicker
         open={open}
         value={value}
@@ -31,11 +31,5 @@ function LanguageButton(): JSX.Element {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-});
 
 export default LanguageButton;
