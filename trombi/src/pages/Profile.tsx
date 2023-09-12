@@ -1,10 +1,20 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import ProfileInfo from '../components/ProfileInfo';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 const Profile: React.FC = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.settingsButton}
+        onPress={() => navigation.navigate('Settings')}
+      >
+        <Ionicon name="settings-outline" size={40} />
+      </TouchableOpacity>
       <ProfileInfo
         name="Pierre Jean"
         post="CTO"
@@ -18,9 +28,14 @@ const Profile: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
+  },
+  settingsButton: {
+    position: 'absolute',
+    top: 30,
+    right: 30,
   },
 });
 
