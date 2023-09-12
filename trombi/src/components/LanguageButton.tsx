@@ -8,7 +8,7 @@ function LanguageButton(): JSX.Element {
   const {t, i18n} = useTranslation();
 
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('en');
+  const [value, setValue] = React.useState(i18n.language);
   const [items, setItems] = React.useState([
     {label: 'Francais', value: 'fr'},
     {label: 'English', value: 'en'}

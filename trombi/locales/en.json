@@ -1,32 +1,17 @@
 {
-    "language": {
-        "en": "English",
-        "fr": "French"
-    },
     "any": {
-        "loading": "Loading..."
-    },
-    "login": {
-        "login": "Login",
-        "username": "Username",
-        "password": "Password"
-    },
-    "home": {
-        "title": "Home",
-        "welcome": "Welcome"
+        "loading": "Loading"
     },
     "trombi": {
-        "title": "Trombi",
-        "search": "Search"
+        "title": "Trombi"
+    },
+    "widgets": {
+        "title": "Widgets"
+    },
+    "chat": {
+        "title": "Chat"
     },
     "profile": {
-        "title": "Profile",
-        "name": "Name",
-        "surname": "Surname",
-        "birthDate": "Birth date",
-        "gender": "Gender",
-        "email": "Email",
-        "work": "Work",
-        "logout": "Logout"
+        "title": "Profile"
     }
 }
