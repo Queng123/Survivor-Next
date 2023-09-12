@@ -11,12 +11,10 @@ export const widgetSlice = createSlice({
 
     reducers: {
         addWidget(state, action: {payload: WidgetData, type: string}) {
-            console.debug("addWidget: ", action.payload);
             state.items.push(action.payload);
         },
         moveWidget(state, action: {payload: {key: string, direction: 'up' | 'down'}, type: string}) {
-            console.debug("moveWidget: ", action.payload);
-            const index = state.items.findIndex(item => item.widgetParams.key === action.payload.key);
+            const index = state.items.findIndex(item => item.key === action.payload.key);
             if (index === -1) {
                 return;
             }
@@ -29,8 +27,7 @@ export const widgetSlice = createSlice({
             }
         },
         removeWidget(state, action: {payload: string, type: string}) {
-            console.debug("removeWidget: ", action.payload);
-            const index = state.items.findIndex(item => item.widgetParams.key === action.payload);
+            const index = state.items.findIndex(item => item.key === action.payload);
             if (index === -1) {
                 return;
             }
