@@ -1,5 +1,4 @@
 const createModel = require('../database/models/dashboard.model');
-const mongoose = require('mongoose');
 
 exports.saveJson = async (dashboard) => {
     try {
