@@ -2,7 +2,7 @@ import React from 'react';
 import Root from './src/Root';
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
-import {store} from './GlobalStore';
+import {store} from './src/utils/GlobalStore';
 
 function App(): JSX.Element {
   return (
