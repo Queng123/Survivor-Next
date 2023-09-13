@@ -21,7 +21,9 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
   birthday,
   gender,
 }) => {
-  const pictureURL: string = `https://masurao.fr/api/employees/${id}/image`;
+  const pictureURL: string = `${
+    getCustomState()['company-api-url']
+  }/employees/${id}/image`;
   return (
     <View style={styles.container}>
       <FastImage

@@ -3,6 +3,8 @@ import {View, Text, TouchableOpacity, StyleSheet, Linking} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import IconButton from '../utils/IconButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {getTokens} from '../utils/TokenFunctions';
+import {getCustomState} from '../utils/CustomFunctions';
 
 export type BasicEmployeeProps = {
   id: number;
@@ -12,7 +14,9 @@ export type BasicEmployeeProps = {
 };
 
 const ProfileCard = (props: BasicEmployeeProps) => {
-  const photoURL: string = `https://masurao.fr/api/employees/${props.id}/image`;
+  const photoURL: string = `${getCustomState()['company-api-url']}/employees/${
+    props.id
+  }/image`;
   const [isExpanded, setIsExpanded] = React.useState(false);
 
   const toggleExpansion = () => {
@@ -27,8 +31,8 @@ const ProfileCard = (props: BasicEmployeeProps) => {
             uri: photoURL,
             headers: {
               'Content-Type': 'image/png',
-              'X-Group-Authorization': '',
-              Authorization: '',
+              'X-Group-Authorization': getCustomState()['group-token'],
+              Authorization: 'Bearer ' + getTokens()['masurao-token'],
             },
           }}
           style={styles.employeeCardImage}

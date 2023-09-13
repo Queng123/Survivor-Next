@@ -5,17 +5,22 @@ import {useRoute, useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {ProfileInfo} from './ProfileInfo';
 import {CustomButton} from './CustomButton';
+import {getTokens} from '../utils/TokenFunctions';
+import {getCustomState} from '../utils/CustomFunctions';
 
 export const getUserInfos = async (id: number) => {
   try {
-    const response = await fetch(`https://masurao.fr/api/employees/${id}`, {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        'X-Group-Authorization': '',
-        Authorization: '',
+    const response = await fetch(
+      `${getCustomState()['company-api-url']}/employees/${id}`,
+      {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          'X-Group-Authorization': getCustomState()['group-token'],
+          Authorization: 'Bearer ' + getTokens()['masurao-token'],
+        },
       },
-    });
+    );
 
     if (!response.ok) {
       console.error(`Request failed with status ${response.status}`);

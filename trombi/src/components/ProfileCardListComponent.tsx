@@ -3,6 +3,8 @@ import {View, ScrollView} from 'react-native';
 import ProfileCard from './ProfileCardComponent';
 import {BasicEmployeeProps} from './ProfileCardComponent';
 import {EmployeeSortFunction} from '../utils/SortEmployeeProp';
+import {getTokens} from '../utils/TokenFunctions';
+import {getCustomState} from '../utils/CustomFunctions';
 
 const ProfileCardList = ({
   sortFunction,
@@ -16,14 +18,17 @@ const ProfileCardList = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://masurao.fr/api/employees', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Group-Authorization': '',
-            Authorization: '',
+        const response = await fetch(
+          `${getCustomState()['company-api-url']}/employees`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Group-Authorization': getCustomState()['group-token'],
+              Authorization: 'Bearer ' + getTokens()['masurao-token'],
+            },
           },
-        });
+        );
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
