@@ -1,5 +1,5 @@
 import {Alert} from 'react-native';
-import axios from 'axios';
+import {getCustomState} from './CustomFunctions';
 
 const handleLogin = async (
   email: string,
@@ -7,22 +7,22 @@ const handleLogin = async (
   navigation: any,
 ) => {
   try {
-    const response = await axios.post(
-      'company_api_url/login',
-      {
-        email,
-        password,
-      },
-      {
-        headers: {
-          accept: 'application/json',
-          'X-Group-Authorization': 'temp',
-        },
-        validateStatus: function () {
-          return true;
-        },
-      },
-    );
+    const url = `${getCustomState()['company-api-url']}/employees/login`;
+    const body = {
+      email,
+      password,
+    };
+    const headers = {
+      'Content-Type': 'application/json',
+      accept: 'application/json',
+      'X-Group-Authorization': getCustomState()['group-token'],
+    };
+    const options = {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    };
+    const response = await fetch(url, options);
     handleLoginResponse(response, navigation);
   } catch (error) {
     handleLoginError(error);
@@ -31,7 +31,7 @@ const handleLogin = async (
 
 const handleLoginResponse = (response: any, navigation: any) => {
   if (response.status === 200) {
-    navigation.navigate('Home');
+    navigation.navigate('NavBar');
   } else if (response.status === 401) {
     Alert.alert(
       'Mauvais identifiant',
