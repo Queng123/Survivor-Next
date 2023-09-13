@@ -1,13 +1,12 @@
 import React from 'react';
-import {View, Button, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 
 import '../../locales/index';
 import {useTranslation} from 'react-i18next';
 
 import {useNavigation} from '@react-navigation/native';
-import { getCustomState } from '../utils/CustomFunctions';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import {getCustomState} from '../utils/CustomFunctions';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 function LogoutButton() {
   const {t} = useTranslation();

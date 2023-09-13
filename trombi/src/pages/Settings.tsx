@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 import LanguageButton from '../components/LanguageButton';
 import ThemeButton from '../components/ThemeButton';
@@ -9,8 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
 import {getCustomState} from '../utils/CustomFunctions';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Settings = () => {
   const navigation = useNavigation();
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
   },
   but: {
     marginRight: 'auto',
-  }
+  },
 });
 
 export default Settings;

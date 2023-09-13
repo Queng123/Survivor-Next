@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import '../../locales/index';
 import {useTranslation} from 'react-i18next';
-import { getCustomState } from '../utils/CustomFunctions';
+import {getCustomState} from '../utils/CustomFunctions';
 
 function LanguageButton(): JSX.Element {
   const {i18n} = useTranslation();
@@ -50,6 +50,6 @@ const styles = {
   textStyle: {
     color: getCustomState()?.custom?.['text-primary'],
   },
-}
+};
 
 export default LanguageButton;
