@@ -7,7 +7,7 @@ import WidgetSelector from './pages/WidgetSelector';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import PrivateChat from './pages/PrivateChat';
-import { fetchTokensFromLocalStorage } from './utils/TokenFunctions';
+import { fetchTokensFromLocalStorage, setTokens } from './utils/TokenFunctions';
 import { useNavigation } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
@@ -17,9 +17,12 @@ function Root() {
 
   useEffect(() => {
     fetchTokensFromLocalStorage().then(tokens => {
+      setTokens(tokens);
       if (tokens['masurao-token'] !== '') {
         navigation.navigate('NavBar');
       }
+    }).catch(() => {
+      navigation.navigate('Login');
     });
   }, []);
 
