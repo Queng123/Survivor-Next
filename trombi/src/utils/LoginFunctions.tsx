@@ -1,6 +1,6 @@
 import {Alert} from 'react-native';
 import {getCustomState} from './CustomFunctions';
-import { getTokens, setTokens, setTokensInLocalStorage } from './TokenFunctions';
+import {getTokens, setTokens, setTokensInLocalStorage} from './TokenFunctions';
 const handleLogin = async (
   email: string,
   password: string,
@@ -32,7 +32,7 @@ const handleLogin = async (
 const handleLoginResponse = (response: any, navigation: any) => {
   if (response.status === 200) {
     response.json().then((data: any) => {
-      setTokens({...getTokens(), 'masurao-token': data['access_token']});
+      setTokens({...getTokens(), 'masurao-token': data.access_token});
       setTokensInLocalStorage(getTokens());
       navigation.navigate('NavBar');
     });

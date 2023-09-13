@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 
 import {createStackNavigator} from '@react-navigation/stack';
 import NavBar from './components/NavBar';
@@ -7,8 +7,8 @@ import WidgetSelector from './pages/WidgetSelector';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import PrivateChat from './pages/PrivateChat';
-import { fetchTokensFromLocalStorage, setTokens } from './utils/TokenFunctions';
-import { useNavigation } from '@react-navigation/native';
+import {fetchTokensFromLocalStorage, setTokens} from './utils/TokenFunctions';
+import {useNavigation} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
@@ -16,14 +16,16 @@ function Root() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    fetchTokensFromLocalStorage().then(tokens => {
-      setTokens(tokens);
-      if (tokens['masurao-token'] !== '') {
-        navigation.navigate('NavBar');
-      }
-    }).catch(() => {
-      navigation.navigate('Login');
-    });
+    fetchTokensFromLocalStorage()
+      .then(tokens => {
+        setTokens(tokens);
+        if (tokens['masurao-token'] !== '') {
+          navigation.navigate('NavBar');
+        }
+      })
+      .catch(() => {
+        navigation.navigate('Login');
+      });
   }, []);
 
   return (
