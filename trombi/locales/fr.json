@@ -16,7 +16,8 @@
     },
     "settings": {
         "title": "Paramètres",
-        "language": "Langue",
+        "language": "Langage",
+        "goBack": "Retour",
         "theme": "Thème",
         "dark": "Sombre",
         "light": "Clair",
