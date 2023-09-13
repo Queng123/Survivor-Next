@@ -1,7 +1,11 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
+import FastImage from 'react-native-fast-image';
+import {getTokens} from '../utils/TokenFunctions';
+import {getCustomState} from '../utils/CustomFunctions';
 
 interface ProfileInfoProps {
+  id: string;
   name: string;
   post: string;
   email: string;
@@ -10,15 +14,27 @@ interface ProfileInfoProps {
 }
 
 const ProfileInfo: React.FC<ProfileInfoProps> = ({
+  id,
   name,
   post,
   email,
   birthday,
   gender,
 }) => {
+  const pictureURL: string = `https://masurao.fr/api/employees/${id}/image`;
   return (
     <View style={styles.container}>
-      <Image style={styles.image} />
+      <FastImage
+        source={{
+          uri: pictureURL,
+          headers: {
+            'Content-Type': 'image/png',
+            'X-Group-Authorization': getCustomState()['group-token'],
+            Authorization: 'Bearer ' + getTokens()['masurao-token'],
+          },
+        }}
+        style={styles.image}
+      />
       <Text style={styles.name}>{name}</Text>
       <View style={styles.line} />
       <Text style={styles.infoLabel}>Poste</Text>
@@ -55,7 +71,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 30,
     fontWeight: 'bold',
-    padding: 30,
+    paddingBottom: 30,
   },
   line: {
     height: 1,
