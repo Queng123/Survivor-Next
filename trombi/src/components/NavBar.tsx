@@ -7,43 +7,35 @@ import Widgets from '../pages/Widgets';
 import Chat from '../pages/Chat';
 import Profile from '../pages/Profile';
 
-import '../../locales/index';
-import {useTranslation} from 'react-i18next';
-
 const Tab = createBottomTabNavigator();
 
 const NavBar = () => {
-  const {t} = useTranslation();
-
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
         headerShown: false,
-        tabBarStyle: {height: 80},
-        tabBarLabelStyle: {
-          fontSize: 16,
-          color: 'blue',
-        },
-        tabBarIcon: ({color, size, focused}) => {
+        tabBarStyle: {height: 60},
+        tabBarIcon: ({color, focused}) => {
           let iconName;
-          if (route.name === t('trombi.title')) {
+          if (route.name === 'Trombi') {
             iconName = focused ? 'people' : 'people-outline';
-          } else if (route.name === t('widgets.title')) {
+          } else if (route.name === 'Widgets') {
             iconName = focused ? 'grid' : 'grid-outline';
-          } else if (route.name === t('chat.title')) {
+          } else if (route.name === 'Chat') {
             iconName = focused
               ? 'chatbubble-ellipses'
               : 'chatbubble-ellipses-outline';
-          } else if (route.name === t('profile.title')) {
+          } else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person-outline';
           }
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={40} color={color} />;
         },
+        tabBarLabel: () => null,
       })}>
-      <Tab.Screen name={t('trombi.title')} component={Trombi} />
-      <Tab.Screen name={t('widgets.title')} component={Widgets} />
-      <Tab.Screen name={t('chat.title')} component={Chat} />
-      <Tab.Screen name={t('profile.title')} component={Profile} />
+      <Tab.Screen name={'Trombi'} component={Trombi} />
+      <Tab.Screen name={'Widgets'} component={Widgets} />
+      <Tab.Screen name={'Chat'} component={Chat} />
+      <Tab.Screen name={'Profile'} component={Profile} />
     </Tab.Navigator>
   );
 };
