@@ -1,19 +1,19 @@
 import React from 'react';
 import {View, Pressable, StyleSheet, Text} from 'react-native';
 import {WidgetContainer} from '../components/WidgetContainer';
-import {createMeteoWidget} from '../components/MeteoWidget';
-import {addWidget} from '../utils/WidgetFunctions';
+import {useNavigation} from '@react-navigation/native';
 
 const Widgets = () => {
-  const addWidgetBtn = () => {
-    const {widgetType, widgetParams} = createMeteoWidget();
-    addWidget(widgetType, widgetParams);
-  };
+  const navigation = useNavigation();
 
   return (
     <View style={styles.view}>
       <WidgetContainer />
-      <Pressable style={styles.button} onPress={addWidgetBtn}>
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate('WidgetSelector');
+        }}>
         <Text style={styles.text}>+</Text>
       </Pressable>
     </View>
