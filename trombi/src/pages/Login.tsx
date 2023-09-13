@@ -10,6 +10,25 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  const updateButtonState = () => {
+    if (email.trim() !== '' && password.trim() !== '') {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
+    }
+  };
+
+  const handleEmailChange = (newEmail: string) => {
+    setEmail(newEmail.toLowerCase());
+    updateButtonState();
+  };
+
+  const handlePasswordChange = (newPassword: string) => {
+    setPassword(newPassword);
+    updateButtonState();
+  };
 
   return (
     <View style={styles.container}>
@@ -21,7 +40,7 @@ const Login = () => {
         keyboardType="email-address"
         secure={false}
         value={email}
-        onChangeText={setEmail}
+        onChangeText={handleEmailChange}
       />
       <LoginInputField
         label={'Mot de passe'}
@@ -31,11 +50,14 @@ const Login = () => {
         keyboardType="default"
         secure={true}
         value={password}
-        onChangeText={setPassword}
+        onChangeText={handlePasswordChange}
       />
       <TouchableOpacity
         onPress={() => handleLogin(email, password, navigation)}
-        style={styles.loginButton}>
+        style={
+          isButtonDisabled ? styles.disabledLoginButton : styles.loginButton
+        }
+        disabled={isButtonDisabled}>
         <Text style={styles.loginButtonText}>Se connecter</Text>
       </TouchableOpacity>
     </View>
@@ -69,6 +91,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#9F0000',
     borderRadius: 10,
     padding: 10,
+  },
+  disabledLoginButton: {
+    backgroundColor: '#9F0000',
+    borderRadius: 10,
+    padding: 10,
+    opacity: 0.5,
   },
   loginButtonText: {
     color: '#fff',
