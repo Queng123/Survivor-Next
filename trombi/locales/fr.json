@@ -17,6 +17,10 @@
     "settings": {
         "title": "Paramètres",
         "language": "Langage",
-        "goBack": "Retour"
+        "goBack": "Retour",
+        "theme": "Thème",
+        "dark": "Sombre",
+        "light": "Clair",
+        "logout": "Déconnexion"
     }
 }

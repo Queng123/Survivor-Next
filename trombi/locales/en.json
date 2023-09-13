@@ -17,6 +17,9 @@
     "settings": {
         "title": "Settings",
         "language": "Language",
-        "goBack": "Go back"
+        "goBack": "Go back",
+        "dark": "dark",
+        "light": "light",
+        "logout": "Logout"
     }
 }
