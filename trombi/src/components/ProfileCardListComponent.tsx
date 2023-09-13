@@ -14,9 +14,12 @@ const ProfileCardList = ({
   searchQuery?: string;
 }) => {
   const [employees, setEmployees] = useState<BasicEmployeeProps[]>([]);
+  const [sortedEmployees, setSortedEmployees] = useState<BasicEmployeeProps[]>(
+    [],
+  );
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchEmployeesData = async () => {
       try {
         const response = await fetch(
           `${getCustomState()['company-api-url']}/employees`,
@@ -29,39 +32,40 @@ const ProfileCardList = ({
             },
           },
         );
-
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-
-        const json = await response.json();
-
-        let filteredEmployees = [...json];
-        if (searchQuery) {
-          filteredEmployees = filteredEmployees.filter(employee => {
-            const lowerName = employee.name.toLowerCase();
-            const lowerSurname = employee.surname.toLowerCase();
-            const lowerSearchQuery = searchQuery.toLowerCase();
-            return (
-              lowerName.includes(lowerSearchQuery) ||
-              lowerSurname.includes(lowerSearchQuery)
-            );
-          });
-        }
-        const sortedEmployees = filteredEmployees.sort(sortFunction);
-        setEmployees(sortedEmployees);
+        const fetchedEmployees = await response.json();
+        setEmployees(fetchedEmployees);
       } catch (error) {
         console.error(error);
       }
     };
+    if (employees.length === 0) {
+      fetchEmployeesData();
+    }
+  }, [employees]);
+  useEffect(() => {
+    let filteredEmployees: BasicEmployeeProps[] = employees;
 
-    fetchData();
-  }, [sortFunction, searchQuery]);
+    if (searchQuery) {
+      filteredEmployees = employees.filter(employee => {
+        const lowerCaseName = employee.name.toLowerCase();
+        const lowerCaseSurname = employee.surname.toLowerCase();
+        return (
+          lowerCaseName.includes(searchQuery.toLowerCase()) ||
+          lowerCaseSurname.includes(searchQuery.toLowerCase())
+        );
+      });
+    }
+    const sorted = [...filteredEmployees].sort(sortFunction);
+    setSortedEmployees(sorted);
+  }, [employees, searchQuery, sortFunction]);
 
   return (
     <ScrollView>
       <View>
-        {employees.map(employee => (
+        {sortedEmployees.map(employee => (
           <ProfileCard
             key={employee.id}
             id={employee.id}
