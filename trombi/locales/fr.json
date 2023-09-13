@@ -1,32 +1,25 @@
 {
-    "language": {
-        "en": "Anglais",
-        "fr": "Français"
-    },
     "any": {
         "loading": "Chargement"
     },
-    "login": {
-        "login": "Se connecter",
-        "username": "Identifiant",
-        "password": "Mot de passe"
-    },
-    "home": {
-        "title": "Accueil",
-        "welcome": "Bienvenue"
-    },
     "trombi": {
-        "title": "Trombi",
-        "search": "Rechercher"
+        "title": "Trombi"
+    },
+    "widgets": {
+        "title": "Widgets"
+    },
+    "chat": {
+        "title": "Chat"
     },
     "profile": {
-        "title": "Profil",
-        "name": "Prenom",
-        "surname": "Nom",
-        "birthDate": "Anniversaire",
-        "gender": "Genre",
-        "email": "Courriel",
-        "work": "Profession",
-        "logout": "Deconnexion"
+        "title": "Profil"
+    },
+    "settings": {
+        "title": "Paramètres",
+        "language": "Langue",
+        "theme": "Thème",
+        "dark": "Sombre",
+        "light": "Clair",
+        "logout": "Déconnexion"
     }
 }
