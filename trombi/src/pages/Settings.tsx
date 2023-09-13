@@ -8,7 +8,6 @@ import LogoutButton from '../components/LogoutButton';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
-
 const Settings = () => {
   const navigation = useNavigation();
   const {t} = useTranslation();

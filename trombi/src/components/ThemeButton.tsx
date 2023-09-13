@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Switch, StyleSheet} from 'react-native';
+import {View, Switch, StyleSheet} from 'react-native';
 
 const ThemeButton = () => {
   const [isEnabled, setIsEnabled] = React.useState(false);
