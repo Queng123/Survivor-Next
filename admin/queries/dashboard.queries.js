@@ -44,13 +44,12 @@ exports.saveJson = async (dashboard) => {
             },
             logo: {
                 src: dashboard.logo['src'],
-                logoData: dashboard.logo['logo-data'],
+                logoData: dashboard.logo['logoData'],
                 alt: 'Company Logo'
             },
         });
         const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 
-        console.log(updateData.logo);
         const updatedDashboard = await DashboardModel.findOneAndUpdate(
             { _id: dashboard['company-uuid'] },
             updateData,
