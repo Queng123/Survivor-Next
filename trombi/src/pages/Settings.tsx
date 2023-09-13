@@ -8,18 +8,23 @@ import LogoutButton from '../components/LogoutButton';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
+import {getCustomState} from '../utils/CustomFunctions';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 const Settings = () => {
   const navigation = useNavigation();
   const {t} = useTranslation();
   const goBack = () => {
     navigation.goBack();
   };
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.goBackButton}>
-          <Button title={t('settings.goBack')} onPress={goBack} />
+        <View style={styles.but}>
+          <TouchableOpacity onPress={goBack} style={styles.button}>
+            <Text style={styles.button_text}>{t('settings.goBack')}</Text>
+          </TouchableOpacity>
         </View>
         <Text style={styles.title}>{t('settings.title')}</Text>
       </View>
@@ -55,17 +60,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 10,
   },
-  goBackButton: {
-    marginRight: 'auto',
-  },
   title: {
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'black',
+    color: getCustomState().custom['title-primary'],
   },
   text: {
-    color: 'black',
+    color: getCustomState().custom['text-primary'],
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -88,6 +90,20 @@ const styles = StyleSheet.create({
     width: '32%',
     marginLeft: 'auto',
   },
+  button: {
+    backgroundColor: getCustomState().custom['button-primary'],
+    padding: 10,
+    borderRadius: 3,
+    alignItems: 'center',
+  },
+  button_text: {
+    color: getCustomState().custom['button-primary-foreground'],
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  but: {
+    marginRight: 'auto',
+  }
 });
 
 export default Settings;
