@@ -41,7 +41,7 @@ const LoginInputField: React.FC<LoginInputFieldProps> = ({
           onPress={togglePasswordVisibility}
           style={styles.iconContainer}>
           <Ionicons
-            name={isPasswordVisible ? 'ios-eye-off' : 'ios-eye'}
+            name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'}
             size={20}
             style={styles.icon}
           />

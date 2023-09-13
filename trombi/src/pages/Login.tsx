@@ -15,7 +15,9 @@ const Login = () => {
     <View style={styles.container}>
       <LoginInputField
         label={'Email'}
-        icon={<Ionicons name="ios-mail" size={20} style={styles.enveloppe} />}
+        icon={
+          <Ionicons name="mail-outline" size={20} style={styles.enveloppe} />
+        }
         keyboardType="email-address"
         secure={false}
         value={email}
@@ -23,7 +25,9 @@ const Login = () => {
       />
       <LoginInputField
         label={'Mot de passe'}
-        icon={<Ionicons name="ios-lock-closed" size={20} style={styles.lock} />}
+        icon={
+          <Ionicons name="lock-closed-outline" size={20} style={styles.lock} />
+        }
         keyboardType="default"
         secure={true}
         value={password}
