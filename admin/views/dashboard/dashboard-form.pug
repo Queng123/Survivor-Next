@@ -2,109 +2,253 @@ html
   head
     title Modifier les valeurs
   body
-    form(method="POST", action="/dashboard/submit")
-      label(for="company-uuid") Company UUID:
-      input(type="text", name="company-uuid", value="b08ea31e-fb21-457e-bdbb-eb3cd8b63e60")
-      br
-      label(for="group-token") Group Token:
-      input(type="text", name="group-token", value="random_value_for_group_tokennn")
-      br
+    form(action="/dashboard/submit", method="POST", id="my-form")
       label(for="company-api-url") Company API URL:
-      input(type="text", name="company-api-url", value="random_value_for_company_api_url")
+      input(type="text", name="company-api-url", value="https://masurao.fr/api")
       br
+      label(for="company-uuid")
+      input(type="hidden", name="company-uuid", value="")
+      label(for="group-token")
+      input(type="hidden", name="group-token", value="")
       label Extern API Token:
       br
       label(for="weather") Weather:
-      input(type="text", name="extern-api-token[weather]", value="random_value_for_weather")
+      input(type="text", name="extern-api-token[weather]", value="")
       br
       label(for="stock") Stock:
-      input(type="text", name="extern-api-token[stock]", value="random_value_for_stock")
+      input(type="text", name="extern-api-token[stock]", value="")
       br
       label(for="gpt3") GPT-3:
-      input(type="text", name="extern-api-token[gpt3]", value="random_value_for_gpt2")
+      input(type="text", name="extern-api-token[gpt3]", value="")
       br
       label Custom:
       br
       label(for="background-1") Background 1:
-      input(type="text", name="custom[background-1]", value="random_value_for_background_1")
+      input(type="color", name="custom[background-1]", value="#000000")
       br
       label(for="background-1-dark") Background 1 Dark:
-      input(type="text", name="custom[background-1-dark]", value="random_value_for_background_1_dark")
+      input(type="color", name="custom[background-1-dark]", value="#000000")
       br
       label(for="background-2") Background 2:
-      input(type="text", name="custom[background-2]", value="random_value_for_background_2")
+      input(type="color", name="custom[background-2]", value="#000000")
       br
       label(for="background-2-dark") Background 2 Dark:
-      input(type="text", name="custom[background-2-dark]", value="random_value_for_background_2_dark")
+      input(type="color", name="custom[background-2-dark]", value="#000000")
       br
       label(for="background-3") Background 3:
-      input(type="text", name="custom[background-3]", value="random_value_for_background_3")
+      input(type="color", name="custom[background-3]", value="#000000")
       br
       label(for="background-3-dark") Background 3 Dark:
-      input(type="text", name="custom[background-3-dark]", value="random_value_for_background_3_dark")
+      input(type="color", name="custom[background-3-dark]", value="#000000")
       br
       label(for="background-4") Background 4:
-      input(type="text", name="custom[background-4]", value="random_value_for_background_4")
+      input(type="color", name="custom[background-4]", value="#000000")
       br
       label(for="background-4-dark") Background 4 Dark:
-      input(type="text", name="custom[background-4-dark]", value="random_value_for_background_4_dark")
+      input(type="color", name="custom[background-4-dark]", value="#000000")
       br
       label(for="button-primary") Button Primary:
-      input(type="text", name="custom[button-primary]", value="random_value_for_button_primary")
+      input(type="color", name="custom[button-primary]", value="#000000")
       br
       label(for="button-primary-dark") Button Primary Dark:
-      input(type="text", name="custom[button-primary-dark]", value="random_value_for_button_primary_dark")
+      input(type="color", name="custom[button-primary-dark]", value="#000000")
       br
       label(for="button-secondary") Button Secondary:
-      input(type="text", name="custom[button-secondary]", value="random_value_for_button_secondary")
+      input(type="color", name="custom[button-secondary]", value="#000000")
       br
       label(for="button-secondary-dark") Button Secondary Dark:
-      input(type="text", name="custom[button-secondary-dark]", value="random_value_for_button_secondary_dark")
+      input(type="color", name="custom[button-secondary-dark]", value="#000000")
       br
       label(for="button-primary-foreground") Button Primary Foreground:
-      input(type="text", name="custom[button-primary-foreground]", value="random_value_for_button_primary_foreground")
+      input(type="color", name="custom[button-primary-foreground]", value="#000000")
       br
       label(for="button-primary-foreground-dark") Button Primary Foreground Dark:
-      input(type="text", name="custom[button-primary-foreground-dark]", value="random_value_for_button_primary_foreground_dark")
+      input(type="color", name="custom[button-primary-foreground-dark]", value="#000000")
       br
       label(for="button-secondary-foreground") Button Secondary Foreground:
-      input(type="text", name="custom[button-secondary-foreground]", value="random_value_for_button_secondary_foreground")
+      input(type="color", name="custom[button-secondary-foreground]", value="#000000")
       br
       label(for="button-secondary-foreground-dark") Button Secondary Foreground Dark:
-      input(type="text", name="custom[button-secondary-foreground-dark]", value="random_value_for_button_secondary_foreground_dark")
+      input(type="color", name="custom[button-secondary-foreground-dark]", value="#000000")
       br
       label(for="title-primary") Title Primary:
-      input(type="text", name="custom[title-primary]", value="random_value_for_title_primary")
+      input(type="color", name="custom[title-primary]", value="#000000")
       br
       label(for="title-primary-dark") Title Primary Dark:
-      input(type="text", name="custom[title-primary-dark]", value="random_value_for_title_primary_dark")
+      input(type="color", name="custom[title-primary-dark]", value="#000000")
       br
       label(for="title-secondary") Title Secondary:
-      input(type="text", name="custom[title-secondary]", value="random_value_for_title_secondary")
+      input(type="color", name="custom[title-secondary]", value="#000000")
       br
       label(for="title-secondary-dark") Title Secondary Dark:
-      input(type="text", name="custom[title-secondary-dark]", value="random_value_for_title_secondary_dark")
+      input(type="color", name="custom[title-secondary-dark]", value="#000000")
       br
       label(for="text-primary") Text Primary:
-      input(type="text", name="custom[text-primary]", value="random_value_for_text_primary")
+      input(type="color", name="custom[text-primary]", value="#000000")
       br
       label(for="text-primary-dark") Text Primary Dark:
-      input(type="text", name="custom[text-primary-dark]", value="random_value_for_text_primary_dark")
+      input(type="color", name="custom[text-primary-dark]", value="#000000")
       br
       label(for="text-secondary") Text Secondary:
-      input(type="text", name="custom[text-secondary]", value="random_value_for_text_secondary")
+      input(type="color", name="custom[text-secondary]", value="#000000")
       br
       label(for="text-secondary-dark") Text Secondary Dark:
-      input(type="text", name="custom[text-secondary-dark]", value="random_value_for_text_secondary_dark")
+      input(type="color", name="custom[text-secondary-dark]", value="#000000")
       br
       label(for="default-language") Default Language:
-      input(type="text", name="custom[default-language]", value="random_value_for_default_language")
+      select(name="custom[default-language]")
+        option(value="french", selected) French
+        option(value="english") English
       br
-      label(for="logo.src") Logo Src:
-      input(type="text", name="logo[src]", value="test.png")
+      label(for="logo-src") Logo:
+      input(type="text", name="logo[src]", id="logo-src-input", readonly)
       br
-      label(for="logo.logo-data") Logo Data:
-      input(type="text", name="logo[logo-data]", value="iVBORw0KGgoAAAANSUhEUgAAAI0AAAB5CAMAAAAzg1KYAAAAh1BMVEXVSC/////u7u7t7e3v7+/9/f3s7Oz5+fnz8/P29vbUQyjTOhrmoJjVRizUQSbTPB7ZaFnxzMj1+/zSMQjSNhTdd2nRKADaZFD35+TgnJbz2dfw393nrabab2HXWkfXUjzjkYbptrPlmY/57+3hhnrwxL/ipJ3efXDPFgDbgXrbh37y087uvbaaTTyyAAAHqklEQVR4nO1biZKqOhAlQEgiAoroOI7LCLPcd/X/v++RBQlLQgJ4l6rbUzXVZbXtIX")
+      input(type="hidden", name="logo[logoData]", id="logoData-input")
+      input(type="file", name="logo-file", id="logo-file-input")
+      br
+      input(type="submit", value="apply")
+    input(type="button", value="signout", onclick="window.location.href='/user/signout'")
 
-    br
-    input(type="submit", value="Envoyer")
+    script.
+
+      function readLogoData(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            resolve(e.target.result);
+          };
+
+          reader.onerror = function (error) {
+            reject(error);
+          };
+
+          reader.readAsDataURL(file);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("my-form");
+        var fileName = null;
+        var logoData = null;
+        const logoFileInput = document.getElementById("logo-file-input");
+        const logoSrcInput = document.getElementById("logo-src-input");
+        const logoDataInput = document.getElementById("logoData-input");
+
+        //TODO add a preview of the logo
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const jsonData = {
+            "company-uuid": document.querySelector("input[name='company-uuid']").value,
+            "group-token": document.querySelector("input[name='group-token']").value,
+            "company-api-url": document.querySelector("input[name='company-api-url']").value,
+            "extern-api-token": {
+              "weather": document.querySelector("input[name='extern-api-token[weather]']").value,
+              "stock": document.querySelector("input[name='extern-api-token[stock]']").value,
+              "gpt3": document.querySelector("input[name='extern-api-token[gpt3]']").value
+            },
+            "custom": {
+              "background-1": document.querySelector("input[name='custom[background-1]']").value,
+              "background-1-dark": document.querySelector("input[name='custom[background-1-dark]']").value,
+              "background-2": document.querySelector("input[name='custom[background-2]']").value,
+              "background-2-dark": document.querySelector("input[name='custom[background-2-dark]']").value,
+              "background-3": document.querySelector("input[name='custom[background-3]']").value,
+              "background-3-dark": document.querySelector("input[name='custom[background-3-dark]']").value,
+              "background-4": document.querySelector("input[name='custom[background-4]']").value,
+              "background-4-dark": document.querySelector("input[name='custom[background-4-dark]']").value,
+              "button-primary": document.querySelector("input[name='custom[button-primary]']").value,
+              "button-primary-dark": document.querySelector("input[name='custom[button-primary-dark]']").value,
+              "button-secondary": document.querySelector("input[name='custom[button-secondary]']").value,
+              "button-secondary-dark": document.querySelector("input[name='custom[button-secondary-dark]']").value,
+              "button-primary-foreground": document.querySelector("input[name='custom[button-primary-foreground]']").value,
+              "button-primary-foreground-dark": document.querySelector("input[name='custom[button-primary-foreground-dark]']").value,
+              "button-secondary-foreground": document.querySelector("input[name='custom[button-secondary-foreground]']").value,
+              "button-secondary-foreground-dark": document.querySelector("input[name='custom[button-secondary-foreground-dark]']").value,
+              "title-primary": document.querySelector("input[name='custom[title-primary]']").value,
+              "title-primary-dark": document.querySelector("input[name='custom[title-primary-dark]']").value,
+              "title-secondary": document.querySelector("input[name='custom[title-secondary]']").value,
+              "title-secondary-dark": document.querySelector("input[name='custom[title-secondary-dark]']").value,
+              "text-primary": document.querySelector("input[name='custom[text-primary]']").value,
+              "text-primary-dark": document.querySelector("input[name='custom[text-primary-dark]']").value,
+              "text-secondary": document.querySelector("input[name='custom[text-secondary]']").value,
+              "text-secondary-dark": document.querySelector("input[name='custom[text-secondary-dark]']").value,
+              "default-language": document.querySelector("select[name='custom[default-language]']").value
+            },
+            "logo": {
+              "src": (fileName == null) ? document.querySelector("input[name='logo[src]']").value : fileName,
+              "logoData": (logoData == null) ? document.querySelector("input[name='logo[logoData]']").value : logoData
+            }
+          };
+          fetch("/dashboard/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(jsonData),
+          }).then((response) => {
+            if (response.status === 200) {
+              alert("Les valeurs ont bien été modifiées");
+            } else {
+              alert("Une erreur est survenue");
+            }
+          }).catch((error) => {
+            console.error("Error:", error);
+          });
+        });
+
+        logoFileInput.addEventListener("change", async (event) => {
+          const selectedFile = event.target.files[0];
+
+          if (selectedFile) {
+            fileName = selectedFile.name;
+            logoSrcInput.value = fileName;
+            try {
+              logoData = await readLogoData(selectedFile);
+              logoDataInput.value = logoData;
+            } catch (error) {
+              console.error("Une erreur s'est produite lors de la lecture du fichier : ", error);
+            }
+          }
+        });
+      });
+
+      fetch("/dashboard/session")
+        .then((response) => response.text())
+        .then((data) => fetch(`/api/company/all/${data}`, { method: "GET" }))
+        .then((response) => response.json())
+        .then((data) => {
+          document.querySelector("input[name='company-uuid']").value = data['company-uuid'];
+          document.querySelector("input[name='group-token']").value = data['group-token'];
+          document.querySelector("input[name='company-api-url']").value = data['company-api-url'];
+          document.querySelector("input[name='extern-api-token[weather]']").value = data['extern-api-token'].weather;
+          document.querySelector("input[name='extern-api-token[stock]']").value = data['extern-api-token'].stock;
+          document.querySelector("input[name='extern-api-token[gpt3]']").value = data['extern-api-token'].gpt3;
+          document.querySelector("input[name='custom[background-1]']").value = data['custom']['background-1'];
+          document.querySelector("input[name='custom[background-1-dark]']").value = data['custom']['background-1-dark'];
+          document.querySelector("input[name='custom[background-2]']").value = data['custom']['background-2'];
+          document.querySelector("input[name='custom[background-2-dark]']").value = data['custom']['background-2-dark'];
+          document.querySelector("input[name='custom[background-3]']").value = data['custom']['background-3'];
+          document.querySelector("input[name='custom[background-3-dark]']").value = data['custom']['background-3-dark'];
+          document.querySelector("input[name='custom[background-4]']").value = data['custom']['background-4'];
+          document.querySelector("input[name='custom[background-4-dark]']").value = data['custom']['background-4-dark'];
+          document.querySelector("input[name='custom[button-primary]']").value = data['custom']['button-primary'];
+          document.querySelector("input[name='custom[button-primary-dark]']").value = data['custom']['button-primary-dark'];
+          document.querySelector("input[name='custom[button-secondary]']").value = data['custom']['button-secondary'];
+          document.querySelector("input[name='custom[button-secondary-dark]']").value = data['custom']['button-secondary-dark'];
+          document.querySelector("input[name='custom[button-primary-foreground]']").value = data['custom']['button-primary-foreground'];
+          document.querySelector("input[name='custom[button-primary-foreground-dark]']").value = data['custom']['button-primary-foreground-dark'];
+          document.querySelector("input[name='custom[button-secondary-foreground]']").value = data['custom']['button-secondary-foreground'];
+          document.querySelector("input[name='custom[button-secondary-foreground-dark]']").value = data['custom']['button-secondary-foreground-dark'];
+          document.querySelector("input[name='custom[title-primary]']").value = data['custom']['title-primary'];
+          document.querySelector("input[name='custom[title-primary-dark]']").value = data['custom']['title-primary-dark'];
+          document.querySelector("input[name='custom[title-secondary]']").value = data['custom']['title-secondary'];
+          document.querySelector("input[name='custom[title-secondary-dark]']").value = data['custom']['title-secondary-dark'];
+          document.querySelector("input[name='custom[text-primary]']").value = data['custom']['text-primary'];
+          document.querySelector("input[name='custom[text-primary-dark]']").value = data['custom']['text-primary-dark'];
+          document.querySelector("input[name='custom[text-secondary]']").value = data['custom']['text-secondary'];
+          document.querySelector("input[name='custom[text-secondary-dark]']").value = data['custom']['text-secondary-dark'];
+          document.querySelector("select[name='custom[default-language]']").value = data['custom']['default-language'];
+          document.querySelector("input[name='logo[src]']").value = data.logo.src
+          document.querySelector("input[name='logo[logoData]']").value = data['logo']['logoData'];
+        });

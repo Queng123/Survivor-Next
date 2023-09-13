@@ -18,6 +18,10 @@ userSchema.methods.comparePassword = function(password) {
   return bcrypt.compare(password, this.local.password);
 }
 
+userSchema.methods.findTeam = function(_id) {
+  return this.model('user').findOne({ _id: _id }).exec();
+}
+
 const User = mongoose.model('user', userSchema);
 
 module.exports = User;
