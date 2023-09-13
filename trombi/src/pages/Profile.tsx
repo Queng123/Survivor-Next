@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
@@ -6,8 +6,44 @@ import {useNavigation} from '@react-navigation/native';
 import ProfileInfo from '../components/ProfileInfo';
 import {ScrollView} from 'react-native-gesture-handler';
 
+export const getCurrentUserInfos = async () => {
+  try {
+    const response = await fetch('https://masurao.fr/api/employees/me', {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        'X-Group-Authorization': '',
+        Authorization: '',
+      },
+    });
+
+    if (!response.ok) {
+      console.error(`Request failed with status ${response.status}`);
+    }
+
+    const employeeInformations = await response.json();
+    return employeeInformations;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const Profile: React.FC = () => {
   const navigation = useNavigation();
+  const [userInfo, setUserInfo] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const userInformation = await getCurrentUserInfos();
+        setUserInfo(userInformation);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   return (
     <ScrollView>
@@ -18,7 +54,7 @@ const Profile: React.FC = () => {
           <Ionicon name="settings-outline" size={40} />
         </TouchableOpacity>
         <ProfileInfo
-          id='74'
+          id="74"
           name="Pierre Jean"
           post="CTO"
           email="pierrejean@bizzare.fr"

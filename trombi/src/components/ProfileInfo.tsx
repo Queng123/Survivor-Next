@@ -23,16 +23,16 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
   return (
     <View style={styles.container}>
       <FastImage
-          source={{
-            uri: pictureURL,
-            headers: {
-              'Content-Type': 'image/png',
-              'X-Group-Authorization': '',
-              'Authorization': '',
-            },
-          }}
-          style={styles.image}
-        />
+        source={{
+          uri: pictureURL,
+          headers: {
+            'Content-Type': 'image/png',
+            'X-Group-Authorization': '',
+            Authorization: '',
+          },
+        }}
+        style={styles.image}
+      />
       <Text style={styles.name}>{name}</Text>
       <View style={styles.line} />
       <Text style={styles.infoLabel}>Poste</Text>
