@@ -1,6 +1,6 @@
 import {Alert} from 'react-native';
 import {getCustomState} from './CustomFunctions';
-
+import {getTokens, setTokens, setTokensInLocalStorage} from './TokenFunctions';
 const handleLogin = async (
   email: string,
   password: string,
@@ -31,7 +31,11 @@ const handleLogin = async (
 
 const handleLoginResponse = (response: any, navigation: any) => {
   if (response.status === 200) {
-    navigation.navigate('NavBar');
+    response.json().then((data: any) => {
+      setTokens({...getTokens(), 'masurao-token': data.access_token});
+      setTokensInLocalStorage(getTokens());
+      navigation.navigate('NavBar');
+    });
   } else if (response.status === 401) {
     Alert.alert(
       'Mauvais identifiant',
