@@ -21,7 +21,7 @@ const ProfileCardList = ({
           headers: {
             'Content-Type': 'application/json',
             'X-Group-Authorization': '',
-            Authorization: ''
+            Authorization: '',
           },
         });
 
