@@ -5,6 +5,8 @@ import {useRoute, useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {ProfileInfo} from './ProfileInfo';
 import {CustomButton} from './CustomButton';
+import {getTokens} from '../utils/TokenFunctions';
+import {getCustomState} from '../utils/CustomFunctions';
 
 export const getUserInfos = async (id: number) => {
   try {
@@ -14,8 +16,8 @@ export const getUserInfos = async (id: number) => {
         method: 'GET',
         headers: {
           accept: 'application/json',
-          'X-Group-Authorization': '',
-          Authorization: '',
+          'X-Group-Authorization': getCustomState()['group-token'],
+          Authorization: 'Bearer ' + getTokens()['masurao-token'],
         },
       },
     );

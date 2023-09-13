@@ -23,7 +23,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
 }) => {
   const pictureURL: string = `${
     getCustomState()['company-api-url']
-  }employees/${id}/image`;
+  }/employees/${id}/image`;
   return (
     <View style={styles.container}>
       <FastImage
