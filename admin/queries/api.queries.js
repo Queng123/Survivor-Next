@@ -25,3 +25,12 @@ exports.getLogo = async (uuid) => {
     }
     return null;
 };
+
+exports.getAll = async (uuid) => {
+    const Dashboard = createModel(uuid);
+    const test = await Dashboard.findOne({ _id: uuid }).exec();
+    if (test) {
+        return test;
+    }
+    return null;
+}

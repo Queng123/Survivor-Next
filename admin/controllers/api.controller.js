@@ -1,8 +1,9 @@
-const { getJson, getTimestamp, getLogo, convertToPng } = require('../queries/api.queries');
+const { getJson, getTimestamp, getLogo, getAll } = require('../queries/api.queries');
 
 exports.custom = async (req, res, next) => {
     try {
       const json = await getJson(req.params.uuid);
+      res.setHeader('Content-Type', 'application/json');
       res.send(json);
     } catch (error) {
       next(error);
@@ -23,6 +24,16 @@ exports.logo = async (req, res, next) => {
         const logo = await getLogo(req.params.uuid);
         res.setHeader('Content-Type', 'image/png');
         res.send(logo);
+    } catch (error) {
+      next(error);
+    }
+}
+
+exports.all = async (req, res, next) => {
+    try {
+        const json = await getAll(req.params.uuid);
+        res.setHeader('Content-Type', 'application/json');
+        res.send(json);
     } catch (error) {
       next(error);
     }
