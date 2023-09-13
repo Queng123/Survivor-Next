@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import ProfileInfo from '../components/ProfileInfo';
 import {ScrollView} from 'react-native-gesture-handler';
 import {getTokens} from '../utils/TokenFunctions';
-import { getCustomState } from '../utils/CustomFunctions';
+import {getCustomState} from '../utils/CustomFunctions';
 
 export const getCurrentUserInfos = async () => {
   try {
@@ -56,12 +56,12 @@ const Profile: React.FC = () => {
           <Ionicon name="settings-outline" size={40} />
         </TouchableOpacity>
         <ProfileInfo
-          id="74"
-          name="Oliver Lewis"
-          post="Administrative Intern"
-          email="oliver.lewis@masurao.jp"
-          birthday="2000-08-13"
-          gender="Male"
+          id={userInfo?.id}
+          name={userInfo?.name + ' ' + userInfo?.surname}
+          post={userInfo?.work}
+          email={userInfo?.email}
+          birthday={userInfo?.birth_date}
+          gender={userInfo?.gender}
         />
       </View>
     </ScrollView>

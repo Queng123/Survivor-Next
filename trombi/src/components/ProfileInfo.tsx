@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {getTokens} from '../utils/TokenFunctions';
-import { getCustomState } from '../utils/CustomFunctions';
+import {getCustomState} from '../utils/CustomFunctions';
 
 interface ProfileInfoProps {
   id: string;
