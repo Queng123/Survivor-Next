@@ -18,6 +18,7 @@ const Profile: React.FC = () => {
           <Ionicon name="settings-outline" size={40} />
         </TouchableOpacity>
         <ProfileInfo
+          id='74'
           name="Pierre Jean"
           post="CTO"
           email="pierrejean@bizzare.fr"
