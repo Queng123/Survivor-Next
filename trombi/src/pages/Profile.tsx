@@ -55,10 +55,10 @@ const Profile: React.FC = () => {
         </TouchableOpacity>
         <ProfileInfo
           id="74"
-          name="Pierre Jean"
-          post="CTO"
-          email="pierrejean@bizzare.fr"
-          birthday="31/12/1999"
+          name="Oliver Lewis"
+          post="Administrative Intern"
+          email="oliver.lewis@masurao.jp"
+          birthday="2000-08-13"
           gender="Male"
         />
       </View>
