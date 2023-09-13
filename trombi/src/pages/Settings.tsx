@@ -2,9 +2,12 @@ import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 
 import LanguageButton from '../components/LanguageButton';
+import ThemeButton from '../components/ThemeButton';
+import LogoutButton from '../components/LogoutButton';
 
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
+
 
 const Settings = () => {
   const navigation = useNavigation();
@@ -21,10 +24,21 @@ const Settings = () => {
         </View>
         <Text style={styles.title}>{t('settings.title')}</Text>
       </View>
-      <View style={styles.options}>
-        <Text style={styles.text}>{t('settings.language')}</Text>
-        <View style={styles.drowdownpicker}>
-          <LanguageButton />
+      <View>
+        <View style={styles.language}>
+          <Text style={styles.text}>{t('settings.theme')}</Text>
+          <View style={styles.themeButton}>
+            <ThemeButton />
+          </View>
+        </View>
+        <View style={styles.language}>
+          <Text style={styles.text}>{t('settings.language')}</Text>
+          <View style={styles.drowdownpicker}>
+            <LanguageButton />
+          </View>
+        </View>
+        <View>
+          <LogoutButton />
         </View>
       </View>
     </View>
@@ -34,11 +48,13 @@ const Settings = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    zIndex: 1,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 10,
   },
   goBackButton: {
     marginRight: 'auto',
@@ -48,12 +64,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: 'black',
-  },
-  options: {
-    margin: 5,
-    padding: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   text: {
     color: 'black',
@@ -65,6 +75,18 @@ const styles = StyleSheet.create({
   drowdownpicker: {
     width: '50%',
     marginRight: 0,
+    marginLeft: 'auto',
+    zIndex: 1000,
+  },
+  language: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 5,
+    padding: 10,
+    zIndex: 2,
+  },
+  themeButton: {
+    width: '32%',
     marginLeft: 'auto',
   },
 });

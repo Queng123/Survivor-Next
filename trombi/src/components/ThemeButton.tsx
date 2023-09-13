@@ -14,9 +14,6 @@ const ThemeButton = () => {
         value={isEnabled}
         style={styles.switch}
       />
-      <Text style={styles.text}>
-        {isEnabled ? 'Mode Sombre' : 'Mode Clair'}
-      </Text>
     </View>
   );
 };
@@ -25,7 +22,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 30,
   },
   text: {
     color: '#333',
