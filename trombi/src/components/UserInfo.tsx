@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Linking} from 'react-native';
 import {useRoute, useNavigation} from '@react-navigation/native';
 
-import {ScrollView} from 'react-native-gesture-handler';
 import ProfileInfo from './ProfileInfo';
 import {CustomButton} from './CustomButton';
 import {getTokens} from '../utils/TokenFunctions';
@@ -53,8 +52,8 @@ const UserInfo = () => {
   }, [id]);
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <View>
         <ProfileInfo
           id={id}
           name={userInfo?.name + ' ' + userInfo?.surname}
@@ -76,7 +75,7 @@ const UserInfo = () => {
           onPress={() => Linking.openURL(`mailto:${userInfo.email}`)}
         />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -87,9 +86,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonsContainer: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+    paddingTop: 20,
   },
 });
 

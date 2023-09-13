@@ -50,7 +50,6 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
         <Text style={styles.infoLabel}>Genre</Text>
         <Text style={styles.info}>{gender}</Text>
       </View>
-      <View style={styles.buttonsContainer} />
     </View>
   );
 };
@@ -93,11 +92,11 @@ const styles = StyleSheet.create({
   infoLabel: {
     color: 'black',
     fontSize: 25,
+    paddingTop: 20,
   },
   info: {
     color: 'black',
     fontSize: 20,
-    paddingBottom: 20,
   },
 });
 
