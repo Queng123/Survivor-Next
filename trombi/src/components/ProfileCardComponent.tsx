@@ -4,7 +4,7 @@ import FastImage from 'react-native-fast-image';
 import IconButton from '../utils/IconButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-type BasicEmployeeProps = {
+export type BasicEmployeeProps = {
   id: number;
   name: string;
   surname: string;
