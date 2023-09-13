@@ -17,7 +17,6 @@ export const MeteoWidget = ({data}: {data: WidgetData}): JSX.Element => {
 
     const getMeteoData = async ({latitude, longitude}: any) => {
         const url = `https://api.weatherapi.com/v1/current.json?key=${getCustomState()['extern-api-token']['weather']}&q=${latitude},${longitude}&aqi=no`;
-        // TODO: do not push API key in the code
         const response = await fetch(url);
         const data = await response.json();
         setMeteoData(data);
