@@ -17,7 +17,7 @@ function LogoutButton() {
 
   return (
     <View style={styles.container}>
-      <Button title={t('settings.logout')} onPress={deconnexion} />
+      <Button title={t('settings.logout')} onPress={disconnect} />
     </View>
   );
 }
