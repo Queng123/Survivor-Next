@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
 
-import {WidgetData} from './WidgetTypes';
-import {moveWidget, removeWidget} from './WidgetFunctions';
+import {WidgetData} from '../utils/WidgetTypes';
+import {moveWidget, removeWidget} from '../utils/WidgetFunctions';
 
 export const TestWidget = ({data}: {data: WidgetData}): JSX.Element => {
   return (

@@ -1,3 +1,5 @@
+import type { PropsWithChildren } from "react";
+
 export type WidgetType = string;
 export type WithKey<T> = T & {key: string};
 
@@ -11,7 +13,14 @@ export type WidgetContainerFunctions = {
   moveWidget: (key: string, direction: 'up' | 'down') => void;
 };
 
-export type WidgetViewProps = {
+export type WidgetViewProps = PropsWithChildren<{
   data: WidgetData;
-  containerFunctions: WidgetContainerFunctions;
-};
+  title: string;
+}>;
+
+export type WidgetFrameProps = PropsWithChildren<{
+  data: WidgetData;
+  title: string;
+  backgroundColor: string;
+  foregroundColor: string;
+}>;
