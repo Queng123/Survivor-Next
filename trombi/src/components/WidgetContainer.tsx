@@ -4,15 +4,12 @@ import {useSelector} from 'react-redux';
 import {WidgetData} from '../utils/WidgetTypes';
 import {store} from '../utils/GlobalStore';
 import {TestWidget} from './TestWidget';
-import { MeteoWidget } from './MeteoWidget';
+import {MeteoWidget} from './MeteoWidget';
 import {getWidgetsFromStorage} from '../utils/WidgetFunctions';
 
 export const WidgetContainerGap = (): JSX.Element => {
-  return (
-    <View style={{height: 100}}>
-    </View>
-  );
-}
+  return <View style={{height: 100}} />;
+};
 
 export const WidgetContainer = (): JSX.Element => {
   const widget = useSelector((state: any) => state.widget);
@@ -36,9 +33,9 @@ export const WidgetContainer = (): JSX.Element => {
           item.widgetType === 'MeteoWidget' && (
             <MeteoWidget data={item} key={item.key} />
           )
-        )
+        ),
       )}
-      <WidgetContainerGap/>
+      <WidgetContainerGap />
     </ScrollView>
   );
 };

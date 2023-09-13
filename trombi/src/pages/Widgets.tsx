@@ -2,11 +2,11 @@ import React from 'react';
 import {View, Pressable, StyleSheet, Text} from 'react-native';
 import {WidgetContainer} from '../components/WidgetContainer';
 import {createMeteoWidget} from '../components/MeteoWidget';
-import { addWidget } from '../utils/WidgetFunctions';
+import {addWidget} from '../utils/WidgetFunctions';
 
 const Widgets = () => {
   const addWidgetBtn = () => {
-    const { widgetType, widgetParams } = createMeteoWidget();
+    const {widgetType, widgetParams} = createMeteoWidget();
     addWidget(widgetType, widgetParams);
   };
 

@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from "react";
+import type {PropsWithChildren} from 'react';
 
 export type WidgetType = string;
 export type WithKey<T> = T & {key: string};
