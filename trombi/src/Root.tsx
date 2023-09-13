@@ -14,7 +14,7 @@ function Root() {
   return (
     // TODO: Add a Check if the user key exists if so go to NavBar else go to Login
     <Stack.Navigator
-      initialRouteName="NavBar"
+      initialRouteName="Login"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="NavBar" component={NavBar} />
