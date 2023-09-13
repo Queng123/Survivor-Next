@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {createStackNavigator} from '@react-navigation/stack';
 import NavBar from './components/NavBar';
@@ -7,12 +7,23 @@ import WidgetSelector from './pages/WidgetSelector';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import PrivateChat from './pages/PrivateChat';
+import { fetchTokensFromLocalStorage } from './utils/TokenFunctions';
+import { useNavigation } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
 function Root() {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    fetchTokensFromLocalStorage().then(tokens => {
+      if (tokens['masurao-token'] !== '') {
+        navigation.navigate('NavBar');
+      }
+    });
+  }, []);
+
   return (
-    // TODO: Add a Check if the user key exists if so go to NavBar else go to Login
     <Stack.Navigator
       initialRouteName="Login"
       screenOptions={{headerShown: false}}>
