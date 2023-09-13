@@ -7,7 +7,6 @@ import {WidgetFrame} from './WidgetFrame';
 import {getCustomState} from '../utils/CustomFunctions';
 
 export const MeteoWidget = ({data}: {data: WidgetData}): JSX.Element => {
-  const [loc, setLoc] = useState({latitude: 0, longitude: 0});
   const [meteoData, setMeteoData] = useState({} as any);
   const [fetched, setFetched] = useState(false);
 
@@ -26,10 +25,6 @@ export const MeteoWidget = ({data}: {data: WidgetData}): JSX.Element => {
       () => {
         Geolocation.getCurrentPosition(
           position => {
-            setLoc({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            });
             getMeteoData({
               latitude: position.coords.latitude,
               longitude: position.coords.longitude,
