@@ -3,7 +3,7 @@ import {StyleSheet, View, Linking} from 'react-native';
 import {useRoute, useNavigation} from '@react-navigation/native';
 
 import {ScrollView} from 'react-native-gesture-handler';
-import {ProfileInfo} from './ProfileInfo';
+import ProfileInfo from './ProfileInfo';
 import {CustomButton} from './CustomButton';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
@@ -56,24 +56,26 @@ const UserInfo = () => {
     <ScrollView>
       <View style={styles.container}>
         <ProfileInfo
-          id={userInfo.id}
-          name={userInfo.name}
-          post={userInfo.work}
-          email={userInfo.email}
-          birthday={userInfo.birthday}
-          gender={userInfo.gender}
+          id={id}
+          name={userInfo?.name + ' ' + userInfo?.surname}
+          post={userInfo?.work}
+          email={userInfo?.email}
+          birthday={userInfo?.birth_date}
+          gender={userInfo?.gender}
         />
       </View>
-      <CustomButton
-        title="Chat"
-        iconName="chatbubble-outline"
-        onPress={() => navigation.navigate('Chat')}
-      />
-      <CustomButton
-        title="Email"
-        iconName="mail-outline"
-        onPress={() => Linking.openURL('mailto:oliver.lewis@masurao.jp')}
-      />
+      <View style={styles.buttonsContainer}>
+        <CustomButton
+          title="Chat"
+          iconName="chatbubble-outline"
+          onPress={() => navigation.navigate('Chat')}
+        />
+        <CustomButton
+          title="Email"
+          iconName="mail-outline"
+          onPress={() => Linking.openURL(`mailto:${userInfo.email}`)}
+        />
+      </View>
     </ScrollView>
   );
 };
@@ -84,10 +86,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  settingsButton: {
-    position: 'absolute',
-    top: 30,
-    right: 30,
+  buttonsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
 });
 

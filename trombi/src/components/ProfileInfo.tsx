@@ -37,16 +37,19 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
         }}
         style={styles.image}
       />
-      <Text style={styles.name}>{name}</Text>
-      <View style={styles.line} />
-      <Text style={styles.infoLabel}>Poste</Text>
-      <Text style={styles.info}>{post}</Text>
-      <Text style={styles.infoLabel}>Email</Text>
-      <Text style={styles.info}>{email}</Text>
-      <Text style={styles.infoLabel}>Anniversaire</Text>
-      <Text style={styles.info}>{birthday}</Text>
-      <Text style={styles.infoLabel}>Genre</Text>
-      <Text style={styles.info}>{gender}</Text>
+      <View style={styles.nameContainer}>
+        <Text style={styles.name}>{name}</Text>
+      </View>
+      <View style={styles.infoContainer}>
+        <Text style={styles.infoLabel}>Poste</Text>
+        <Text style={styles.info}>{post}</Text>
+        <Text style={styles.infoLabel}>Email</Text>
+        <Text style={styles.info}>{email}</Text>
+        <Text style={styles.infoLabel}>Anniversaire</Text>
+        <Text style={styles.info}>{birthday}</Text>
+        <Text style={styles.infoLabel}>Genre</Text>
+        <Text style={styles.info}>{gender}</Text>
+      </View>
       <View style={styles.buttonsContainer} />
     </View>
   );
@@ -57,6 +60,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: 30,
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -68,18 +72,23 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 100,
     marginBottom: 30,
+    marginTop: 30,
+  },
+  nameContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    paddingBottom: 15,
   },
   name: {
     color: 'black',
     fontSize: 30,
     fontWeight: 'bold',
-    paddingBottom: 30,
+    paddingBottom: 10,
   },
-  line: {
-    height: 1,
-    backgroundColor: 'black',
-    width: '75%',
-    marginBottom: 30,
+  infoContainer: {
+    paddingTop: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   infoLabel: {
     color: 'black',
@@ -88,7 +97,7 @@ const styles = StyleSheet.create({
   info: {
     color: 'black',
     fontSize: 20,
-    paddingBottom: 15,
+    paddingBottom: 20,
   },
 });
 
