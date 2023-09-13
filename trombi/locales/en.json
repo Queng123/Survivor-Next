@@ -1,0 +1,25 @@
+{
+    "any": {
+        "loading": "Loading"
+    },
+    "trombi": {
+        "title": "Trombi"
+    },
+    "widgets": {
+        "title": "Widgets"
+    },
+    "chat": {
+        "title": "Chat"
+    },
+    "profile": {
+        "title": "Profile"
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "theme": "Theme",
+        "dark": "dark",
+        "light": "light",
+        "logout": "Logout"
+    }
+}

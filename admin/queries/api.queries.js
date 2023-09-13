@@ -2,7 +2,7 @@ const createModel = require('../database/models/dashboard.model');
 
 exports.getJson = (uuid) => {
     const Dashboard = createModel(uuid);
-    return Dashboard.findOne({ _id: uuid }).exec();
+    return Dashboard.findOne({ _id: uuid }).select('-logo').select('-_timestamp').select('-_id').select('-__v').exec();
   }
 
 exports.getTimestamp = (uuid) => {
@@ -17,3 +17,20 @@ exports.getTimestamp = (uuid) => {
         }
       });
   }
+exports.getLogo = async (uuid) => {
+    const Dashboard = createModel(uuid);
+    const test = await Dashboard.findOne({ _id: uuid }, { logo: 1 }).exec();
+    if (test) {
+        return Buffer.from(test.logo.logoData, 'base64');
+    }
+    return null;
+};
+
+exports.getAll = async (uuid) => {
+    const Dashboard = createModel(uuid);
+    const test = await Dashboard.findOne({ _id: uuid }).exec();
+    if (test) {
+        return test;
+    }
+    return null;
+}
