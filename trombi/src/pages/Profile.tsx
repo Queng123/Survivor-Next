@@ -10,14 +10,17 @@ import {getCustomState} from '../utils/CustomFunctions';
 
 export const getCurrentUserInfos = async () => {
   try {
-    const response = await fetch('https://masurao.fr/api/employees/me', {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        'X-Group-Authorization': getCustomState()['group-token'],
-        Authorization: 'Bearer ' + getTokens()['masurao-token'],
+    const response = await fetch(
+      `${getCustomState()['company-api-url']}/employees/me`,
+      {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          'X-Group-Authorization': getCustomState()['group-token'],
+          Authorization: 'Bearer ' + getTokens()['masurao-token'],
+        },
       },
-    });
+    );
 
     if (!response.ok) {
       console.error(`Request failed with status ${response.status}`);

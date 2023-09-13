@@ -8,14 +8,17 @@ import {CustomButton} from './CustomButton';
 
 export const getUserInfos = async (id: number) => {
   try {
-    const response = await fetch(`https://masurao.fr/api/employees/${id}`, {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        'X-Group-Authorization': '',
-        Authorization: '',
+    const response = await fetch(
+      `${getCustomState()['company-api-url']}/employees/${id}`,
+      {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          'X-Group-Authorization': '',
+          Authorization: '',
+        },
       },
-    });
+    );
 
     if (!response.ok) {
       console.error(`Request failed with status ${response.status}`);
