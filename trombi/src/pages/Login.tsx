@@ -21,7 +21,7 @@ const Login = () => {
         keyboardType="email-address"
         secure={false}
         value={email}
-        onChangeText={setEmail}
+        onChangeText={email => setEmail(email.toLowerCase())}
       />
       <LoginInputField
         label={'Mot de passe'}
