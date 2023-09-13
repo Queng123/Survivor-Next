@@ -1,12 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, ScrollView} from 'react-native';
 import ProfileCard from './ProfileCardComponent';
 import {BasicEmployeeProps} from './ProfileCardComponent';
-
-type EmployeeSortFunction = (
-  a: BasicEmployeeProps,
-  b: BasicEmployeeProps,
-) => number;
+import {EmployeeSortFunction} from '../utils/SortEmployeeProp';
 
 const ProfileCardList = ({
   sortFunction,
@@ -15,18 +11,26 @@ const ProfileCardList = ({
   sortFunction: EmployeeSortFunction;
   searchQuery?: string;
 }) => {
-  const [employees, setEmployees] = React.useState<BasicEmployeeProps[]>([]);
-  React.useEffect(() => {
-    fetch('https://masurao.fr/api/employees', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Group-Authorization': '',
-        Authorization: '',
-      },
-    })
-      .then(Response => Response.json())
-      .then(json => {
+  const [employees, setEmployees] = useState<BasicEmployeeProps[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://masurao.fr/api/employees', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Group-Authorization': '',
+            Authorization: '',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const json = await response.json();
+
         let filteredEmployees = [...json];
         if (searchQuery) {
           filteredEmployees = filteredEmployees.filter(employee => {
@@ -41,10 +45,12 @@ const ProfileCardList = ({
         }
         const sortedEmployees = filteredEmployees.sort(sortFunction);
         setEmployees(sortedEmployees);
-      })
-      .catch(error => {
+      } catch (error) {
         console.error(error);
-      });
+      }
+    };
+
+    fetchData();
   }, [sortFunction, searchQuery]);
 
   return (
