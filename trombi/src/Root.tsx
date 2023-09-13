@@ -26,7 +26,7 @@ function Root() {
       .catch(() => {
         navigation.navigate('Login');
       });
-  }, []);
+  }, [navigation]);
 
   return (
     <Stack.Navigator
