@@ -3,7 +3,6 @@ import {StyleSheet, View, Text} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
-import {useTheme} from '../utils/ThemeContext';
 
 interface ProfileInfoProps {
   id: string;
@@ -22,7 +21,6 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
   birthday,
   gender,
 }) => {
-  const {theme} = useTheme();
   const pictureURL: string = `${
     getCustomState()['company-api-url']
   }/employees/${id}/image`;
@@ -42,7 +40,6 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
       <View style={styles.nameContainer}>
         <Text style={styles.name}>{name}</Text>
       </View>
-      <Text>{theme}</Text>
       <View style={styles.infoContainer}>
         <Text style={styles.infoLabel}>Poste</Text>
         <Text style={styles.info}>{post}</Text>
