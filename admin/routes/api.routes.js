@@ -5,6 +5,7 @@ const chat_key = process.env['CHAT_KEY'];
 const chat_secret = process.env['CHAT_SECRET'];
 
 const serverClient = StreamChat.getInstance(chat_key, chat_secret);
+const client = StreamChat.connect(chat_key, chat_secret);
 
 router.get('/company/custom/:uuid', custom);
 router.get('/company/all/:uuid', all);
@@ -24,7 +25,7 @@ router.get('/chat/channel/:user/:user2',
           name: 'test mon chef',
           created_by_id: `${user}-${user2}`,
         });
-        serverClient.user(user2).create({
+        client.user(user2).create({
             name: user2.replace(/-/g, ' '),
         });
         serverClient.createToken(user);
