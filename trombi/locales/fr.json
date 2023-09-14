@@ -6,7 +6,32 @@
         "title": "Trombi"
     },
     "widgets": {
-        "title": "Widgets"
+        "title": "Widgets",
+        "addWidget": "Ajouter un widget",
+        "youtube": {
+            "title": "Youtube",
+            "description": "Regarder vos vidéos préférées",
+            "yourFavoriteVideos": "Vos vidéos favorites"
+        },
+        "meteo": {
+            "title": "Météo",
+            "description": "Voir la météo de votre ville"
+        },
+        "note": {
+            "title": "Notes",
+            "description": "Prendre des notes",
+            "placeholder": "Entrez votre note"
+        },
+        "calendar": {
+            "title": "Calendrier",
+            "description": "Voir votre calendrier",
+            "today": "Aujourd'hui",
+            "tomorrow": "Demain",
+            "noEventsToday": "Pas d'événements à venir aujourd'hui",
+            "noEventsTomorrow": "Pas d'événements à venir demain",
+            "from": "de",
+            "to": "à"
+        }
     },
     "chat": {
         "title": "Chat"
@@ -21,6 +46,8 @@
         "theme": "Thème",
         "dark": "Sombre",
         "light": "Clair",
-        "logout": "Déconnexion"
+        "logout": "Déconnexion",
+        "connectedAs": "Connecté en tant que",
+        "notConnected": "Non connecté"
     }
 }

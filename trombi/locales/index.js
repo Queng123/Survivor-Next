@@ -12,7 +12,6 @@ const resources = {
   },
 };
 
-export const defaultLanguage = 'en';
 export const supportedLanguages = ['en', 'fr'];
 
 i18n.use(initReactI18next).init({

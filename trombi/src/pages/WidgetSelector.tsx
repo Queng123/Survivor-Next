@@ -6,6 +6,8 @@ import {createYoutubeWidget} from '../components/YoutubeWidget';
 import {WidgetData} from '../utils/WidgetTypes';
 import {addWidget} from '../utils/WidgetFunctions';
 import {useNavigation} from '@react-navigation/native';
+import {createCalendarWidget} from '../components/CalendarWidget';
+import {useTranslation} from 'react-i18next';
 
 type AddableWidget = {
   title: string;
@@ -14,14 +16,28 @@ type AddableWidget = {
 };
 
 const WidgetSelector = () => {
+  const {t} = useTranslation();
   const navigation = useNavigation();
   const addableWidgets: AddableWidget[] = [
-    {title: 'Meteo', desc: 'Displays the meteo', func: createMeteoWidget},
-    {title: 'Note', desc: 'Displays a note', func: createNoteWidget},
     {
-      title: 'Youtube',
-      desc: 'Displays a youtube video',
+      title: t('widgets.meteo.title'),
+      desc: t('widgets.meteo.description'),
+      func: createMeteoWidget,
+    },
+    {
+      title: t('widgets.note.title'),
+      desc: t('widgets.note.description'),
+      func: createNoteWidget,
+    },
+    {
+      title: t('widgets.youtube.title'),
+      desc: t('widgets.youtube.description'),
       func: createYoutubeWidget,
+    },
+    {
+      title: t('widgets.calendar.title'),
+      desc: t('widgets.calendar.description'),
+      func: createCalendarWidget,
     },
   ];
   const createWidgetAndAdd = (widget: AddableWidget) => {
@@ -32,7 +48,7 @@ const WidgetSelector = () => {
 
   return (
     <ScrollView style={styles.view}>
-      <Text style={styles.title}>Add widget</Text>
+      <Text style={styles.title}>{t('widgets.addWidget')}</Text>
       {addableWidgets.map((widget, index) => (
         <Pressable
           style={styles.pressable}

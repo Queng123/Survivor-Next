@@ -1,28 +1,17 @@
 import React from 'react';
 
-import {
-  Alert,
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  Pressable,
-} from 'react-native';
+import {Text, View, StyleSheet, ScrollView, Pressable} from 'react-native';
 
 import {WidgetData} from '../utils/WidgetTypes';
 import {WidgetFrame} from './WidgetFrame';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
-import {getTokens, setTokens} from '../utils/TokenFunctions';
-import {loginAndStoreToken} from '../utils/GoogleLogin';
+import {CustomGoogleLoginButton} from '../utils/GoogleLogin';
 import {Linking} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useSelector} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 
 const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
+  const {t} = useTranslation();
   const [videos, setVideos] = React.useState<any[]>([]);
 
   React.useEffect(() => {
@@ -51,7 +40,9 @@ const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
 
   return (
     <View style={styles.favoriteView}>
-      <Text style={styles.favoriteTitle}>Vos vidéos favorites</Text>
+      <Text style={styles.favoriteTitle}>
+        {t('widgets.youtube.yourFavoriteVideos')}
+      </Text>
       <ScrollView nestedScrollEnabled={true}>
         {videos &&
           videos.map((video, index) => (
@@ -87,80 +78,20 @@ const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
   );
 };
 
-const YTUserInfos = ({
-  token,
-  setToken,
-}: {
-  token: string;
-  setToken: (token: string) => void;
-}): JSX.Element => {
-  const [email, setEmail] = React.useState<string>('');
-
-  const logout = () => {
-    setToken('');
-    setTokens({...getTokens(), 'google-oauth': ''});
-  };
-
-  React.useEffect(() => {
-    GoogleSignin.getCurrentUser().then(user => {
-      if (user) {
-        setEmail(user.user.email);
-      }
-    });
-  }, [token]);
-
-  return (
-    <View style={styles.userInfoView}>
-      <Text style={styles.userEmail} lineBreakMode="tail" numberOfLines={1}>
-        Google: {email}
-      </Text>
-      <Pressable style={styles.logoutButton} onPress={logout}>
-        <Ionicons name="log-out-outline" size={20} color="white" />
-      </Pressable>
-    </View>
-  );
-};
-
 export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
-  const [token, setToken] = React.useState<string>(getTokens()['google-oauth']);
-
-  const signIn = async () => {
-    try {
-      setToken(await loginAndStoreToken());
-    } catch (error: any) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        Alert.alert('Login cancelled');
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        Alert.alert('Login is in progress');
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        Alert.alert('Play services are not available');
-      } else {
-        Alert.alert('Something went wrong', error.toString());
-        console.error(error);
-      }
-    }
-  };
+  const token = useSelector((state: any) => state.token.tokens['google-oauth']);
 
   return (
     <WidgetFrame
       data={data}
-      title="Youtube"
+      title={t('widgets.youtube.title')}
       backgroundColor="red"
       foregroundColor="black">
       <View>
-        {token === '' && (
-          <GoogleSigninButton
-            style={{width: '100%', height: 52}}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={signIn}
-          />
-        )}
+        {token === '' && <CustomGoogleLoginButton />}
         {token !== '' && (
           <View>
             <YoutubeFavorites token={token} />
-            <View style={{height: 10}} />
-            <YTUserInfos token={token} setToken={setToken} />
           </View>
         )}
       </View>

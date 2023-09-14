@@ -4,8 +4,10 @@ import {WidgetData} from '../utils/WidgetTypes';
 import {WidgetFrame} from './WidgetFrame';
 import {TextInput} from 'react-native-gesture-handler';
 import {updateWidget} from '../utils/WidgetFunctions';
+import {useTranslation} from 'react-i18next';
 
 export const NoteWidget = ({data}: {data: WidgetData}): JSX.Element => {
+  const {t} = useTranslation();
   const [note, setNote] = useState(data.widgetParams.note);
 
   const setNoteAndSave = (text: string) => {
@@ -23,12 +25,12 @@ export const NoteWidget = ({data}: {data: WidgetData}): JSX.Element => {
   return (
     <WidgetFrame
       data={data}
-      title="Note"
+      title={t('widgets.note.title')}
       backgroundColor="#996633"
       foregroundColor="black">
       <View style={styles.container}>
         <TextInput
-          placeholder="Note"
+          placeholder={t('widgets.note.placeholder')}
           style={styles.noteInput}
           multiline={true}
           onChangeText={text => setNoteAndSave(text)}>
