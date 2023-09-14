@@ -7,6 +7,7 @@ import WidgetSelector from './pages/WidgetSelector';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import PrivateChat from './pages/PrivateChat';
+import UserInfo from './components/UserInfo';
 import {fetchTokensFromLocalStorage, setTokens} from './utils/TokenFunctions';
 import {useNavigation} from '@react-navigation/native';
 
@@ -38,6 +39,7 @@ function Root() {
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="PrivateChat" component={PrivateChat} />
+      <Stack.Screen name="UserInfo" component={UserInfo} />
     </Stack.Navigator>
   );
 }

@@ -4,7 +4,6 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
 import ProfileInfo from '../components/ProfileInfo';
-import {ScrollView} from 'react-native-gesture-handler';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
 
@@ -51,23 +50,21 @@ const Profile: React.FC = () => {
   }, []);
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.settingsButton}
-          onPress={() => navigation.navigate('Settings')}>
-          <Ionicon name="settings-outline" size={40} />
-        </TouchableOpacity>
-        <ProfileInfo
-          id={userInfo?.id}
-          name={userInfo?.name + ' ' + userInfo?.surname}
-          post={userInfo?.work}
-          email={userInfo?.email}
-          birthday={userInfo?.birth_date}
-          gender={userInfo?.gender}
-        />
-      </View>
-    </ScrollView>
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.settingsButton}
+        onPress={() => navigation.navigate('Settings')}>
+        <Ionicon name="settings-outline" size={40} />
+      </TouchableOpacity>
+      <ProfileInfo
+        id={userInfo?.id}
+        name={userInfo?.name + ' ' + userInfo?.surname}
+        post={userInfo?.work}
+        email={userInfo?.email}
+        birthday={userInfo?.birth_date}
+        gender={userInfo?.gender}
+      />
+    </View>
   );
 };
 
