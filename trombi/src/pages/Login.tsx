@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import LoginInputField from '../components/LoginInputField';
@@ -12,7 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <LoginInputField
         label={'Email'}
         icon={
@@ -38,7 +43,7 @@ const Login = () => {
         style={styles.loginButton}>
         <Text style={styles.loginButtonText}>Se connecter</Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
