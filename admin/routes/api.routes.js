@@ -32,7 +32,7 @@ router.get('/chat/channel/:user/:user2',
             console.log("OK3");
             await channel.inviteMembers([user, user2]);
             console.log("OK4");
-            res.status(200);
+            res.status(200).send('OK');
         } catch (error) {
             console.log(error);
             res.status(500);
