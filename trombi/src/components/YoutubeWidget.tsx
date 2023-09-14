@@ -1,19 +1,13 @@
 import React from 'react';
 
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  Pressable,
-} from 'react-native';
+import {Text, View, StyleSheet, ScrollView, Pressable} from 'react-native';
 
 import {WidgetData} from '../utils/WidgetTypes';
 import {WidgetFrame} from './WidgetFrame';
-import {CustomGoogleLoginButton, loginAndStoreToken} from '../utils/GoogleLogin';
+import {CustomGoogleLoginButton} from '../utils/GoogleLogin';
 import {Linking} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
   const [videos, setVideos] = React.useState<any[]>([]);
@@ -80,9 +74,8 @@ const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
   );
 };
 
-
 export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
-  const token = useSelector((state: any) => state.token["tokens"]["google-oauth"]);
+  const token = useSelector((state: any) => state.token.tokens['google-oauth']);
 
   return (
     <WidgetFrame
@@ -91,9 +84,7 @@ export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
       backgroundColor="red"
       foregroundColor="black">
       <View>
-        {token === '' && (
-          <CustomGoogleLoginButton />
-        )}
+        {token === '' && <CustomGoogleLoginButton />}
         {token !== '' && (
           <View>
             <YoutubeFavorites token={token} />

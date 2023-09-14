@@ -28,7 +28,7 @@ const WidgetSelector = () => {
       title: 'Calendar',
       desc: 'Displays your calendar',
       func: createCalendarWidget,
-    }
+    },
   ];
   const createWidgetAndAdd = (widget: AddableWidget) => {
     const {widgetType, widgetParams} = widget.func();

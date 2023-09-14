@@ -1,7 +1,10 @@
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
-import { OAuthToken } from './TokenTypes';
-import { getTokens, setTokens, setTokensInLocalStorage } from './TokenFunctions';
-import { Alert, Button } from 'react-native';
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+import {OAuthToken} from './TokenTypes';
+import {getTokens, setTokens, setTokensInLocalStorage} from './TokenFunctions';
+import {Alert, Button} from 'react-native';
 
 export const loginAndStoreToken = async (): Promise<OAuthToken> => {
   await GoogleSignin.hasPlayServices();
@@ -18,24 +21,27 @@ export const loginAndStoreToken = async (): Promise<OAuthToken> => {
 
 export const findEmailFromBearer = async (token: any) => {
   try {
-    const response = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await fetch(
+      'https://www.googleapis.com/oauth2/v2/userinfo',
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
     const result = await response.json();
     return result.email;
   } catch (error) {
-      console.log("token present but error from google api", error);
-      return "";
+    console.log('token present but error from google api', error);
+    return '';
   }
-}
+};
 
 export const CustomGoogleLoginButton = (): JSX.Element => {
   const signIn = async () => {
     try {
-      await loginAndStoreToken()
+      await loginAndStoreToken();
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         Alert.alert('Login cancelled');
@@ -49,10 +55,7 @@ export const CustomGoogleLoginButton = (): JSX.Element => {
       }
     }
   };
-  return (<Button
-    onPress={signIn}
-    title="Se connecter avec Google"
-  />)
+  return <Button onPress={signIn} title="Se connecter avec Google" />;
 };
 
 export const CustomGoogleLogoutButton = (): JSX.Element => {
@@ -67,8 +70,5 @@ export const CustomGoogleLogoutButton = (): JSX.Element => {
       console.error(error);
     }
   };
-  return (<Button
-    onPress={signOut}
-    title="Se déconnecter de Google"
-  />)
-}
+  return <Button onPress={signOut} title="Se déconnecter de Google" />;
+};
