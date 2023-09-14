@@ -9,8 +9,8 @@ import PrivateChat from './pages/PrivateChat';
 import UserInfo from './components/UserInfo';
 import {fetchTokensFromLocalStorage, setTokens} from './utils/TokenFunctions';
 import {useNavigation, CommonActions} from '@react-navigation/native';
-import { fetchThemeFromLocalStorage } from './utils/ThemeFunctions';
-import { useTheme } from './utils/ThemeContext';
+import {fetchThemeFromLocalStorage} from './utils/ThemeFunctions';
+import {useTheme} from './utils/ThemeContext';
 
 const Stack = createStackNavigator();
 
@@ -40,16 +40,18 @@ function Root() {
     fetchThemeFromLocalStorage()
       .then(theme => {
         console.log(theme);
-        if (theme.theme === null || theme.theme === undefined || theme.theme === 'light') {
+        if (
+          theme.theme === null ||
+          theme.theme === undefined ||
+          theme.theme === 'light'
+        ) {
           setTheme('light');
         } else {
           setTheme('dark');
         }
       })
-      .catch(() => {
-
-      });
-  }, []);
+      .catch(() => {});
+  }, [setTheme]);
 
   return (
     <Stack.Navigator
