@@ -8,8 +8,10 @@ import {CustomGoogleLoginButton} from '../utils/GoogleLogin';
 import {Linking} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {useSelector} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 
 const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
+  const {t} = useTranslation();
   const [videos, setVideos] = React.useState<any[]>([]);
 
   React.useEffect(() => {
@@ -38,7 +40,9 @@ const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
 
   return (
     <View style={styles.favoriteView}>
-      <Text style={styles.favoriteTitle}>Vos vidéos favorites</Text>
+      <Text style={styles.favoriteTitle}>
+        {t('widgets.youtube.yourFavoriteVideos')}
+      </Text>
       <ScrollView nestedScrollEnabled={true}>
         {videos &&
           videos.map((video, index) => (
@@ -80,7 +84,7 @@ export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
   return (
     <WidgetFrame
       data={data}
-      title="Youtube"
+      title={t('widgets.youtube.title')}
       backgroundColor="red"
       foregroundColor="black">
       <View>

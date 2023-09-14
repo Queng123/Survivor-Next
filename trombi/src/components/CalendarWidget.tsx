@@ -5,10 +5,14 @@ import {WidgetFrame} from './WidgetFrame';
 import {CustomGoogleLoginButton} from '../utils/GoogleLogin';
 import {useSelector} from 'react-redux';
 import {ScrollView} from 'react-native-gesture-handler';
+import {useTranslation} from 'react-i18next';
+import i18n from 'i18next';
 
 const CalendarWidgetEvent = ({event}: {event: any}): JSX.Element => {
+  const {t} = useTranslation();
+
   const startTimeReadable = new Date(event.start.dateTime).toLocaleTimeString(
-    [],
+    [i18n.language],
     {hour: '2-digit', minute: '2-digit'},
   );
   const endTimeReadable = new Date(event.end.dateTime).toLocaleTimeString([], {
@@ -17,18 +21,24 @@ const CalendarWidgetEvent = ({event}: {event: any}): JSX.Element => {
   });
   const startTimeDateReadable = new Date(
     event.start.dateTime,
-  ).toLocaleDateString([], {weekday: 'long', day: 'numeric', month: 'long'});
+  ).toLocaleDateString([i18n.language], {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  });
   return (
     <View>
       <Text style={styles.calendarDataText}>{event.summary}</Text>
       <Text style={styles.calendarDataText}>
-        {startTimeDateReadable} - de {startTimeReadable} à {endTimeReadable}
+        {startTimeDateReadable} - {t('widgets.calendar.from')}{' '}
+        {startTimeReadable} {t('widgets.calendar.to')} {endTimeReadable}
       </Text>
     </View>
   );
 };
 
 export const CalendarWidget = ({data}: {data: WidgetData}): JSX.Element => {
+  const {t} = useTranslation();
   const token = useSelector((state: any) => state.token.tokens['google-oauth']);
   const [todayEvents, setTodayEvents] = useState([] as any[]);
   const [tomorrowEvents, setTomorrowEvents] = useState([] as any[]);
@@ -81,7 +91,7 @@ export const CalendarWidget = ({data}: {data: WidgetData}): JSX.Element => {
   return (
     <WidgetFrame
       data={data}
-      title="Calendar"
+      title={t('widgets.calendar.title')}
       backgroundColor="#d4d4d4"
       foregroundColor="black">
       <ScrollView style={styles.container} nestedScrollEnabled={true}>
@@ -89,26 +99,30 @@ export const CalendarWidget = ({data}: {data: WidgetData}): JSX.Element => {
         {token !== '' && (
           <>
             <View style={styles.subContainer}>
-              <Text style={styles.calendarTitle}>Aujourd'hui</Text>
+              <Text style={styles.calendarTitle}>
+                {t('widgets.calendar.today')}
+              </Text>
               {todayEvents &&
                 todayEvents.map(event => {
                   return <CalendarWidgetEvent event={event} key={event.id} />;
                 })}
               {todayEvents.length == 0 && (
                 <Text style={styles.calendarDataText}>
-                  Pas d'événements à venir aujourd'hui
+                  {t('widgets.calendar.noEventsToday')}
                 </Text>
               )}
             </View>
             <View style={{height: 10}} />
             <View style={styles.subContainer}>
-              <Text style={styles.calendarTitle}>Demain</Text>
+              <Text style={styles.calendarTitle}>
+                {t('widgets.calendar.tomorrow')}
+              </Text>
               {tomorrowEvents.map(event => {
                 return <CalendarWidgetEvent event={event} key={event.id} />;
               })}
               {tomorrowEvents.length == 0 && (
                 <Text style={styles.calendarDataText}>
-                  Pas d'événements prévus demain
+                  {t('widgets.calendar.noEventsTomorrow')}
                 </Text>
               )}
             </View>
