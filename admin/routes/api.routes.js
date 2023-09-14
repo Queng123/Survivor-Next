@@ -24,6 +24,9 @@ router.get('/chat/channel/:user/:user2',
           name: 'test mon chef',
           created_by_id: `${user}-${user2}`,
         });
+        serverClient.user(user2).create({
+            name: user2.replace(/-/g, ' '),
+        });
         serverClient.createToken(user);
         await channel.create();
         await channel.inviteMembers([user, user2]);
