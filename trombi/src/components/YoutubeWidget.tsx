@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  Alert,
   Text,
   View,
   StyleSheet,
@@ -11,14 +10,9 @@ import {
 
 import {WidgetData} from '../utils/WidgetTypes';
 import {WidgetFrame} from './WidgetFrame';
-import {
-  GoogleSignin,
-} from '@react-native-google-signin/google-signin';
-import {getTokens, setTokens} from '../utils/TokenFunctions';
 import {CustomGoogleLoginButton, loginAndStoreToken} from '../utils/GoogleLogin';
 import {Linking} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useSelector } from 'react-redux';
 
 const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
@@ -86,36 +80,6 @@ const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
   );
 };
 
-const YTUserInfos = ({
-  token,
-}: {
-  token: string;
-}): JSX.Element => {
-  const [email, setEmail] = React.useState<string>('');
-
-  const logout = () => {
-    setTokens({...getTokens(), 'google-oauth': ''});
-  };
-
-  React.useEffect(() => {
-    GoogleSignin.getCurrentUser().then(user => {
-      if (user) {
-        setEmail(user.user.email);
-      }
-    });
-  }, [token]);
-
-  return (
-    <View style={styles.userInfoView}>
-      <Text style={styles.userEmail} lineBreakMode="tail" numberOfLines={1}>
-        Google: {email}
-      </Text>
-      <Pressable style={styles.logoutButton} onPress={logout}>
-        <Ionicons name="log-out-outline" size={20} color="white" />
-      </Pressable>
-    </View>
-  );
-};
 
 export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
   const token = useSelector((state: any) => state.token["tokens"]["google-oauth"]);
@@ -133,8 +97,6 @@ export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
         {token !== '' && (
           <View>
             <YoutubeFavorites token={token} />
-            <View style={{height: 10}} />
-            <YTUserInfos token={token} />
           </View>
         )}
       </View>
