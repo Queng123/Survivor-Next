@@ -20,7 +20,7 @@ function App(): JSX.Element {
       "https://www.googleapis.com/auth/youtube.force-ssl",
     ],
     offlineAccess: true,
-    forceCodeForRefreshToken: true,
+    forceCodeForRefreshToken: false,
   });
   return (
     <Provider store={store}>

@@ -6,12 +6,13 @@ import { getTokens, setTokens, setTokensInLocalStorage } from './TokenFunctions'
 
 export const loginAndStoreToken = async (): Promise<OAuthToken> => {
     await GoogleSignin.hasPlayServices();
-    const userInfo: any = await GoogleSignin.signIn();
+    await GoogleSignin.signIn();
+    const tokens: any = await GoogleSignin.getTokens();
     
     setTokens({
         ...getTokens(),
-        'google-oauth': userInfo.idToken,
+        'google-oauth': tokens.accessToken,
     });
     setTokensInLocalStorage(getTokens());
-    return userInfo.idToken;
+    return tokens.accessToken;
 }
