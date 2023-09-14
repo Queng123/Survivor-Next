@@ -25,9 +25,13 @@ router.get('/chat/channel/:user/:user2',
             name: `${user.replace(/-/g, ' ')}-${user2.replace(/-/g, ' ')}`,
             created_by_id: user,
             });
+            console.log("OK1");
             await serverClient.upsertUser({ id: user2, name: user2.replace(/-/g, ' ') });
+            console.log("OK2");
             await channel.create();
+            console.log("OK3");
             await channel.inviteMembers([user, user2]);
+            console.log("OK4");
             res.status(200);
         } catch (error) {
             console.log(error);
