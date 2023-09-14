@@ -19,6 +19,21 @@ function LanguageButton(): JSX.Element {
     i18n.changeLanguage(value);
   }, [value, i18n]);
 
+  const styles = {
+    style: {
+      backgroundColor: getCustomState()?.custom?.['background-2'],
+    },
+    dropDownContainerStyle: {
+      backgroundColor: getCustomState()?.custom?.['background-2'],
+    },
+    selectedItemContainerStyle: {
+      backgroundColor: getCustomState()?.custom?.['background-3'],
+    },
+    textStyle: {
+      color: getCustomState()?.custom?.['text-primary'],
+    },
+  };
+
   return (
     <View>
       <DropDownPicker
@@ -36,20 +51,5 @@ function LanguageButton(): JSX.Element {
     </View>
   );
 }
-
-const styles = {
-  style: {
-    backgroundColor: getCustomState()?.custom?.['background-2'],
-  },
-  dropDownContainerStyle: {
-    backgroundColor: getCustomState()?.custom?.['background-2'],
-  },
-  selectedItemContainerStyle: {
-    backgroundColor: getCustomState()?.custom?.['background-3'],
-  },
-  textStyle: {
-    color: getCustomState()?.custom?.['text-primary'],
-  },
-};
 
 export default LanguageButton;
