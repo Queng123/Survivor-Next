@@ -3,7 +3,7 @@ import type {ThemeData} from './ThemeTypes';
 
 const initialState = {
   theme: {
-    'theme': 'light',
+    theme: 'light',
   } as ThemeData,
 };
 

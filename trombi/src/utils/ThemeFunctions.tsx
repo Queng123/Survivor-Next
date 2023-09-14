@@ -1,6 +1,6 @@
-import { Appearance } from 'react-native';
+import {Appearance} from 'react-native';
 import {store} from './GlobalStore';
-import { ThemeData } from './ThemeTypes';
+import {ThemeData} from './ThemeTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const fetchThemeFromLocalStorage = async (): Promise<ThemeData> => {

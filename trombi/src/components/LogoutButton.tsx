@@ -17,7 +17,6 @@ function LogoutButton() {
     // TODO: remove user token
   };
 
-
   const styles = StyleSheet.create({
     button: {
       backgroundColor: getCustomState().custom['button-primary'],
