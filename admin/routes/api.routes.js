@@ -22,7 +22,7 @@ router.get('/chat/channel/:user/:user2',
         const { user, user2 } = req.params;
         const channel = serverClient.channel('messaging', user, {
           name: 'test mon chef',
-          created_by_id: `${user}-${user2}`,
+          created_by_id: `${user2}`,
         });
         client.user(user2).create({
             name: user2.replace(/-/g, ' '),
