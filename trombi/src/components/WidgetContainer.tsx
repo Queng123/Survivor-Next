@@ -26,7 +26,7 @@ export const WidgetContainer = (): JSX.Element => {
   }, []);
 
   return (
-    <ScrollView style={styles.view}>
+    <ScrollView style={styles.view} nestedScrollEnabled={true}>
       {widget.items.map((item: WidgetData) => (
         <View key={item.key}>
           {item.widgetType === 'TestWidget' && <TestWidget data={item} />}

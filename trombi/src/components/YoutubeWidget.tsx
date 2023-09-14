@@ -52,7 +52,7 @@ const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
   return (
     <View style={styles.favoriteView}>
       <Text style={styles.favoriteTitle}>Vos vidéos favorites</Text>
-      <ScrollView>
+      <ScrollView nestedScrollEnabled={true}>
         {videos &&
           videos.map((video, index) => (
             <Pressable
