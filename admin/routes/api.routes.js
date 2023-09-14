@@ -17,7 +17,7 @@ router.get('/chat/token/:user',
         res.status(200).send(token);
     }
 );
-router.get('/chat/channel/:user?:user2',
+router.get('/chat/channel/:user/:user2',
     async (req, res) => {
         const { user, user2 } = req.params;
         const channel = serverClient.channel(user, user2, {
