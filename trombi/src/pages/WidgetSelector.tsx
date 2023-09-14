@@ -18,7 +18,11 @@ const WidgetSelector = () => {
   const addableWidgets: AddableWidget[] = [
     {title: 'Meteo', desc: 'Displays the meteo', func: createMeteoWidget},
     {title: 'Note', desc: 'Displays a note', func: createNoteWidget},
-    {title: 'Youtube', desc: 'Displays a youtube video', func: createYoutubeWidget},
+    {
+      title: 'Youtube',
+      desc: 'Displays a youtube video',
+      func: createYoutubeWidget,
+    },
   ];
   const createWidgetAndAdd = (widget: AddableWidget) => {
     const {widgetType, widgetParams} = widget.func();
