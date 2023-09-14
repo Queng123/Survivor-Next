@@ -22,10 +22,9 @@ router.get('/chat/channel/:user/:user2',
         const { user, user2 } = req.params;
         const channel = serverClient.channel('messaging', user, {
           name: 'test mon chef',
-          created_by_id: `${user2}`,
+          created_by_id: `${user}-${user2}`,
         });
-        serverClient.createToken(user);
-        serverClient.updateUser({ id: user, name: user });
+        await serverClient.updateUser({ id: user2, name: user2.replace(/-/g, ' ') });
         await channel.create();
         await channel.inviteMembers([user, user2]);
         res.status(200);
