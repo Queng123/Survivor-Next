@@ -73,7 +73,11 @@ const Login = () => {
           <LoginInputField
             label={'Email'}
             icon={
-              <Ionicons name="mail-outline" size={20} style={styles.enveloppe} />
+              <Ionicons
+                name="mail-outline"
+                size={20}
+                style={styles.enveloppe}
+              />
             }
             keyboardType="email-address"
             secure={false}
@@ -83,7 +87,11 @@ const Login = () => {
           <LoginInputField
             label={'Mot de passe'}
             icon={
-              <Ionicons name="lock-closed-outline" size={20} style={styles.lock} />
+              <Ionicons
+                name="lock-closed-outline"
+                size={20}
+                style={styles.lock}
+              />
             }
             keyboardType="default"
             secure={true}
