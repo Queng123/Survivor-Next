@@ -19,6 +19,7 @@ const Stack = createStackNavigator();
 function Root() {
   const navigation = useNavigation();
   const {setTheme} = useTheme();
+  const {i18n} = useTranslation();
 
   useEffect(() => {
     fetchTokensFromLocalStorage()
@@ -41,7 +42,6 @@ function Root() {
   useEffect(() => {
     fetchThemeFromLocalStorage()
       .then(theme => {
-        console.log(theme);
         if (
           theme.theme === null ||
           theme.theme === undefined ||
