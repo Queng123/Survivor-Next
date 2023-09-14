@@ -15,7 +15,6 @@ import {
   getTokens,
 } from '../utils/TokenFunctions';
 
-
 const api_key = CHAT_KEY;
 const serverClient = StreamChat.getInstance(api_key);
 function LogoutButton() {
