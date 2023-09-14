@@ -1,20 +1,11 @@
 import React from 'react';
 import {View, Switch, StyleSheet} from 'react-native';
-import {Appearance} from 'react-native';
-import {useState, useEffect} from 'react';
-
 import {getCustomState} from '../utils/CustomFunctions';
-import {ColorSchemeName} from 'react-native';
-import {getTheme, setTheme} from '../utils/ThemeFunctions';
+import {getTheme} from '../utils/ThemeFunctions';
+import {useTheme} from '../utils/ThemeContext';
 
 const ThemeButton = () => {
-  const [theme, setThemeState] = useState<ColorSchemeName>(
-    Appearance.getColorScheme(),
-  );
-
-  useEffect(() => {
-    setTheme({theme: theme});
-  }, [theme]);
+  const {theme, toggleTheme} = useTheme();
 
   return (
     <View style={styles.container}>
@@ -24,13 +15,11 @@ const ThemeButton = () => {
           true: getCustomState().custom['button-secondary-dark'],
         }}
         thumbColor={
-          Appearance.getColorScheme() === 'light'
+          getTheme().theme === 'light'
             ? getCustomState().custom['button-primary']
             : getCustomState().custom['button-primary-dark']
         }
-        onValueChange={() =>
-          setThemeState(getTheme().theme === 'light' ? 'dark' : 'light')
-        }
+        onValueChange={toggleTheme}
         value={theme === 'dark'}
         style={styles.switch}
       />

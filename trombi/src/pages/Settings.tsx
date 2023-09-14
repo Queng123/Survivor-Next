@@ -10,6 +10,7 @@ import {useTranslation} from 'react-i18next';
 
 import {getCustomState} from '../utils/CustomFunctions';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useTheme} from '../utils/ThemeContext';
 
 const Settings = () => {
   const navigation = useNavigation();
@@ -17,6 +18,7 @@ const Settings = () => {
   const goBack = () => {
     navigation.goBack();
   };
+  const {theme} = useTheme();
 
   const styles = StyleSheet.create({
     container: {
@@ -77,6 +79,7 @@ const Settings = () => {
 
   return (
     <View style={styles.container}>
+      <Text>{theme}</Text>
       <View style={styles.header}>
         <View style={styles.but}>
           <TouchableOpacity onPress={goBack} style={styles.button}>
