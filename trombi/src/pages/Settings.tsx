@@ -11,6 +11,12 @@ import {useTranslation} from 'react-i18next';
 import {getCustomState} from '../utils/CustomFunctions';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useTheme} from '../utils/ThemeContext';
+import {
+  CustomGoogleLoginButton,
+  CustomGoogleLogoutButton,
+  findEmailFromBearer,
+} from '../utils/GoogleLogin';
+import {useSelector} from 'react-redux';
 
 const Settings = () => {
   const navigation = useNavigation();
@@ -19,6 +25,18 @@ const Settings = () => {
     navigation.goBack();
   };
   const {theme} = useTheme();
+  const tokens = useSelector((state: any) => state.token.tokens);
+  const [googleAcc, setGoogleAcc] = React.useState('' as string);
+
+  React.useEffect(() => {
+    if (tokens['google-oauth'] !== undefined && tokens['google-oauth'] !== '') {
+      findEmailFromBearer(tokens['google-oauth']).then((email: string) => {
+        setGoogleAcc(email);
+      });
+    } else {
+      setGoogleAcc('');
+    }
+  }, [tokens]);
 
   const styles = StyleSheet.create({
     container: {
@@ -100,6 +118,19 @@ const Settings = () => {
           <View style={styles.drowdownpicker}>
             <LanguageButton />
           </View>
+        </View>
+        <View>
+          <Text style={styles.text}>
+            Google:{' '}
+            {googleAcc
+              ? `${t('settings.connectedAs')} ${googleAcc}`
+              : t('settings.notConnected')}{' '}
+          </Text>
+          {googleAcc ? (
+            <CustomGoogleLogoutButton />
+          ) : (
+            <CustomGoogleLoginButton />
+          )}
         </View>
         <View>
           <LogoutButton />
