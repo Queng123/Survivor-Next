@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   KeyboardAvoidingView,
   Text,
@@ -20,6 +20,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const customStyles = StyleSheet.create({
     loginButton: {
       backgroundColor: getCustomState().custom[`button-primary${theme}`],
@@ -48,6 +49,15 @@ const Login = () => {
     },
   });
 
+  useEffect(() => {
+    setTimeout(() => {
+      const backgroudExists = getCustomState().custom['background-1'];
+      if (backgroudExists) {
+        setIsLoading(false);
+      }
+    }, 1000);
+  }, []);
+
   const updateButtonState = () => {
     if (email.trim() !== '' && password.trim() !== '') {
       setIsButtonDisabled(false);
@@ -68,7 +78,7 @@ const Login = () => {
 
   return (
     <KeyboardAvoidingView style={customStyles.container}>
-      {getCustomState().custom['background-1'] ? (
+      {!isLoading ? (
         <View style={customStyles.container}>
           <LoginInputField
             label={'Email'}
@@ -110,10 +120,7 @@ const Login = () => {
           </TouchableOpacity>
         </View>
       ) : (
-        <ActivityIndicator
-          size="large"
-          color={getCustomState().custom[`button-primary${theme}`]}
-        />
+        <ActivityIndicator size="large" color="black" />
       )}
     </KeyboardAvoidingView>
   );

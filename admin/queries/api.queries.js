@@ -21,7 +21,7 @@ exports.getLogo = async (uuid) => {
     const Dashboard = createModel(uuid);
     const test = await Dashboard.findOne({ _id: uuid }, { logo: 1 }).exec();
     if (test) {
-        return Buffer.from(test.logo.logoData, 'base64');
+        return Buffer.from(test.logo.logoData.split(",")[1], 'base64');
     }
     return null;
 };
