@@ -3,8 +3,6 @@ import {ChannelList} from 'stream-chat-react-native';
 import {useAppContext} from '../components/Chat/AppContext';
 import { useEffect, useState } from "react";
 import { getCurrentUserInfos } from "../utils/getCurrentUserInfos";
-import { Text } from 'react-native';
-import { useChatClient } from '../components/Chat/useChatClient';
 
 const ChannelListScreen = (props) => {
   const [chatUserId, setChatUserId] = useState<any>(null);
@@ -34,11 +32,6 @@ const ChannelListScreen = (props) => {
 
     initializeChat();
   }, []);
-  const { clientIsReady } = useChatClient();
-
-  if (!clientIsReady) {
-    return <Text>Loading chat ...</Text>
-  }
 
   return (
     <ChannelList

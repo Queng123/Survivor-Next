@@ -15,7 +15,7 @@ const getInfos = async () => {
 
 const fetchTokenFromServer = async (chatUserId) => {
   try {
-    const url = `${ADMIN_API_URL}/token/${chatUserId}`;
+    const url = `${ADMIN_API_URL}/chat/token/${chatUserId}`;
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`);

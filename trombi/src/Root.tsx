@@ -10,8 +10,13 @@ import PrivateChat from './pages/PrivateChat';
 import UserInfo from './components/UserInfo';
 import {useNavigation} from '@react-navigation/native';
 import {
+  Chat,
   OverlayProvider
 } from 'stream-chat-react-native';
+import { CHAT_KEY } from '@env';
+import { StreamChat } from 'stream-chat';
+
+const chatClient = StreamChat.getInstance(CHAT_KEY);
 
 const Stack = createStackNavigator();
 
@@ -38,17 +43,20 @@ function Root() {
 
   return (
     <OverlayProvider>
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="NavBar" component={NavBar} />
-        <Stack.Screen name="WidgetSelector" component={WidgetSelector} />
-        <Stack.Screen name="Settings" component={Settings} />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="PrivateChat" component={PrivateChat} />
-        <Stack.Screen name="UserInfo" component={UserInfo} />
-      </Stack.Navigator>
+      <Chat client={chatClient}>
+
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="NavBar" component={NavBar} />
+          <Stack.Screen name="WidgetSelector" component={WidgetSelector} />
+          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="PrivateChat" component={PrivateChat} />
+          <Stack.Screen name="UserInfo" component={UserInfo} />
+        </Stack.Navigator>
+      </Chat>
     </OverlayProvider>
   );
 }
