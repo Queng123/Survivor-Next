@@ -13,14 +13,13 @@ import {WidgetData} from '../utils/WidgetTypes';
 import {WidgetFrame} from './WidgetFrame';
 import {
   GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
 } from '@react-native-google-signin/google-signin';
 import {getTokens, setTokens} from '../utils/TokenFunctions';
-import {loginAndStoreToken} from '../utils/GoogleLogin';
+import {CustomGoogleLoginButton, loginAndStoreToken} from '../utils/GoogleLogin';
 import {Linking} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useSelector } from 'react-redux';
 
 const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
   const [videos, setVideos] = React.useState<any[]>([]);
@@ -89,15 +88,12 @@ const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
 
 const YTUserInfos = ({
   token,
-  setToken,
 }: {
   token: string;
-  setToken: (token: string) => void;
 }): JSX.Element => {
   const [email, setEmail] = React.useState<string>('');
 
   const logout = () => {
-    setToken('');
     setTokens({...getTokens(), 'google-oauth': ''});
   };
 
@@ -122,24 +118,7 @@ const YTUserInfos = ({
 };
 
 export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
-  const [token, setToken] = React.useState<string>(getTokens()['google-oauth']);
-
-  const signIn = async () => {
-    try {
-      setToken(await loginAndStoreToken());
-    } catch (error: any) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        Alert.alert('Login cancelled');
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        Alert.alert('Login is in progress');
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        Alert.alert('Play services are not available');
-      } else {
-        Alert.alert('Something went wrong', error.toString());
-        console.error(error);
-      }
-    }
-  };
+  const token = useSelector((state: any) => state.token["tokens"]["google-oauth"]);
 
   return (
     <WidgetFrame
@@ -149,18 +128,13 @@ export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
       foregroundColor="black">
       <View>
         {token === '' && (
-          <GoogleSigninButton
-            style={{width: '100%', height: 52}}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={signIn}
-          />
+          <CustomGoogleLoginButton />
         )}
         {token !== '' && (
           <View>
             <YoutubeFavorites token={token} />
             <View style={{height: 10}} />
-            <YTUserInfos token={token} setToken={setToken} />
+            <YTUserInfos token={token} />
           </View>
         )}
       </View>

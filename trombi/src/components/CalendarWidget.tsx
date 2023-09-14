@@ -1,22 +1,31 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Alert, Button} from 'react-native';
 import {WidgetData} from '../utils/WidgetTypes';
 import {WidgetFrame} from './WidgetFrame';
-import {TextInput} from 'react-native-gesture-handler';
-import {updateWidget} from '../utils/WidgetFunctions';
+import { CustomGoogleLoginButton, loginAndStoreToken } from '../utils/GoogleLogin';
+import { useSelector } from 'react-redux';
 
 export const CalendarWidget = ({data}: {data: WidgetData}): JSX.Element => {
+  const token = useSelector((state: any) => state.token["tokens"]["google-oauth"]);
+  const [events, setEvents] = useState([] as any[]);
 
   return (
     <WidgetFrame
-      data={data}
-      title="Calendar"
-      backgroundColor="#996633"
-      foregroundColor="black">
-      <View style={styles.container}>
-        <Text>Calendar</Text>
+    data={data}
+    title="Calendar"
+    backgroundColor="#996633"
+    foregroundColor="black">
+    <View>
+        {token === '' && (
+          <CustomGoogleLoginButton />
+        )}
+        {token !== '' && (
+          <View>
+            <Text>Here</Text>
+          </View>
+        )}
       </View>
-    </WidgetFrame>
+  </WidgetFrame>
   );
 };
 
