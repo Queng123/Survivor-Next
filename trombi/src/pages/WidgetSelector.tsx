@@ -16,7 +16,7 @@ const WidgetSelector = () => {
   const navigation = useNavigation();
   const addableWidgets: AddableWidget[] = [
     {title: 'Meteo', desc: 'Displays the meteo', func: createMeteoWidget},
-    {title: 'Note', desc: 'Displays a note', func: createNoteWidget}
+    {title: 'Note', desc: 'Displays a note', func: createNoteWidget},
   ];
   const createWidgetAndAdd = (widget: AddableWidget) => {
     const {widgetType, widgetParams} = widget.func();

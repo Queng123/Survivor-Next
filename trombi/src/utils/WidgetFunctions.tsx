@@ -66,7 +66,7 @@ export const updateWidget = async (key: string, widget: WidgetData) => {
     },
   });
   await saveWidgetsToStorage(store.getState().widget.items);
-}
+};
 
 export const removeWidget = async (key: string) => {
   store.dispatch({

@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet} from 'react-native';
 import {WidgetData} from '../utils/WidgetTypes';
 import {WidgetFrame} from './WidgetFrame';
-import { TextInput } from 'react-native-gesture-handler';
-import { updateWidget } from '../utils/WidgetFunctions';
+import {TextInput} from 'react-native-gesture-handler';
+import {updateWidget} from '../utils/WidgetFunctions';
 
 export const NoteWidget = ({data}: {data: WidgetData}): JSX.Element => {
   const [note, setNote] = useState(data.widgetParams.note);
- 
+
   const setNoteAndSave = (text: string) => {
     updateWidget(data.key, {
       widgetType: 'NoteWidget',
@@ -28,10 +28,12 @@ export const NoteWidget = ({data}: {data: WidgetData}): JSX.Element => {
       foregroundColor="black">
       <View style={styles.container}>
         <TextInput
-          placeholder='Note'
+          placeholder="Note"
           style={styles.noteInput}
           multiline={true}
-          onChangeText={(text) => setNoteAndSave(text)}>{note}</TextInput>
+          onChangeText={text => setNoteAndSave(text)}>
+          {note}
+        </TextInput>
       </View>
     </WidgetFrame>
   );
@@ -62,5 +64,5 @@ const styles = StyleSheet.create({
   },
   noteInput: {
     fontSize: 16,
-  }
+  },
 });

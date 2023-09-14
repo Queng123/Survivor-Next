@@ -26,15 +26,13 @@ export const WidgetContainer = (): JSX.Element => {
 
   return (
     <ScrollView style={styles.view}>
-      {widget.items.map(
-        (item: WidgetData) => (
-          <View key={item.key}>
-            {item.widgetType === 'TestWidget' && <TestWidget data={item} />}
-            {item.widgetType === 'MeteoWidget' && <MeteoWidget data={item} />}
-            {item.widgetType === 'NoteWidget' && <NoteWidget data={item} />}
-          </View>
-        ),
-      )}
+      {widget.items.map((item: WidgetData) => (
+        <View key={item.key}>
+          {item.widgetType === 'TestWidget' && <TestWidget data={item} />}
+          {item.widgetType === 'MeteoWidget' && <MeteoWidget data={item} />}
+          {item.widgetType === 'NoteWidget' && <NoteWidget data={item} />}
+        </View>
+      ))}
       <WidgetContainerGap />
     </ScrollView>
   );
