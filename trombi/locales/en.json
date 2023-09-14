@@ -21,6 +21,8 @@
         "theme": "Theme",
         "dark": "dark",
         "light": "light",
-        "logout": "Logout"
+        "logout": "Logout",
+        "connectedAs": "Connected as",
+        "notConnected": "Not connected"
     }
 }

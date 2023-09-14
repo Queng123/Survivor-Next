@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-
 import {createStackNavigator} from '@react-navigation/stack';
 import NavBar from './components/NavBar';
 import Login from './pages/Login';
@@ -14,6 +13,12 @@ import {CHAT_KEY} from '@env';
 import {StreamChat} from 'stream-chat';
 import {CommonActions} from '@react-navigation/native';
 import {fetchTokensFromLocalStorage, setTokens} from './utils/TokenFunctions';
+import {useNavigation, CommonActions} from '@react-navigation/native';
+import {fetchThemeFromLocalStorage} from './utils/ThemeFunctions';
+import {useTheme} from './utils/ThemeContext';
+import {fetchLanguageFromLocalStorage} from './utils/LanguageFunctions';
+import {useTranslation} from 'react-i18next';
+import {getCustomState} from './utils/CustomFunctions';
 
 const chatClient = StreamChat.getInstance(CHAT_KEY);
 
@@ -21,6 +26,9 @@ const Stack = createStackNavigator();
 
 function Root() {
   const navigation = useNavigation();
+  const {setTheme} = useTheme();
+  const {i18n} = useTranslation();
+
   useEffect(() => {
     fetchTokensFromLocalStorage()
       .then(tokens => {
@@ -38,6 +46,35 @@ function Root() {
       })
       .catch(() => {});
   }, [navigation]);
+  useEffect(() => {
+    fetchThemeFromLocalStorage()
+      .then(theme => {
+        if (
+          theme.theme === null ||
+          theme.theme === undefined ||
+          theme.theme === 'light'
+        ) {
+          setTheme('light');
+        } else {
+          setTheme('dark');
+        }
+      })
+      .catch(() => {});
+  }, [setTheme]);
+
+  useEffect(() => {
+    fetchLanguageFromLocalStorage()
+      .then(language => {
+        i18n.changeLanguage(language.language);
+      })
+      .catch(() => {
+        i18n.changeLanguage(
+          getCustomState().custom['default-language'] === 'french'
+            ? 'fr'
+            : 'en',
+        );
+      });
+  }, [navigation, i18n]);
 
   return (
     <OverlayProvider>

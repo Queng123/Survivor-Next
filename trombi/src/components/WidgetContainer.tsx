@@ -6,6 +6,8 @@ import {store} from '../utils/GlobalStore';
 import {TestWidget} from './TestWidget';
 import {MeteoWidget} from './MeteoWidget';
 import {NoteWidget} from './NoteWidget';
+import {YoutubeWidget} from './YoutubeWidget';
+import {CalendarWidget} from './CalendarWidget';
 import {getWidgetsFromStorage} from '../utils/WidgetFunctions';
 
 export const WidgetContainerGap = (): JSX.Element => {
@@ -25,12 +27,16 @@ export const WidgetContainer = (): JSX.Element => {
   }, []);
 
   return (
-    <ScrollView style={styles.view}>
+    <ScrollView style={styles.view} nestedScrollEnabled={true}>
       {widget.items.map((item: WidgetData) => (
         <View key={item.key}>
           {item.widgetType === 'TestWidget' && <TestWidget data={item} />}
           {item.widgetType === 'MeteoWidget' && <MeteoWidget data={item} />}
           {item.widgetType === 'NoteWidget' && <NoteWidget data={item} />}
+          {item.widgetType === 'YoutubeWidget' && <YoutubeWidget data={item} />}
+          {item.widgetType === 'CalendarWidget' && (
+            <CalendarWidget data={item} />
+          )}
         </View>
       ))}
       <WidgetContainerGap />
