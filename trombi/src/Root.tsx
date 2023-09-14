@@ -11,12 +11,15 @@ import {fetchTokensFromLocalStorage, setTokens} from './utils/TokenFunctions';
 import {fetchThemeFromLocalStorage} from './utils/ThemeFunctions';
 import {ThemeProvider} from './utils/ThemeContext';
 import {useNavigation, CommonActions} from '@react-navigation/native';
+import {fetchLanguageFromLocalStorage} from './utils/LanguageFunctions';
+import {useTranslation} from 'react-i18next';
 
 const Stack = createStackNavigator();
 
 function Root() {
   const navigation = useNavigation();
   const [_theme, setTheme] = React.useState<string>('light');
+  const [_t, i18n] = useTranslation();
 
   useEffect(() => {
     fetchTokensFromLocalStorage()
@@ -46,6 +49,16 @@ function Root() {
         setTheme('light');
       });
   }, [navigation]);
+
+  useEffect(() => {
+    fetchLanguageFromLocalStorage()
+      .then(language => {
+        i18n.changeLanguage(language.language);
+      })
+      .catch(() => {
+        i18n.changeLanguage('en');
+      });
+  }, [navigation, i18n]);
 
   return (
     <ThemeProvider>
