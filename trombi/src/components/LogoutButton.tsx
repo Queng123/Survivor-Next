@@ -7,6 +7,7 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation, CommonActions} from '@react-navigation/native';
 import {getCustomState} from '../utils/CustomFunctions';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import { setTokens, setTokensInLocalStorage, getTokens } from '../utils/TokenFunctions';
 
 function LogoutButton() {
   const {t} = useTranslation();
@@ -20,6 +21,8 @@ function LogoutButton() {
         routes: [{name: 'Login'}],
       }),
     );
+    setTokens({...getTokens(), 'masurao-token': ''});
+    setTokensInLocalStorage(getTokens());
   };
 
   const styles = StyleSheet.create({
