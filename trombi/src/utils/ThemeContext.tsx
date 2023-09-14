@@ -1,10 +1,12 @@
 import React, {createContext, useState, useContext, ReactNode} from 'react';
+import {setGlobalTheme} from './ThemeFunctions';
 
 type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
+  setTheme: (theme: Theme) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -22,15 +24,17 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({children}) => {
-  const [theme, setLocalTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('light');
 
   const toggleTheme = () => {
-    setLocalTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+    setGlobalTheme({theme: theme === 'light' ? 'dark' : 'light'});
   };
 
   const contextValue: ThemeContextType = {
     theme,
     toggleTheme,
+    setTheme: setTheme,
   };
 
   return (
