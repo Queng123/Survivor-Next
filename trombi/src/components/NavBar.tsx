@@ -14,7 +14,6 @@ const Tab = createBottomTabNavigator();
 const NavBar = () => {
   const {clientIsReady} = useChatClient();
 
-  console.log('NavBar');
   if (!clientIsReady) {
     return <Text>Loading chat ...</Text>;
   }
