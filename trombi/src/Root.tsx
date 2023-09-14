@@ -11,6 +11,8 @@ import {fetchTokensFromLocalStorage, setTokens} from './utils/TokenFunctions';
 import {useNavigation, CommonActions} from '@react-navigation/native';
 import {fetchThemeFromLocalStorage} from './utils/ThemeFunctions';
 import {useTheme} from './utils/ThemeContext';
+import {fetchLanguageFromLocalStorage} from './utils/LanguageFunctions';
+import {useTranslation} from 'react-i18next';
 
 const Stack = createStackNavigator();
 
@@ -52,6 +54,16 @@ function Root() {
       })
       .catch(() => {});
   }, [setTheme]);
+
+  useEffect(() => {
+    fetchLanguageFromLocalStorage()
+      .then(language => {
+        i18n.changeLanguage(language.language);
+      })
+      .catch(() => {
+        i18n.changeLanguage('en');
+      });
+  }, [navigation, i18n]);
 
   return (
     <Stack.Navigator
