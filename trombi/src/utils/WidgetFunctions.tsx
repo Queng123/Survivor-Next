@@ -1,4 +1,5 @@
 import {store} from './GlobalStore';
+import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
 import {WidgetData} from './WidgetTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -51,6 +52,17 @@ export const moveWidget = async (key: string, direction: 'up' | 'down') => {
     payload: {
       key,
       direction,
+    },
+  });
+  await saveWidgetsToStorage(store.getState().widget.items);
+};
+
+export const updateWidget = async (key: string, widget: WidgetData) => {
+  store.dispatch({
+    type: 'widget/updateWidget',
+    payload: {
+      key,
+      widget,
     },
   });
   await saveWidgetsToStorage(store.getState().widget.items);

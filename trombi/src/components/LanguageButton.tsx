@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import '../../locales/index';
 import {useTranslation} from 'react-i18next';
+import {getCustomState} from '../utils/CustomFunctions';
 
 function LanguageButton(): JSX.Element {
   const {i18n} = useTranslation();
@@ -19,8 +20,12 @@ function LanguageButton(): JSX.Element {
   }, [value, i18n]);
 
   return (
-    <View style={styles.container}>
+    <View>
       <DropDownPicker
+        style={styles.style}
+        dropDownContainerStyle={styles.dropDownContainerStyle}
+        selectedItemContainerStyle={styles.selectedItemContainerStyle}
+        textStyle={styles.textStyle}
         open={open}
         value={value}
         items={items}
@@ -32,10 +37,19 @@ function LanguageButton(): JSX.Element {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
+const styles = {
+  style: {
+    backgroundColor: getCustomState()?.custom?.['background-2'],
   },
-});
+  dropDownContainerStyle: {
+    backgroundColor: getCustomState()?.custom?.['background-2'],
+  },
+  selectedItemContainerStyle: {
+    backgroundColor: getCustomState()?.custom?.['background-3'],
+  },
+  textStyle: {
+    color: getCustomState()?.custom?.['text-primary'],
+  },
+};
 
 export default LanguageButton;
