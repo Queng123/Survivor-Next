@@ -13,6 +13,7 @@ import {fetchThemeFromLocalStorage} from './utils/ThemeFunctions';
 import {useTheme} from './utils/ThemeContext';
 import {fetchLanguageFromLocalStorage} from './utils/LanguageFunctions';
 import {useTranslation} from 'react-i18next';
+import {getCustomState} from './utils/CustomFunctions';
 
 const Stack = createStackNavigator();
 
@@ -61,7 +62,11 @@ function Root() {
         i18n.changeLanguage(language.language);
       })
       .catch(() => {
-        i18n.changeLanguage('en');
+        i18n.changeLanguage(
+          getCustomState().custom['default-language'] === 'french'
+            ? 'fr'
+            : 'en',
+        );
       });
   }, [navigation, i18n]);
 
