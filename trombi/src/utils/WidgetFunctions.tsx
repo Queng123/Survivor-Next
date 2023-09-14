@@ -57,6 +57,17 @@ export const moveWidget = async (key: string, direction: 'up' | 'down') => {
   await saveWidgetsToStorage(store.getState().widget.items);
 };
 
+export const updateWidget = async (key: string, widget: WidgetData) => {
+  store.dispatch({
+    type: 'widget/updateWidget',
+    payload: {
+      key,
+      widget,
+    },
+  });
+  await saveWidgetsToStorage(store.getState().widget.items);
+}
+
 export const removeWidget = async (key: string) => {
   store.dispatch({
     type: 'widget/removeWidget',

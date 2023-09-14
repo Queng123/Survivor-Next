@@ -16,6 +16,18 @@ export const widgetSlice = createSlice({
     importWidgets(state, action: {payload: WidgetData[]}) {
       state.items = action.payload;
     },
+    updateWidget(
+      state,
+      action: {payload: {key: string; widget: WidgetData}; type: string},
+    ) {
+      const index = state.items.findIndex(
+        item => item.key === action.payload.key,
+      );
+      if (index === -1) {
+        return;
+      }
+      state.items[index] = action.payload.widget;
+    },
     moveWidget(
       state,
       action: {payload: {key: string; direction: 'up' | 'down'}; type: string},
