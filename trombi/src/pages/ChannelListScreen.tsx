@@ -1,21 +1,45 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {ChannelList} from 'stream-chat-react-native';
 import {useAppContext} from '../components/Chat/AppContext';
-import { chatUserId } from '../components/Chat/chatConfig';
-
-const filters = {
-  members: {
-    '$in': [chatUserId]
-  },
-};
-
-const sort = {
-  last_message_at: -1,
-};
+import { useEffect, useState } from "react";
+import { getCurrentUserInfos } from "../utils/getCurrentUserInfos";
+import { Text } from 'react-native';
+import { useChatClient } from '../components/Chat/useChatClient';
 
 const ChannelListScreen = (props) => {
+  const [chatUserId, setChatUserId] = useState<any>(null);
   const { setChannel } = useAppContext();
+  const filters = chatUserId ? {
+    members: {
+      '$in': [chatUserId]
+    },
+  } : {};
+
+  const sort = {
+    last_message_at: -1,
+  };
+  useEffect(() => {
+    const initializeChat = async () => {
+      try {
+        const userInformation = await getCurrentUserInfos();
+
+        if (userInformation) {
+          const chatUserId = `${userInformation.name}-${userInformation.surname}`;
+          setChatUserId(chatUserId);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    initializeChat();
+  }, []);
+  const { clientIsReady } = useChatClient();
+
+  if (!clientIsReady) {
+    return <Text>Loading chat ...</Text>
+  }
+
   return (
     <ChannelList
       onSelect={(channel) => {
