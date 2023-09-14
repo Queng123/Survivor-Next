@@ -5,6 +5,7 @@ import IconButton from '../utils/IconButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
+import {useNavigation} from '@react-navigation/native';
 
 export type BasicEmployeeProps = {
   id: number;
@@ -14,6 +15,7 @@ export type BasicEmployeeProps = {
 };
 
 const ProfileCard = (props: BasicEmployeeProps) => {
+  const navigation = useNavigation();
   const photoURL: string = `${getCustomState()['company-api-url']}/employees/${
     props.id
   }/image`;
@@ -51,7 +53,7 @@ const ProfileCard = (props: BasicEmployeeProps) => {
           <IconButton
             iconName="information-circle"
             onPress={() => {
-              /* Redirect to profile */
+              navigation.navigate('UserInfo', {id: props.id});
             }}
           />
           <View style={{marginRight: 25}} />
