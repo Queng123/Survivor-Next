@@ -4,6 +4,7 @@ import type {TokenData} from './TokenTypes';
 const initialState = {
   tokens: {
     'masurao-token': '',
+    'google-oauth': '',
   } as TokenData,
 };
 
