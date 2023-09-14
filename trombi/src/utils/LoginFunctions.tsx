@@ -1,6 +1,8 @@
 import {Alert} from 'react-native';
 import {getCustomState} from './CustomFunctions';
 import {getTokens, setTokens, setTokensInLocalStorage} from './TokenFunctions';
+import {CommonActions} from '@react-navigation/native';
+
 const handleLogin = async (
   email: string,
   password: string,
@@ -34,7 +36,12 @@ const handleLoginResponse = (response: any, navigation: any) => {
     response.json().then((data: any) => {
       setTokens({...getTokens(), 'masurao-token': data.access_token});
       setTokensInLocalStorage(getTokens());
-      navigation.navigate('NavBar');
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: 'NavBar'}],
+        }),
+      );
     });
   } else if (response.status === 401) {
     Alert.alert(

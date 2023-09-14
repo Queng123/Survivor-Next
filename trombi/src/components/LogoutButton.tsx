@@ -4,7 +4,7 @@ import {View, StyleSheet, Text} from 'react-native';
 import '../../locales/index';
 import {useTranslation} from 'react-i18next';
 
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 import {getCustomState} from '../utils/CustomFunctions';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -14,7 +14,12 @@ function LogoutButton() {
 
   const disconnect = () => {
     navigation.navigate('Login');
-    // TODO: remove user token
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{name: 'Login'}],
+      }),
+    );
   };
 
   const styles = StyleSheet.create({

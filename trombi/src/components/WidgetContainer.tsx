@@ -5,6 +5,7 @@ import {WidgetData} from '../utils/WidgetTypes';
 import {store} from '../utils/GlobalStore';
 import {TestWidget} from './TestWidget';
 import {MeteoWidget} from './MeteoWidget';
+import {NoteWidget} from './NoteWidget';
 import {getWidgetsFromStorage} from '../utils/WidgetFunctions';
 
 export const WidgetContainerGap = (): JSX.Element => {
@@ -25,16 +26,13 @@ export const WidgetContainer = (): JSX.Element => {
 
   return (
     <ScrollView style={styles.view}>
-      {widget.items.map(
-        (item: WidgetData) => (
-          item.widgetType === 'TestWidget' && (
-            <TestWidget data={item} key={item.key} />
-          ),
-          item.widgetType === 'MeteoWidget' && (
-            <MeteoWidget data={item} key={item.key} />
-          )
-        ),
-      )}
+      {widget.items.map((item: WidgetData) => (
+        <View key={item.key}>
+          {item.widgetType === 'TestWidget' && <TestWidget data={item} />}
+          {item.widgetType === 'MeteoWidget' && <MeteoWidget data={item} />}
+          {item.widgetType === 'NoteWidget' && <NoteWidget data={item} />}
+        </View>
+      ))}
       <WidgetContainerGap />
     </ScrollView>
   );

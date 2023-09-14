@@ -31,6 +31,7 @@ const LoginInputField: React.FC<LoginInputFieldProps> = ({
       <TextInput
         style={styles.textInput}
         placeholder={label}
+        autoCapitalize="none"
         keyboardType={keyboardType}
         secureTextEntry={!isPasswordVisible}
         value={value}
