@@ -17,6 +17,64 @@ const Settings = () => {
   const goBack = () => {
     navigation.goBack();
   };
+
+  const styles = StyleSheet.create({
+    container: {
+      padding: 10,
+      zIndex: 1,
+    },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 10,
+    },
+    title: {
+      fontSize: 30,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      color: getCustomState().custom['title-primary'],
+    },
+    text: {
+      color: getCustomState().custom['text-primary'],
+      fontSize: 20,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      marginRight: 10,
+    },
+    drowdownpicker: {
+      width: '50%',
+      marginRight: 0,
+      marginLeft: 'auto',
+      zIndex: 1000,
+    },
+    language: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      margin: 5,
+      padding: 10,
+      zIndex: 2,
+    },
+    themeButton: {
+      width: '32%',
+      marginLeft: 'auto',
+    },
+    button: {
+      backgroundColor: getCustomState().custom['button-primary'],
+      padding: 10,
+      borderRadius: 3,
+      alignItems: 'center',
+    },
+    button_text: {
+      color: getCustomState().custom['button-primary-foreground'],
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+    but: {
+      marginRight: 'auto',
+    },
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -47,62 +105,5 @@ const Settings = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-    zIndex: 1,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 10,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: getCustomState().custom['title-primary'],
-  },
-  text: {
-    color: getCustomState().custom['text-primary'],
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginRight: 10,
-  },
-  drowdownpicker: {
-    width: '50%',
-    marginRight: 0,
-    marginLeft: 'auto',
-    zIndex: 1000,
-  },
-  language: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    margin: 5,
-    padding: 10,
-    zIndex: 2,
-  },
-  themeButton: {
-    width: '32%',
-    marginLeft: 'auto',
-  },
-  button: {
-    backgroundColor: getCustomState().custom['button-primary'],
-    padding: 10,
-    borderRadius: 3,
-    alignItems: 'center',
-  },
-  button_text: {
-    color: getCustomState().custom['button-primary-foreground'],
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  but: {
-    marginRight: 'auto',
-  },
-});
 
 export default Settings;

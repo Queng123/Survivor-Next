@@ -16,6 +16,22 @@ function LogoutButton() {
     navigation.navigate('Login');
     // TODO: remove user token
   };
+
+
+  const styles = StyleSheet.create({
+    button: {
+      backgroundColor: getCustomState().custom['button-primary'],
+      padding: 10,
+      borderRadius: 3,
+      alignItems: 'center',
+    },
+    button_text: {
+      color: getCustomState().custom['button-primary-foreground'],
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+  });
+
   return (
     <View>
       <TouchableOpacity onPress={disconnect} style={styles.button}>
@@ -24,19 +40,5 @@ function LogoutButton() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: getCustomState().custom['button-primary'],
-    padding: 10,
-    borderRadius: 3,
-    alignItems: 'center',
-  },
-  button_text: {
-    color: getCustomState().custom['button-primary-foreground'],
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
 
 export default LogoutButton;

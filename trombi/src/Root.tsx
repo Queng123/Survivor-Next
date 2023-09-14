@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import PrivateChat from './pages/PrivateChat';
 import UserInfo from './components/UserInfo';
 import {fetchTokensFromLocalStorage, setTokens} from './utils/TokenFunctions';
+import { fetchThemeFromLocalStorage, setTheme } from './utils/ThemeFunctions';
 import {useNavigation} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
@@ -28,6 +29,17 @@ function Root() {
         navigation.navigate('Login');
       });
   }, [navigation]);
+
+  useEffect(() => {
+    fetchThemeFromLocalStorage()
+      .then(theme => {
+        setTheme(theme);
+      })
+      .catch(() => {
+        setTheme({'theme': 'light'});
+      });
+  }, [navigation]);
+
 
   return (
     <Stack.Navigator
