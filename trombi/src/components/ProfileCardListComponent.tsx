@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, FlatList} from 'react-native';
 import ProfileCard from './ProfileCardComponent';
 import {BasicEmployeeProps} from './ProfileCardComponent';
 import {EmployeeSortFunction} from '../utils/SortEmployeeProp';
@@ -63,19 +63,20 @@ const ProfileCardList = ({
   }, [employees, searchQuery, sortFunction]);
 
   return (
-    <ScrollView>
-      <View>
-        {sortedEmployees.map(employee => (
-          <ProfileCard
-            key={employee.id}
-            id={employee.id}
-            name={employee.name}
-            surname={employee.surname}
-            email={employee.email}
-          />
-        ))}
-      </View>
-    </ScrollView>
+    <FlatList
+      data={sortedEmployees}
+      keyExtractor={item => item.id.toString()}
+      renderItem={({item}) => (
+        <ProfileCard
+          key={item.id}
+          id={item.id}
+          name={item.name}
+          surname={item.surname}
+          email={item.email}
+        />
+      )}
+      ListFooterComponent={<View style={{height: 70}} />}
+    />
   );
 };
 
