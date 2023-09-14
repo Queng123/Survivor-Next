@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Trombi from '../pages/Trombi';
 import Widgets from '../pages/Widgets';
-import Chat from '../pages/Chat';
+import ChannelListScreen from '../pages/ChannelListScreen';
 import Profile from '../pages/Profile';
 
 const Tab = createBottomTabNavigator();
@@ -21,7 +21,7 @@ const NavBar = () => {
             iconName = focused ? 'people' : 'people-outline';
           } else if (route.name === 'Widgets') {
             iconName = focused ? 'grid' : 'grid-outline';
-          } else if (route.name === 'Chat') {
+          } else if (route.name === 'ChannelListScreen') {
             iconName = focused
               ? 'chatbubble-ellipses'
               : 'chatbubble-ellipses-outline';
@@ -34,7 +34,7 @@ const NavBar = () => {
       })}>
       <Tab.Screen name={'Trombi'} component={Trombi} />
       <Tab.Screen name={'Widgets'} component={Widgets} />
-      <Tab.Screen name={'Chat'} component={Chat} />
+      <Tab.Screen name={'ChannelListScreen'} component={ChannelListScreen} />
       <Tab.Screen name={'Profile'} component={Profile} />
     </Tab.Navigator>
   );
