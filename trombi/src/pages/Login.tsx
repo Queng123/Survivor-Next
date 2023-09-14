@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   View,
+  ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -12,7 +13,6 @@ import LoginInputField from '../components/LoginInputField';
 import handleLogin from '../utils/LoginFunctions';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
-import {ADMIN_API_URL, COMPANY_UUID} from '@env';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -102,7 +102,10 @@ const Login = () => {
           </TouchableOpacity>
         </View>
       ) : (
-        <Text>Chargement...</Text>
+        <ActivityIndicator
+          size="large"
+          color={getCustomState().custom[`button-primary${theme}`]}
+        />
       )}
     </KeyboardAvoidingView>
   );
