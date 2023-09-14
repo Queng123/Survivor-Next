@@ -8,6 +8,9 @@ import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
 import {useTheme} from '../utils/ThemeContext';
 
+import {ADMIN_API_URL} from '@env';
+import {getCurrentUserInfos} from '../utils/getCurrentUserInfos';
+
 export const getUserInfos = async (id: number) => {
   try {
     const response = await fetch(
@@ -48,12 +51,19 @@ const UserInfo = () => {
       justifyContent: 'center',
     },
   });
+  const [chatUserId, setChatUserId] = useState<any>(null);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
         const userInformation = await getUserInfos(id);
         setUserInfo(userInformation);
+        const localUser = await getCurrentUserInfos();
+
+        if (localUser) {
+          const myChatUserId = `${localUser.name}-${localUser.surname}`;
+          setChatUserId(myChatUserId);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -78,7 +88,12 @@ const UserInfo = () => {
         <CustomButton
           title="Chat"
           iconName="chatbubble-outline"
-          onPress={() => navigation.navigate('Chat')}
+          onPress={async () => {
+            const user2 = `${userInfo?.name + '-' + userInfo?.surname}`;
+            const url = `${ADMIN_API_URL}/chat/channel/${chatUserId}/${user2}`;
+            await fetch(url);
+            navigation.navigate('ChannelListScreen');
+          }}
         />
         <CustomButton
           title="Email"

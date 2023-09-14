@@ -12,6 +12,7 @@ import ProfileInfo from '../components/ProfileInfo';
 import {getTokens} from '../utils/TokenFunctions';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
+import {getCurrentUserInfos} from '../utils/getCurrentUserInfos';
 
 export const getCurrentUserInfos = async () => {
   try {

@@ -7,6 +7,9 @@ import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import PrivateChat from './pages/PrivateChat';
 import UserInfo from './components/UserInfo';
+import {Chat, OverlayProvider} from 'stream-chat-react-native';
+import {CHAT_KEY} from '@env';
+import {StreamChat} from 'stream-chat';
 import {fetchTokensFromLocalStorage, setTokens} from './utils/TokenFunctions';
 import {useNavigation, CommonActions} from '@react-navigation/native';
 import {fetchThemeFromLocalStorage} from './utils/ThemeFunctions';
@@ -14,6 +17,8 @@ import {useTheme} from './utils/ThemeContext';
 import {fetchLanguageFromLocalStorage} from './utils/LanguageFunctions';
 import {useTranslation} from 'react-i18next';
 import {getCustomState} from './utils/CustomFunctions';
+
+const chatClient = StreamChat.getInstance(CHAT_KEY);
 
 const Stack = createStackNavigator();
 
@@ -27,18 +32,17 @@ function Root() {
       .then(tokens => {
         setTokens(tokens);
         if (tokens['masurao-token'] !== '') {
-          navigation.navigate('NavBar');
           navigation.dispatch(
             CommonActions.reset({
               index: 0,
               routes: [{name: 'NavBar'}],
             }),
           );
+        } else {
+          navigation.navigate('Login');
         }
       })
-      .catch(() => {
-        navigation.navigate('Login');
-      });
+      .catch(() => {});
   }, [navigation]);
   useEffect(() => {
     fetchThemeFromLocalStorage()
@@ -71,17 +75,21 @@ function Root() {
   }, [navigation, i18n]);
 
   return (
-    <Stack.Navigator
-      initialRouteName="Login"
-      screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="NavBar" component={NavBar} />
-      <Stack.Screen name="WidgetSelector" component={WidgetSelector} />
-      <Stack.Screen name="Settings" component={Settings} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="PrivateChat" component={PrivateChat} />
-      <Stack.Screen name="UserInfo" component={UserInfo} />
-    </Stack.Navigator>
+    <OverlayProvider>
+      <Chat client={chatClient}>
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="NavBar" component={NavBar} />
+          <Stack.Screen name="WidgetSelector" component={WidgetSelector} />
+          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="PrivateChat" component={PrivateChat} />
+          <Stack.Screen name="UserInfo" component={UserInfo} />
+        </Stack.Navigator>
+      </Chat>
+    </OverlayProvider>
   );
 }
 
