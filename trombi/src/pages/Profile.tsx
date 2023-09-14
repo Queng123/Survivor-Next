@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import ProfileInfo from '../components/ProfileInfo';
 import {getTokens} from '../utils/TokenFunctions';
+import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
 
 export const getCurrentUserInfos = async () => {
@@ -34,7 +35,16 @@ export const getCurrentUserInfos = async () => {
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
+  const theme = useTheme().theme === 'dark' ? '-dark' : '';
   const [userInfo, setUserInfo] = useState<any>(null);
+  const customStyles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: getCustomState().custom[`background-1${theme}`],
+    },
+  });
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -50,11 +60,17 @@ const Profile: React.FC = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={customStyles.container}>
       <TouchableOpacity
         style={styles.settingsButton}
         onPress={() => navigation.navigate('Settings')}>
-        <Ionicon name="settings-outline" size={40} />
+        <Ionicon
+          name="settings-outline"
+          size={40}
+          style={{
+            color: getCustomState().custom[`button-secondary${theme}`],
+          }}
+        />
       </TouchableOpacity>
       <ProfileInfo
         id={userInfo?.id}
@@ -69,11 +85,6 @@ const Profile: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
   settingsButton: {
     position: 'absolute',
     top: 30,
