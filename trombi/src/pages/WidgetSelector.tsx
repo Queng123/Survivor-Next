@@ -1,6 +1,8 @@
 import React from 'react';
 import {Pressable, ScrollView, Text, StyleSheet} from 'react-native';
 import {createMeteoWidget} from '../components/MeteoWidget';
+import {createNoteWidget} from '../components/NoteWidget';
+import {createYoutubeWidget} from '../components/YoutubeWidget';
 import {WidgetData} from '../utils/WidgetTypes';
 import {addWidget} from '../utils/WidgetFunctions';
 import {useNavigation} from '@react-navigation/native';
@@ -15,6 +17,12 @@ const WidgetSelector = () => {
   const navigation = useNavigation();
   const addableWidgets: AddableWidget[] = [
     {title: 'Meteo', desc: 'Displays the meteo', func: createMeteoWidget},
+    {title: 'Note', desc: 'Displays a note', func: createNoteWidget},
+    {
+      title: 'Youtube',
+      desc: 'Displays a youtube video',
+      func: createYoutubeWidget,
+    },
   ];
   const createWidgetAndAdd = (widget: AddableWidget) => {
     const {widgetType, widgetParams} = widget.func();

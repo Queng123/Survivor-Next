@@ -4,6 +4,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import '../../locales/index';
 import {useTranslation} from 'react-i18next';
 import {getCustomState} from '../utils/CustomFunctions';
+import {setLanguageInLocalStorage} from '../utils/LanguageFunctions';
 
 function LanguageButton(): JSX.Element {
   const {i18n} = useTranslation();
@@ -16,8 +17,24 @@ function LanguageButton(): JSX.Element {
   ]);
 
   React.useEffect(() => {
+    setLanguageInLocalStorage({language: value});
     i18n.changeLanguage(value);
   }, [value, i18n]);
+
+  const styles = {
+    style: {
+      backgroundColor: getCustomState()?.custom?.['background-2'],
+    },
+    dropDownContainerStyle: {
+      backgroundColor: getCustomState()?.custom?.['background-2'],
+    },
+    selectedItemContainerStyle: {
+      backgroundColor: getCustomState()?.custom?.['background-3'],
+    },
+    textStyle: {
+      color: getCustomState()?.custom?.['text-primary'],
+    },
+  };
 
   return (
     <View>
@@ -36,20 +53,5 @@ function LanguageButton(): JSX.Element {
     </View>
   );
 }
-
-const styles = {
-  style: {
-    backgroundColor: getCustomState()?.custom?.['background-2'],
-  },
-  dropDownContainerStyle: {
-    backgroundColor: getCustomState()?.custom?.['background-2'],
-  },
-  selectedItemContainerStyle: {
-    backgroundColor: getCustomState()?.custom?.['background-3'],
-  },
-  textStyle: {
-    color: getCustomState()?.custom?.['text-primary'],
-  },
-};
 
 export default LanguageButton;
