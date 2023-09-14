@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, ActivityIndicator} from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
@@ -43,6 +43,7 @@ const Profile: React.FC = () => {
       flexDirection: 'column',
       alignItems: 'center',
       backgroundColor: getCustomState().custom[`background-1${theme}`],
+      justifyContent: 'center',
     },
   });
 
@@ -59,7 +60,7 @@ const Profile: React.FC = () => {
     fetchUserInfo();
   }, []);
 
-  return (
+  return userInfo ? (
     <View style={customStyles.container}>
       <TouchableOpacity
         style={styles.settingsButton}
@@ -79,6 +80,13 @@ const Profile: React.FC = () => {
         email={userInfo?.email}
         birthday={userInfo?.birth_date}
         gender={userInfo?.gender}
+      />
+    </View>
+  ) : (
+    <View style={customStyles.container}>
+      <ActivityIndicator
+        size="large"
+        color={getCustomState().custom[`button-primary${theme}`]}
       />
     </View>
   );
