@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
