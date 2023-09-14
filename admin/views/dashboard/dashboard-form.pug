@@ -1,114 +1,177 @@
-html
-  head
-    title Modifier les valeurs
-  body
+extends ../layout
+
+block content
+  div(class="container border my-5")
     form(action="/dashboard/submit", method="POST", id="my-form")
-      label(for="company-api-url") Company API URL:
-      input(type="text", name="company-api-url", value="https://masurao.fr/api")
-      br
-      label(for="company-uuid")
-      input(type="hidden", name="company-uuid", value="")
-      label(for="group-token") Group Token:
-      input(type="text", name="group-token", value="")
-      br
-      label Extern API Token:
-      br
-      label(for="weather") Weather:
-      input(type="text", name="extern-api-token[weather]", value="")
-      br
-      label(for="stock") Stock:
-      input(type="text", name="extern-api-token[stock]", value="")
-      br
-      label(for="gpt3") GPT-3:
-      input(type="text", name="extern-api-token[gpt3]", value="")
-      br
-      label Custom:
-      br
-      label(for="background-1") Background 1:
-      input(type="color", name="custom[background-1]", value="#000000")
-      br
-      label(for="background-1-dark") Background 1 Dark:
-      input(type="color", name="custom[background-1-dark]", value="#000000")
-      br
-      label(for="background-2") Background 2:
-      input(type="color", name="custom[background-2]", value="#000000")
-      br
-      label(for="background-2-dark") Background 2 Dark:
-      input(type="color", name="custom[background-2-dark]", value="#000000")
-      br
-      label(for="background-3") Background 3:
-      input(type="color", name="custom[background-3]", value="#000000")
-      br
-      label(for="background-3-dark") Background 3 Dark:
-      input(type="color", name="custom[background-3-dark]", value="#000000")
-      br
-      label(for="background-4") Background 4:
-      input(type="color", name="custom[background-4]", value="#000000")
-      br
-      label(for="background-4-dark") Background 4 Dark:
-      input(type="color", name="custom[background-4-dark]", value="#000000")
-      br
-      label(for="button-primary") Button Primary:
-      input(type="color", name="custom[button-primary]", value="#000000")
-      br
-      label(for="button-primary-dark") Button Primary Dark:
-      input(type="color", name="custom[button-primary-dark]", value="#000000")
-      br
-      label(for="button-secondary") Button Secondary:
-      input(type="color", name="custom[button-secondary]", value="#000000")
-      br
-      label(for="button-secondary-dark") Button Secondary Dark:
-      input(type="color", name="custom[button-secondary-dark]", value="#000000")
-      br
-      label(for="button-primary-foreground") Button Primary Foreground:
-      input(type="color", name="custom[button-primary-foreground]", value="#000000")
-      br
-      label(for="button-primary-foreground-dark") Button Primary Foreground Dark:
-      input(type="color", name="custom[button-primary-foreground-dark]", value="#000000")
-      br
-      label(for="button-secondary-foreground") Button Secondary Foreground:
-      input(type="color", name="custom[button-secondary-foreground]", value="#000000")
-      br
-      label(for="button-secondary-foreground-dark") Button Secondary Foreground Dark:
-      input(type="color", name="custom[button-secondary-foreground-dark]", value="#000000")
-      br
-      label(for="title-primary") Title Primary:
-      input(type="color", name="custom[title-primary]", value="#000000")
-      br
-      label(for="title-primary-dark") Title Primary Dark:
-      input(type="color", name="custom[title-primary-dark]", value="#000000")
-      br
-      label(for="title-secondary") Title Secondary:
-      input(type="color", name="custom[title-secondary]", value="#000000")
-      br
-      label(for="title-secondary-dark") Title Secondary Dark:
-      input(type="color", name="custom[title-secondary-dark]", value="#000000")
-      br
-      label(for="text-primary") Text Primary:
-      input(type="color", name="custom[text-primary]", value="#000000")
-      br
-      label(for="text-primary-dark") Text Primary Dark:
-      input(type="color", name="custom[text-primary-dark]", value="#000000")
-      br
-      label(for="text-secondary") Text Secondary:
-      input(type="color", name="custom[text-secondary]", value="#000000")
-      br
-      label(for="text-secondary-dark") Text Secondary Dark:
-      input(type="color", name="custom[text-secondary-dark]", value="#000000")
-      br
-      label(for="default-language") Default Language:
-      select(name="custom[default-language]")
-        option(value="french", selected) French
-        option(value="english") English
-      br
-      label(for="logo-src") Logo:
-      input(type="text", name="logo[src]", id="logo-src-input", readonly)
-      br
-      input(type="hidden", name="logo[logoData]", id="logoData-input")
-      input(type="file", name="logo-file", id="logo-file-input")
-      br
-      input(type="submit", value="apply")
-    input(type="button", value="signout", onclick="window.location.href='/user/signout'")
+      div(class="card mt-4")
+        div(class="card-body")
+          h5(class="card-title") Modifier les valeurs
+          label(for="company-api-url") Company API URL:
+          input(type="text", class="form-control", name="company-api-url", value="https://masurao.fr/api")
+          br
+          label(for="company-uuid") Company UUID:
+          input(type="hidden", name="company-uuid", value="")
+          label(for="group-token") Group Token:
+          input(type="text", class="form-control", name="group-token", value="")
+          br
+          label(for="extern-api-token") Extern API Tokens:
+          div(class="row")
+            div(class="col-md-6")
+              label(for="weather") Weather:
+              input(type="text", class="form-control", name="extern-api-token[weather]", value="")
+              br
+            div(class="col-md-6")
+            div(class="col-md-6")
+              label(for="stock") Stock:
+              input(type="text", class="form-control", name="extern-api-token[stock]", value="")
+              br
+            div(class="col-md-6")
+            div(class="col-md-6")
+              label(for="gpt3") GPT-3:
+              input(type="text", class="form-control", name="extern-api-token[gpt3]", value="")
+            div(class="col-md-6")
+          br
+          div(class="mt-3")
+            label(class="font-weight-bold") Custom:
+            div(class="row")
+              div(class="col-md-3")
+                label(for="background-1") Background 1:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[background-1]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="background-1-dark") Background 1 Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[background-1-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="background-2") Background 2:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[background-2]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="background-2-dark") Background 2 Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[background-2-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="background-3") Background 3:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[background-3]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="background-3-dark") Background 3 Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[background-3-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="background-4") Background 4:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[background-4]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="background-4-dark") Background 4 Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[background-4-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="button-primary") Button Primary:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[button-primary]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="button-primary-dark") Button Primary Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[button-primary-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="button-secondary") Button Secondary:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[button-secondary]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="button-secondary-dark") Button Secondary Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[button-secondary-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="button-primary-foreground") Button Primary Foreground:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[button-primary-foreground]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="button-primary-foreground-dark") Button Primary Foreground Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[button-primary-foreground-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="button-secondary-foreground") Button Secondary Foreground:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[button-secondary-foreground]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="button-secondary-foreground-dark") Button Secondary Foreground Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[button-secondary-foreground-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="title-primary") Title Primary:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[title-primary]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="title-primary-dark") Title Primary Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[title-primary-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="title-secondary") Title Secondary:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[title-secondary]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="title-secondary-dark") Title Secondary Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[title-secondary-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="text-primary") Text Primary:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[text-primary]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="text-primary-dark") Text Primary Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[text-primary-dark]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="text-secondary") Text Secondary:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[text-secondary]", value="#000000")
+                br
+              div(class="col-md-3")
+                label(for="text-secondary-dark") Text Secondary Dark:
+                p(class="font-italic") Description
+                input(type="color", class="form-control", name="custom[text-secondary-dark]", value="#000000")
+                br
+          br
+          div(class="row")
+            div(class="col-md-6")
+              label(for="default-language") Default Language:
+              select(name="custom[default-language]", class="form-control")
+                option(value="french", selected) French
+                option(value="english") English
+            div(class="col-md-6")
+              label(for="logo-src") Logo:
+              input(type="text", class="form-control", name="logo[src]", id="logo-src-input", readonly)
+            div(class="col-md-6")
+              input(type="hidden", name="logo[logoData]", id="logoData-input")
+            div(class="col-md-6")
+              input(type="file", class="form-control-file", name="logo-file", id="logo-file-input")
+          br
+          div(class="w-100 mt-3")
+            input(type="submit", value="Apply", class="btn btn-primary")
+      input(type="button", value="Sign Out", class="btn btn-secondary mt-2", onclick="window.location.href='/user/signout'")
 
     script.
 
