@@ -6,6 +6,7 @@ import {createYoutubeWidget} from '../components/YoutubeWidget';
 import {WidgetData} from '../utils/WidgetTypes';
 import {addWidget} from '../utils/WidgetFunctions';
 import {useNavigation} from '@react-navigation/native';
+import {createCalendarWidget} from '../components/CalendarWidget';
 
 type AddableWidget = {
   title: string;
@@ -23,6 +24,11 @@ const WidgetSelector = () => {
       desc: 'Displays a youtube video',
       func: createYoutubeWidget,
     },
+    {
+      title: 'Calendar',
+      desc: 'Displays your calendar',
+      func: createCalendarWidget,
+    }
   ];
   const createWidgetAndAdd = (widget: AddableWidget) => {
     const {widgetType, widgetParams} = widget.func();
