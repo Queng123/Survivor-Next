@@ -12,13 +12,15 @@ import {
 import {WidgetData} from '../utils/WidgetTypes';
 import {WidgetFrame} from './WidgetFrame';
 import {
+  GoogleSignin,
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-import {getTokens} from '../utils/TokenFunctions';
+import {getTokens, setTokens} from '../utils/TokenFunctions';
 import {loginAndStoreToken} from '../utils/GoogleLogin';
 import {Linking} from 'react-native';
 import FastImage from 'react-native-fast-image';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
   const [videos, setVideos] = React.useState<any[]>([]);
@@ -85,6 +87,40 @@ const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
   );
 };
 
+const YTUserInfos = ({
+  token,
+  setToken,
+}: {
+  token: string;
+  setToken: (token: string) => void;
+}): JSX.Element => {
+  const [email, setEmail] = React.useState<string>('');
+
+  const logout = () => {
+    setToken('');
+    setTokens({...getTokens(), 'google-oauth': ''});
+  };
+
+  React.useEffect(() => {
+    GoogleSignin.getCurrentUser().then(user => {
+      if (user) {
+        setEmail(user.user.email);
+      }
+    });
+  }, [token]);
+
+  return (
+    <View style={styles.userInfoView}>
+      <Text style={styles.userEmail} lineBreakMode="tail" numberOfLines={1}>
+        Google: {email}
+      </Text>
+      <Pressable style={styles.logoutButton} onPress={logout}>
+        <Ionicons name="log-out-outline" size={20} color="white" />
+      </Pressable>
+    </View>
+  );
+};
+
 export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
   const [token, setToken] = React.useState<string>(getTokens()['google-oauth']);
 
@@ -120,7 +156,13 @@ export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
             onPress={signIn}
           />
         )}
-        {token !== '' && <YoutubeFavorites token={token} />}
+        {token !== '' && (
+          <View>
+            <YoutubeFavorites token={token} />
+            <View style={{height: 10}} />
+            <YTUserInfos token={token} setToken={setToken} />
+          </View>
+        )}
       </View>
     </WidgetFrame>
   );
@@ -132,7 +174,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     minHeight: 160,
-    maxHeight: 320,
+    maxHeight: 280,
   },
   favoriteTitle: {
     fontSize: 18,
@@ -157,6 +199,28 @@ export const styles = StyleSheet.create({
   favoriteDesc: {
     marginLeft: 10,
     flex: 1,
+  },
+  userInfoView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexGrow: 1,
+    alignItems: 'center',
+  },
+  userEmail: {
+    flex: 1,
+    marginRight: 10,
+    backgroundColor: 'black',
+    color: 'white',
+    padding: 10,
+    borderRadius: 10,
+  },
+  logoutButton: {
+    backgroundColor: 'black',
+    borderRadius: 10,
+    padding: 10,
+    width: 40,
+    height: 40,
   },
 });
 
