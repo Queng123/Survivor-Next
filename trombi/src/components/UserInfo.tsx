@@ -6,6 +6,7 @@ import ProfileInfo from './ProfileInfo';
 import {CustomButton} from './CustomButton';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
+import {useTheme} from '../utils/ThemeContext';
 
 export const getUserInfos = async (id: number) => {
   try {
@@ -37,6 +38,15 @@ const UserInfo = () => {
   const route = useRoute();
   const {id} = route.params;
   const [userInfo, setUserInfo] = useState<any>(null);
+  const theme = useTheme().theme === 'dark' ? '-dark' : '';
+  const customStyles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: getCustomState().custom[`background-1${theme}`],
+    },
+  });
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -52,7 +62,7 @@ const UserInfo = () => {
   }, [id]);
 
   return (
-    <View style={styles.container}>
+    <View style={customStyles.container}>
       <View>
         <ProfileInfo
           id={id}
@@ -80,11 +90,6 @@ const UserInfo = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
