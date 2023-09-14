@@ -8,7 +8,7 @@ import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import PrivateChat from './pages/PrivateChat';
 import {fetchTokensFromLocalStorage, setTokens} from './utils/TokenFunctions';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +21,12 @@ function Root() {
         setTokens(tokens);
         if (tokens['masurao-token'] !== '') {
           navigation.navigate('NavBar');
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{name: 'NavBar'}],
+            }),
+          );
         }
       })
       .catch(() => {
