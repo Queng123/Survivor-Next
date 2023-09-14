@@ -90,10 +90,11 @@ export const CalendarWidget = ({data}: {data: WidgetData}): JSX.Element => {
           <>
             <View style={styles.subContainer}>
               <Text style={styles.calendarTitle}>Aujourd'hui</Text>
-              {todayEvents && todayEvents.map(event => {
-                return <CalendarWidgetEvent event={event} key={event.id} />;
-              })}
-              {(todayEvents.length == 0) && (
+              {todayEvents &&
+                todayEvents.map(event => {
+                  return <CalendarWidgetEvent event={event} key={event.id} />;
+                })}
+              {todayEvents.length == 0 && (
                 <Text style={styles.calendarDataText}>
                   Pas d'événements à venir aujourd'hui
                 </Text>
@@ -105,7 +106,7 @@ export const CalendarWidget = ({data}: {data: WidgetData}): JSX.Element => {
               {tomorrowEvents.map(event => {
                 return <CalendarWidgetEvent event={event} key={event.id} />;
               })}
-              {(tomorrowEvents.length == 0) && (
+              {tomorrowEvents.length == 0 && (
                 <Text style={styles.calendarDataText}>
                   Pas d'événements prévus demain
                 </Text>
