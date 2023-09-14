@@ -21,7 +21,7 @@ export const setThemeInLocalStorage = async (theme: ThemeData) => {
   AsyncStorage.setItem('theme', JSON.stringify(theme));
 };
 
-export const setTheme = (theme: ThemeData) => {
+export const setGlobalTheme = (theme: ThemeData) => {
   Appearance.setColorScheme(theme.theme);
   setThemeInLocalStorage(theme);
   store.dispatch({type: 'theme/setThemeState', payload: theme});
