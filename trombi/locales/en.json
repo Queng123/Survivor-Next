@@ -2,6 +2,11 @@
     "any": {
         "loading": "Loading"
     },
+    "login": {
+        "email": "Email",
+        "password": "Password",
+        "login": "Login"
+    },
     "trombi": {
         "title": "Trombi"
     },

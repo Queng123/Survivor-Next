@@ -2,6 +2,11 @@
     "any": {
         "loading": "Chargement"
     },
+    "login": {
+        "email": "Courriel",
+        "password": "Mot de passe",
+        "login": "Se connecter"
+    },
     "trombi": {
         "title": "Trombi"
     },
