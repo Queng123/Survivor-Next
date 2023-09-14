@@ -1,8 +1,6 @@
-import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Linking} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, TouchableHighlight, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import IconButton from '../utils/IconButton';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
 import {useNavigation} from '@react-navigation/native';
@@ -14,19 +12,52 @@ export type BasicEmployeeProps = {
   email: string;
 };
 
+const getEmployeeJob = async (id: number) => {
+  try {
+    const response = await fetch(
+      `${getCustomState()['company-api-url']}/employees/${id}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Group-Authorization': getCustomState()['group-token'],
+          Authorization: 'Bearer ' + getTokens()['masurao-token'],
+        },
+      },
+    );
+
+    if (!response.ok) {
+      console.error(`Request failed with status ${response.status}`);
+      return null;
+    }
+
+    const json = await response.json();
+    return json.work;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 const ProfileCard = (props: BasicEmployeeProps) => {
   const navigation = useNavigation();
   const photoURL: string = `${getCustomState()['company-api-url']}/employees/${
     props.id
   }/image`;
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [job, setJob] = useState<string | null>(null);
 
-  const toggleExpansion = () => {
-    setIsExpanded(!isExpanded);
-  };
+  useEffect(() => {
+    getEmployeeJob(props.id).then(employeeJob => {
+      setJob(employeeJob);
+    });
+  }, [props.id]);
 
   return (
-    <TouchableOpacity style={styles.employeeCard} onPress={toggleExpansion}>
+    <TouchableHighlight
+      style={styles.employeeCard}
+      onPress={() => {
+        navigation.navigate('UserInfo', {id: props.id});
+      }}>
       <View style={styles.cardHeader}>
         <FastImage
           source={{
@@ -40,37 +71,10 @@ const ProfileCard = (props: BasicEmployeeProps) => {
           style={styles.employeeCardImage}
         />
         <Text style={styles.employeeCardNameText}>
-          {props.name} {props.surname}
+          {props.name} {props.surname} {job !== null ? `Job: ${job}` : ''}
         </Text>
-        <Ionicons
-          name={isExpanded ? 'chevron-up' : 'chevron-down'}
-          size={40}
-          color="black"
-        />
       </View>
-      {isExpanded && (
-        <View style={styles.cardContent}>
-          <IconButton
-            iconName="information-circle"
-            onPress={() => {
-              navigation.navigate('UserInfo', {id: props.id});
-            }}
-          />
-          <View style={{marginRight: 25}} />
-          <IconButton
-            iconName="chatbubble-ellipses"
-            onPress={() => {
-              /* Redirect to chat with user */
-            }}
-          />
-          <View style={{marginRight: 25}} />
-          <IconButton
-            iconName="mail"
-            onPress={() => Linking.openURL(`mailto:${props.email}`)}
-          />
-        </View>
-      )}
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 };
 
