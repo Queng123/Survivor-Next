@@ -19,12 +19,13 @@ router.get('/chat/token/:user',
 );
 router.get('/chat/channel/:user?:user2',
     async (req, res) => {
-        const { user } = req.params;
-        const channel = serverClient.channel('messaging', 'travel', {
+        const { user, user2 } = req.params;
+        const channel = serverClient.channel(user, user2, {
           name: 'test mon chef',
           created_by_id: user,
         });
         await channel.create();
+        await channel.inviteMembers([user, user2]);
         res.status(200);
     }
 );
