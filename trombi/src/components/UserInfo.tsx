@@ -7,10 +7,8 @@ import {CustomButton} from './CustomButton';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
 
-import { ADMIN_API_URL } from '@env';
-import { getCurrentUserInfos } from '../utils/getCurrentUserInfos';
-
-import { useAppContext } from './Chat/AppContext';
+import {ADMIN_API_URL} from '@env';
+import {getCurrentUserInfos} from '../utils/getCurrentUserInfos';
 
 export const getUserInfos = async (id: number) => {
   try {
@@ -63,16 +61,6 @@ const UserInfo = () => {
     fetchUserInfo();
   }, [id]);
 
-  const filters = chatUserId ? {
-    members: {
-      '$in': [chatUserId]
-    },
-  } : {};
-
-  const sort = {
-    last_message_at: -1,
-  };
-
   return (
     <View style={styles.container}>
       <View>
@@ -90,7 +78,7 @@ const UserInfo = () => {
           title="Chat"
           iconName="chatbubble-outline"
           onPress={async () => {
-            const user2 = `${userInfo?.name + '-' + userInfo?.surname}`
+            const user2 = `${userInfo?.name + '-' + userInfo?.surname}`;
             const url = `${ADMIN_API_URL}/chat/channel/${chatUserId}/${user2}`;
             await fetch(url);
             navigation.navigate('ChannelListScreen');

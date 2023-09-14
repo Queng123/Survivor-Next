@@ -6,7 +6,6 @@ import {useNavigation} from '@react-navigation/native';
 import ProfileInfo from '../components/ProfileInfo';
 import {getCurrentUserInfos} from '../utils/getCurrentUserInfos';
 
-
 const Profile: React.FC = () => {
   const navigation = useNavigation();
   const [userInfo, setUserInfo] = useState<any>(null);

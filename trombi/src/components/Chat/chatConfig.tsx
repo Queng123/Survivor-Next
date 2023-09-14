@@ -1,7 +1,7 @@
-import { getCurrentUserInfos } from "../../utils/getCurrentUserInfos";
-import { useEffect, useState } from "react";
-import { CHAT_KEY, CHAT_SECRET } from '@env';
-import { StreamChat } from 'stream-chat';
+import {getCurrentUserInfos} from '../../utils/getCurrentUserInfos';
+import {useEffect, useState} from 'react';
+import {CHAT_KEY, CHAT_SECRET} from '@env';
+import {StreamChat} from 'stream-chat';
 
 const getInfos = async () => {
   try {
@@ -14,13 +14,11 @@ const getInfos = async () => {
 };
 
 export const ChatComponent = () => {
-  const [userInfo, setUserInfo] = useState<any>(null);
   const [chatValues, setChatValues] = useState<any>(null);
 
   useEffect(() => {
     const initializeChat = async () => {
       const userInformation = await getInfos();
-      setUserInfo(userInformation);
 
       if (userInformation) {
         const api_key = CHAT_KEY;
@@ -31,7 +29,12 @@ export const ChatComponent = () => {
         const chatUserToken = serverClient.createToken(chatUserId);
         const chatUserName = `${userInformation.name} ${userInformation.surname}`;
 
-        setChatValues({ userId: chatUserId, userToken: chatUserToken, userName: chatUserName, apiKey: api_key });
+        setChatValues({
+          userId: chatUserId,
+          userToken: chatUserToken,
+          userName: chatUserName,
+          apiKey: api_key,
+        });
       }
     };
 

@@ -6,15 +6,15 @@ import {store} from './src/utils/GlobalStore';
 import {appInitCustomData} from './src/utils/CustomFunctions';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import { AppProvider } from './src/components/Chat/AppContext';
+import {AppProvider} from './src/components/Chat/AppContext';
 
 function App(): JSX.Element {
   appInitCustomData();
 
   return (
     <AppProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <SafeAreaView style={{ flex: 1 }}>
+      <GestureHandlerRootView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1}}>
           <Provider store={store}>
             <NavigationContainer>
               <Root />

@@ -6,16 +6,17 @@ import Trombi from '../pages/Trombi';
 import Widgets from '../pages/Widgets';
 import ChannelListScreen from '../pages/ChannelListScreen';
 import Profile from '../pages/Profile';
-import { Text } from 'react-native';
-import { useChatClient } from '../components/Chat/useChatClient';
+import {Text} from 'react-native';
+import {useChatClient} from '../components/Chat/useChatClient';
 
 const Tab = createBottomTabNavigator();
 
 const NavBar = () => {
-  const { clientIsReady } = useChatClient();
+  const {clientIsReady} = useChatClient();
 
+  console.log('NavBar');
   if (!clientIsReady) {
-    return <Text>Loading chat ...</Text>
+    return <Text>Loading chat ...</Text>;
   }
   return (
     <Tab.Navigator

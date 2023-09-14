@@ -9,12 +9,11 @@ import Profile from './pages/Profile';
 import PrivateChat from './pages/PrivateChat';
 import UserInfo from './components/UserInfo';
 import {useNavigation} from '@react-navigation/native';
-import {
-  Chat,
-  OverlayProvider
-} from 'stream-chat-react-native';
-import { CHAT_KEY } from '@env';
-import { StreamChat } from 'stream-chat';
+import {Chat, OverlayProvider} from 'stream-chat-react-native';
+import {CHAT_KEY} from '@env';
+import {StreamChat} from 'stream-chat';
+import {CommonActions} from '@react-navigation/native';
+import {fetchTokensFromLocalStorage, setTokens} from './utils/TokenFunctions';
 
 const chatClient = StreamChat.getInstance(CHAT_KEY);
 
@@ -22,29 +21,27 @@ const Stack = createStackNavigator();
 
 function Root() {
   const navigation = useNavigation();
-  // useEffect(() => {
-  //   fetchTokensFromLocalStorage()
-  //     .then(tokens => {
-  //       setTokens(tokens);
-  //       if (tokens['masurao-token'] !== '') {
-  //         navigation.navigate('NavBar');
-  //         navigation.dispatch(
-  //           CommonActions.reset({
-  //             index: 0,
-  //             routes: [{name: 'NavBar'}],
-  //           }),
-  //         );
-  //       }
-  //     })
-  //     .catch(() => {
-  //       navigation.navigate('Login');
-  //     });
-  // }, [navigation]);
+  useEffect(() => {
+    fetchTokensFromLocalStorage()
+      .then(tokens => {
+        setTokens(tokens);
+        if (tokens['masurao-token'] !== '') {
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{name: 'NavBar'}],
+            }),
+          );
+        } else {
+          navigation.navigate('Login');
+        }
+      })
+      .catch(() => {});
+  }, [navigation]);
 
   return (
     <OverlayProvider>
       <Chat client={chatClient}>
-
         <Stack.Navigator
           initialRouteName="Login"
           screenOptions={{headerShown: false}}>
