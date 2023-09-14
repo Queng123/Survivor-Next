@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Linking} from 'react-native';
+import {StyleSheet, View, Linking, ActivityIndicator} from 'react-native';
 import {useRoute, useNavigation} from '@react-navigation/native';
 
 import ProfileInfo from './ProfileInfo';
@@ -45,6 +45,7 @@ const UserInfo = () => {
       flexDirection: 'column',
       alignItems: 'center',
       backgroundColor: getCustomState().custom[`background-1${theme}`],
+      justifyContent: 'center',
     },
   });
 
@@ -61,7 +62,7 @@ const UserInfo = () => {
     fetchUserInfo();
   }, [id]);
 
-  return (
+  return userInfo ? (
     <View style={customStyles.container}>
       <View>
         <ProfileInfo
@@ -85,6 +86,13 @@ const UserInfo = () => {
           onPress={() => Linking.openURL(`mailto:${userInfo.email}`)}
         />
       </View>
+    </View>
+  ) : (
+    <View style={customStyles.container}>
+      <ActivityIndicator
+        size="large"
+        color={getCustomState().custom[`button-primary${theme}`]}
+      />
     </View>
   );
 };
