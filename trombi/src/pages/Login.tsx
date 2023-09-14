@@ -13,7 +13,6 @@ import LoginInputField from '../components/LoginInputField';
 import handleLogin from '../utils/LoginFunctions';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
-import { black } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -121,10 +120,7 @@ const Login = () => {
           </TouchableOpacity>
         </View>
       ) : (
-        <ActivityIndicator
-          size="large"
-          color="black"
-        />
+        <ActivityIndicator size="large" color="black" />
       )}
     </KeyboardAvoidingView>
   );
