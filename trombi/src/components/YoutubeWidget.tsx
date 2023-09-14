@@ -79,6 +79,7 @@ const YoutubeFavorites = ({token}: {token: string}): JSX.Element => {
 };
 
 export const YoutubeWidget = ({data}: {data: WidgetData}): JSX.Element => {
+  const {t} = useTranslation();
   const token = useSelector((state: any) => state.token.tokens['google-oauth']);
 
   return (
