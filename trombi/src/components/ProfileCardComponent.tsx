@@ -37,7 +37,7 @@ const ProfileCard = (props: BasicEmployeeProps) => {
     <TouchableHighlight
       style={styles.cardContainer}
       onPress={() => {
-        navigation.navigate('UserInfo', { id: props.id });
+        navigation.navigate('UserInfo', {id: props.id});
       }}>
       <View style={customStyles.employeeCard}>
         <FastImage
