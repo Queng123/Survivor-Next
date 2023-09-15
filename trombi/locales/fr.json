@@ -41,6 +41,10 @@
     "chat": {
         "title": "Chat"
     },
+    "userInfo": {
+        "chat": "Chat",
+        "email": "Courriel"
+    },
     "profile": {
         "title": "Profil",
         "email": "Courriel",
