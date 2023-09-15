@@ -51,7 +51,8 @@
         }
     },
     "chat": {
-        "title": "Chat"
+        "title": "Chat",
+        "channelCreated": "Le canal a été créé"
     },
     "userInfo": {
         "chat": "Chat",
