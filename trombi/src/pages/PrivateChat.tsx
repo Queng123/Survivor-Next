@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Channel, MessageList, MessageInput} from 'stream-chat-react-native';
+import {useAppContext} from '../components/Chat/AppContext';
 
 const PrivateChat = () => {
+  const {channel} = useAppContext();
   return (
-    <View>
-      <Text>Private Chat</Text>
-    </View>
+    <Channel channel={channel}>
+      <MessageList />
+      <MessageInput />
+    </Channel>
   );
 };
 export default PrivateChat;
