@@ -4,7 +4,7 @@ import FastImage from 'react-native-fast-image';
 import {useSelector} from 'react-redux';
 
 export const NasaApodComponent = () => {
-  const token = useSelector((state: any) => state.token.tokens.apod);
+  const token = useSelector((state: any) => state.custom["customState"]["extern-api-token"]["apod"]);
   const [photoInfo, setPhotoInfo] = useState(null);
 
   useEffect(() => {
