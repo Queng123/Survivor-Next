@@ -6,7 +6,7 @@ import Trombi from '../pages/Trombi';
 import Widgets from '../pages/Widgets';
 import ChannelListScreen from '../pages/ChannelListScreen';
 import Profile from '../pages/Profile';
-import {Text} from 'react-native';
+import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import {useChatClient} from '../components/Chat/useChatClient';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
@@ -16,11 +16,17 @@ const Tab = createBottomTabNavigator();
 const NavBar = () => {
   const {clientIsReady} = useChatClient();
   const theme = useTheme().theme === 'dark' ? '-dark' : '';
+  const customStyles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: getCustomState().custom[`background-1${theme}`],
+      justifyContent: 'center',
+    },
+  });
 
-  if (!clientIsReady) {
-    return <Text>Loading chat ...</Text>;
-  }
-  return (
+  return clientIsReady ? (
     <Tab.Navigator
       screenOptions={({route}) => ({
         headerShown: false,
@@ -56,6 +62,13 @@ const NavBar = () => {
       <Tab.Screen name={'ChannelListScreen'} component={ChannelListScreen} />
       <Tab.Screen name={'Profile'} component={Profile} />
     </Tab.Navigator>
+  ) : (
+    <View style={customStyles.container}>
+      <ActivityIndicator
+        size="large"
+        color={getCustomState().custom[`button-primary${theme}`]}
+      />
+    </View>
   );
 };
 
