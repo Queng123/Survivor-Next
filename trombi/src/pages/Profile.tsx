@@ -9,7 +9,6 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
 import ProfileInfo from '../components/ProfileInfo';
-import {getTokens} from '../utils/TokenFunctions';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
 import {getCurrentUserInfos} from '../utils/getCurrentUserInfos';
