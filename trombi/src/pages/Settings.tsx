@@ -114,11 +114,11 @@ const Settings = () => {
       <View style={styles.header}>
         <View style={styles.but}>
           <TouchableOpacity onPress={goBack} style={styles.button}>
-          <Ionicons
-            name="arrow-back"
-            size={30}
-            color={getCustomState().custom[`button-secondary${theme}`]}
-          />
+            <Ionicons
+              name="arrow-back"
+              size={30}
+              color={getCustomState().custom[`button-secondary${theme}`]}
+            />
           </TouchableOpacity>
         </View>
         <Text style={styles.title}>{t('settings.title')}</Text>

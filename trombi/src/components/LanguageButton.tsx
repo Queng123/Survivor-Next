@@ -5,7 +5,7 @@ import '../../locales/index';
 import {useTranslation} from 'react-i18next';
 import {getCustomState} from '../utils/CustomFunctions';
 import {setLanguageInLocalStorage} from '../utils/LanguageFunctions';
-import { useTheme } from '../utils/ThemeContext';
+import {useTheme} from '../utils/ThemeContext';
 
 function LanguageButton(): JSX.Element {
   const {i18n} = useTranslation();

@@ -5,7 +5,7 @@ import {
 import {OAuthToken} from './TokenTypes';
 import {getTokens, setTokens, setTokensInLocalStorage} from './TokenFunctions';
 import {Alert, Button} from 'react-native';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 export const loginAndStoreToken = async (): Promise<OAuthToken> => {
   await GoogleSignin.hasPlayServices();

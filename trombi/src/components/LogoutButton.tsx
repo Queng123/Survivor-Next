@@ -14,7 +14,7 @@ import {
   setTokensInLocalStorage,
   getTokens,
 } from '../utils/TokenFunctions';
-import { useTheme } from '../utils/ThemeContext';
+import {useTheme} from '../utils/ThemeContext';
 
 const api_key = CHAT_KEY;
 const serverClient = StreamChat.getInstance(api_key);
