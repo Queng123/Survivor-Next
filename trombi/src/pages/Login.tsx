@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -13,7 +14,6 @@ import LoginInputField from '../components/LoginInputField';
 import handleLogin from '../utils/LoginFunctions';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
-import FastImage from 'react-native-fast-image';
 import {ADMIN_API_URL, COMPANY_UUID} from '@env';
 import {useTranslation} from 'react-i18next';
 
@@ -84,7 +84,7 @@ const Login = () => {
     <KeyboardAvoidingView style={customStyles.container}>
       {!isLoading ? (
         <View style={customStyles.container}>
-          <FastImage
+          <Image
             style={{width: 150, height: 150}}
             source={{
               uri: `${ADMIN_API_URL}/company/logo/${COMPANY_UUID}`,
