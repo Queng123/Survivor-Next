@@ -36,6 +36,10 @@
             "noEventsTomorrow": "No events tomorrow",
             "from": "from",
             "to": "to"
+        },
+        "crypto": {
+            "title": "Crypto",
+            "description": "View the current crypto prices"
         }
     },
     "chat": {
