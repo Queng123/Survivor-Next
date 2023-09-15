@@ -8,12 +8,40 @@ import {
   SortEmployeePropName,
 } from '../utils/SortEmployeeProp';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useTheme} from '../utils/ThemeContext';
+import {getCustomState} from '../utils/CustomFunctions';
+
 const Trombi = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [sortFunction, setSortFunction] = React.useState(
     () => SortEmployeePropSurname,
   );
   const [visible, setVisible] = React.useState(false);
+  const theme = useTheme().theme === 'dark' ? '-dark' : '';
+  const customStyles = StyleSheet.create({
+    searchContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: getCustomState().custom[`background-1${theme}`],
+      borderRadius: 20,
+      flex: 1,
+      marginRight: 8,
+      borderWidth: 1,
+      borderColor: getCustomState().custom[`button-primary-foreground${theme}`],
+    },
+    searchIcon: {
+      padding: 10,
+      color: getCustomState().custom[`button-primary${theme}`],
+    },
+    input: {
+      flex: 1,
+      height: 40,
+      padding: 10,
+      color: getCustomState().custom[`text-secondary${theme}`],
+      caretColor: getCustomState().custom[`button-primary${theme}`],
+    },
+  });
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -27,16 +55,34 @@ const Trombi = () => {
     <PaperProvider>
       <View>
         <View style={styles.header}>
-          <TextInput
-            style={styles.input}
-            placeholder="Rechercher"
-            onChangeText={setSearchQuery}
-            value={searchQuery}
-          />
+          <View style={customStyles.searchContainer}>
+            <Ionicons
+              name="search-outline"
+              size={24}
+              color="black"
+              style={customStyles.searchIcon}
+            />
+            <TextInput
+              style={customStyles.input}
+              onChangeText={setSearchQuery}
+              value={searchQuery}
+            />
+          </View>
           <Menu
             visible={visible}
             onDismiss={closeMenu}
-            anchor={<IconButton icon="sort" onPress={openMenu} />}>
+            anchor={
+              <IconButton
+                icon={() => (
+                  <Ionicons
+                    name="swap-vertical-outline"
+                    size={24}
+                    color={getCustomState().custom[`button-primary${theme}`]}
+                  />
+                )}
+                onPress={openMenu}
+              />
+            }>
             <Menu.Item
               onPress={() => handleSort(SortEmployeePropSurname)}
               title={<Text>Sort by surname</Text>}
@@ -63,15 +109,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     marginTop: 16,
-  },
-  input: {
-    flex: 1,
-    marginRight: 8,
-    height: 40,
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 5,
-    padding: 8,
   },
 });
 
