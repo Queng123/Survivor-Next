@@ -25,9 +25,14 @@ const Widgets = () => {
       fontSize: 30,
       color: getCustomState().custom[`text-primary${theme}`],
     },
+    view: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: getCustomState().custom[`background-1${theme}`],
+    },
   });
   return (
-    <View style={styles.view}>
+    <View style={customStyles.view}>
       <WidgetContainer />
       <Pressable
         style={customStyles.button}
@@ -41,10 +46,3 @@ const Widgets = () => {
 };
 
 export default Widgets;
-
-const styles = StyleSheet.create({
-  view: {
-    width: '100%',
-    height: '100%',
-  },
-});
