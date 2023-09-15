@@ -49,6 +49,7 @@ const ChannelListScreen = props => {
 
   return (
     <ChannelList
+      refreshing={true}
       PreviewTitle={CustomPreviewTitle}
       PreviewAvatar={CustomPreviewAvatar}
       onSelect={channel => {
