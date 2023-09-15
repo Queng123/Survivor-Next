@@ -27,7 +27,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
     getCustomState()['company-api-url']
   }/employees/${id}/image`;
   const theme = useTheme().theme === 'dark' ? '-dark' : '';
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
   const customStyles = StyleSheet.create({
     name: {
       color: getCustomState().custom[`title-primary${theme}`],
@@ -50,6 +50,15 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
       fontSize: 20,
     },
   });
+  const handleBirthday = () => {
+    const year = birthday.slice(0, 4);
+    const month = birthday.slice(5, 7);
+    const day = birthday.slice(8, 10);
+    if (i18n.language === 'fr') {
+      return `${day}/${month}/${year}`;
+    }
+    return `${month}/${day}/${year}`;
+  };
   return (
     <View style={styles.container}>
       <FastImage
@@ -72,7 +81,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
         <Text style={customStyles.infoLabel}>{t('profile.email')}</Text>
         <Text style={customStyles.info}>{email}</Text>
         <Text style={customStyles.infoLabel}>{t('profile.birthDate')}</Text>
-        <Text style={customStyles.info}>{birthday}</Text>
+        <Text style={customStyles.info}>{handleBirthday()}</Text>
         <Text style={customStyles.infoLabel}>{t('profile.gender')}</Text>
         <Text style={customStyles.info}>{gender}</Text>
       </View>
