@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {View, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
+import {getCustomState} from '../utils/CustomFunctions';
+import {useTheme} from '../utils/ThemeContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface LoginInputFieldProps {
@@ -20,16 +22,23 @@ const LoginInputField: React.FC<LoginInputFieldProps> = ({
   onChangeText,
 }) => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
+  const theme = useTheme().theme === 'dark' ? '-dark' : '';
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!isPasswordVisible);
   };
-
+  const customStyles = StyleSheet.create({
+    textInput: {
+      flex: 1,
+      paddingVertical: 0,
+      color: getCustomState().custom[`text-secondary${theme}`],
+    },
+  });
   return (
     <View style={styles.container}>
       {icon}
       <TextInput
-        style={styles.textInput}
+        style={customStyles.textInput}
         placeholder={label}
         autoCapitalize="none"
         keyboardType={keyboardType}
@@ -59,10 +68,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingBottom: 8,
     marginBottom: 25,
-  },
-  textInput: {
-    flex: 1,
-    paddingVertical: 0,
   },
   iconContainer: {
     justifyContent: 'center',
