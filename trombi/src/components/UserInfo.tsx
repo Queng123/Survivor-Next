@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Linking, ActivityIndicator} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Linking,
+  ActivityIndicator,
+  ToastAndroid,
+} from 'react-native';
 import {useRoute, useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -109,6 +115,11 @@ const UserInfo = () => {
             const url = `${ADMIN_API_URL}/chat/channel/${chatUserId}/${user2}`;
             await fetch(url);
             navigation.navigate('ChannelListScreen');
+            ToastAndroid.show(
+              t('chat.channelCreated'),
+              ToastAndroid.SHORT,
+              ToastAndroid.BOTTOM,
+            );
           }}
         />
         <CustomButton
