@@ -3,6 +3,7 @@ import {StyleSheet, View, Text} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
+import {useTheme} from '../utils/ThemeContext';
 
 interface ProfileInfoProps {
   id: string;
@@ -24,6 +25,29 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
   const pictureURL: string = `${
     getCustomState()['company-api-url']
   }/employees/${id}/image`;
+  const theme = useTheme().theme === 'dark' ? '-dark' : '';
+  const customStyles = StyleSheet.create({
+    name: {
+      color: getCustomState().custom[`title-primary${theme}`],
+      fontSize: 30,
+      fontWeight: 'bold',
+      paddingBottom: 10,
+    },
+    nameContainer: {
+      borderBottomWidth: 1,
+      borderBottomColor: getCustomState().custom[`title-primary${theme}`],
+      paddingBottom: 15,
+    },
+    infoLabel: {
+      color: getCustomState().custom[`title-secondary${theme}`],
+      fontSize: 25,
+      paddingTop: 20,
+    },
+    info: {
+      color: getCustomState().custom[`text-primary${theme}`],
+      fontSize: 20,
+    },
+  });
   return (
     <View style={styles.container}>
       <FastImage
@@ -37,18 +61,18 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
         }}
         style={styles.image}
       />
-      <View style={styles.nameContainer}>
-        <Text style={styles.name}>{name}</Text>
+      <View style={customStyles.nameContainer}>
+        <Text style={customStyles.name}>{name}</Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.infoLabel}>Poste</Text>
-        <Text style={styles.info}>{post}</Text>
-        <Text style={styles.infoLabel}>Email</Text>
-        <Text style={styles.info}>{email}</Text>
-        <Text style={styles.infoLabel}>Anniversaire</Text>
-        <Text style={styles.info}>{birthday}</Text>
-        <Text style={styles.infoLabel}>Genre</Text>
-        <Text style={styles.info}>{gender}</Text>
+        <Text style={customStyles.infoLabel}>Poste</Text>
+        <Text style={customStyles.info}>{post}</Text>
+        <Text style={customStyles.infoLabel}>Email</Text>
+        <Text style={customStyles.info}>{email}</Text>
+        <Text style={customStyles.infoLabel}>Anniversaire</Text>
+        <Text style={customStyles.info}>{birthday}</Text>
+        <Text style={customStyles.infoLabel}>Genre</Text>
+        <Text style={customStyles.info}>{gender}</Text>
       </View>
     </View>
   );
@@ -73,30 +97,10 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginTop: 30,
   },
-  nameContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: 'black',
-    paddingBottom: 15,
-  },
-  name: {
-    color: 'black',
-    fontSize: 30,
-    fontWeight: 'bold',
-    paddingBottom: 10,
-  },
   infoContainer: {
     paddingTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  infoLabel: {
-    color: 'black',
-    fontSize: 25,
-    paddingTop: 20,
-  },
-  info: {
-    color: 'black',
-    fontSize: 20,
   },
 });
 

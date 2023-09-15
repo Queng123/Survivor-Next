@@ -2,6 +2,8 @@ import React, {FC} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 import Ionicon from 'react-native-vector-icons/Ionicons';
+import {getCustomState} from '../utils/CustomFunctions';
+import {useTheme} from '../utils/ThemeContext';
 
 interface CustomButtonProps {
   title: string;
@@ -14,28 +16,42 @@ export const CustomButton: FC<CustomButtonProps> = ({
   iconName,
   onPress,
 }) => {
+  const theme = useTheme().theme === 'dark' ? '-dark' : '';
+  const customStyles = StyleSheet.create({
+    buttonContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: getCustomState().custom[`background-3${theme}`],
+      borderRadius: 10,
+      padding: 0,
+      margin: 3,
+      width: 180,
+    },
+    icon: {
+      color: getCustomState().custom[`text-primary${theme}`],
+    },
+    title: {
+      color: getCustomState().custom[`text-primary${theme}`],
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginLeft: 10,
+      marginRight: 100,
+      width: 150,
+    },
+  });
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={Styles.buttonContainer}>
+      <View style={customStyles.buttonContainer}>
         <View style={Styles.iconContainer}>
-          <Ionicon name={iconName} size={20} style={Styles.icon} />
+          <Ionicon name={iconName} size={20} style={customStyles.icon} />
         </View>
-        <Text style={Styles.title}>{title}</Text>
+        <Text style={customStyles.title}>{title}</Text>
       </View>
     </TouchableOpacity>
   );
 };
 
 const Styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#D9D9D9',
-    borderRadius: 10,
-    padding: 0,
-    margin: 3,
-    width: 180,
-  },
   iconContainer: {
     borderRadius: 10,
     padding: 10,
@@ -44,16 +60,5 @@ const Styles = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  icon: {
-    color: 'black',
-  },
-  title: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginLeft: 10,
-    marginRight: 100,
-    width: 150,
   },
 });

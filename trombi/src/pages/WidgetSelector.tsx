@@ -3,6 +3,7 @@ import {Pressable, ScrollView, Text, StyleSheet} from 'react-native';
 import {createMeteoWidget} from '../components/MeteoWidget';
 import {createNoteWidget} from '../components/NoteWidget';
 import {createYoutubeWidget} from '../components/YoutubeWidget';
+import {createCryptoWidget} from '../components/CryptoWidget';
 import {WidgetData} from '../utils/WidgetTypes';
 import {addWidget} from '../utils/WidgetFunctions';
 import {useNavigation} from '@react-navigation/native';
@@ -44,6 +45,11 @@ const WidgetSelector = () => {
       title: t('widgets.nasaApod.title'),
       desc: t('widgets.nasaApod.description'),
       func: createNasaApodWidget,
+    },
+    {
+      title: t('widgets.crypto.title'),
+      desc: t('widgets.crypto.description'),
+      func: createCryptoWidget,
     },
   ];
   const createWidgetAndAdd = (widget: AddableWidget) => {

@@ -9,6 +9,7 @@ import {NoteWidget} from './NoteWidget';
 import {YoutubeWidget} from './YoutubeWidget';
 import {CalendarWidget} from './CalendarWidget';
 import {NasaApodWidget} from './NasaApodWidget';
+import {CryptoWidget} from './CryptoWidget';
 import {getWidgetsFromStorage} from '../utils/WidgetFunctions';
 
 export const WidgetContainerGap = (): JSX.Element => {
@@ -41,6 +42,7 @@ export const WidgetContainer = (): JSX.Element => {
           {item.widgetType === 'NasaApodWidget' && (
             <NasaApodWidget data={item} />
           )}
+          {item.widgetType === 'CryptoWidget' && <CryptoWidget data={item} />}
         </View>
       ))}
       <WidgetContainerGap />
