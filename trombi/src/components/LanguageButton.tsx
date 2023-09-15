@@ -35,7 +35,7 @@ function LanguageButton(): JSX.Element {
       backgroundColor: getCustomState()?.custom?.[`button-secondary${theme}`],
     },
     textStyle: {
-      color: getCustomState()?.custom?.[`text-primary${theme}`],
+      color: getCustomState()?.custom?.[`button-primary-foreground${theme}`],
     },
   };
 
