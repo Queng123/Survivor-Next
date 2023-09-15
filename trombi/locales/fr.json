@@ -31,6 +31,10 @@
             "noEventsTomorrow": "Pas d'événements à venir demain",
             "from": "de",
             "to": "à"
+        },
+        "nasaApod": {
+            "title": "Nasa APOD",
+            "description": "Voir l'image du jour de la NASA"
         }
     },
     "chat": {
