@@ -6,6 +6,7 @@ export type CustomData = {
     weather: string;
     stock: string;
     gpt3: string;
+    apod: string;
   };
   custom: {
     'background-1': string;

@@ -31,6 +31,14 @@
             "noEventsTomorrow": "No events tomorrow",
             "from": "from",
             "to": "to"
+        },
+        "nasaApod": {
+            "title": "Nasa APOD",
+            "description": "View the Nasa Astronomy Picture of the Day"
+        },
+        "crypto": {
+            "title": "Crypto",
+            "description": "View the current crypto prices"
         }
     },
     "chat": {

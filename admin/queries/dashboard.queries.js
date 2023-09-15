@@ -13,7 +13,8 @@ exports.saveJson = async (dashboard) => {
             "extern-api-token": {
                 "weather": dashboard['extern-api-token'].weather,
                 "stock": dashboard['extern-api-token'].stock,
-                "gpt3": dashboard['extern-api-token'].gpt3
+                "gpt3": dashboard['extern-api-token'].gpt3,
+                "apod": dashboard['extern-api-token'].apod,
             },
             "custom": {
                 "background-1": dashboard.custom['background-1'],
