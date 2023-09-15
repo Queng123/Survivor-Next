@@ -15,7 +15,8 @@ function createModel(companyUuid) {
         "extern-api-token": {
             "weather": { type: String, required: true },
             "stock": { type: String, required: true },
-            "gpt3": { type: String, required: true }
+            "gpt3": { type: String, required: true },
+            "apod": { type: String, required: true },
         },
         "custom": {
             "background-1": { type: String, required: true },

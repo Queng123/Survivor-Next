@@ -10,6 +10,7 @@ const initialState = {
       weather: '',
       stock: '',
       gpt3: '',
+      apod: '',
     },
     custom: {
       'background-1': '',

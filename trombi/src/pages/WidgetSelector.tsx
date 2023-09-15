@@ -8,6 +8,7 @@ import {WidgetData} from '../utils/WidgetTypes';
 import {addWidget} from '../utils/WidgetFunctions';
 import {useNavigation} from '@react-navigation/native';
 import {createCalendarWidget} from '../components/CalendarWidget';
+import {createNasaApodWidget} from '../components/NasaApodWidget';
 import {useTranslation} from 'react-i18next';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useTheme} from '../utils/ThemeContext';
@@ -75,6 +76,11 @@ const WidgetSelector = () => {
       title: t('widgets.calendar.title'),
       desc: t('widgets.calendar.description'),
       func: createCalendarWidget,
+    },
+    {
+      title: t('widgets.nasaApod.title'),
+      desc: t('widgets.nasaApod.description'),
+      func: createNasaApodWidget,
     },
     {
       title: t('widgets.crypto.title'),
