@@ -4,8 +4,12 @@ import {useAppContext} from '../components/Chat/AppContext';
 
 const PrivateChat = () => {
   const {channel} = useAppContext();
+  const messageAvatar = () => null;
   return (
-    <Channel channel={channel}>
+    <Channel
+      channel={channel}
+      MessageAvatar={messageAvatar}
+      ReactionList={() => null}>
       <MessageList />
       <MessageInput />
     </Channel>

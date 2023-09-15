@@ -3,6 +3,7 @@ import {ChannelList} from 'stream-chat-react-native';
 import {useAppContext} from '../components/Chat/AppContext';
 import {useEffect, useState} from 'react';
 import {getCurrentUserInfos} from '../utils/getCurrentUserInfos';
+import {Text} from 'react-native';
 
 const ChannelListScreen = props => {
   const [chatUserId, setChatUserId] = useState<any>(null);
@@ -35,8 +36,22 @@ const ChannelListScreen = props => {
     initializeChat();
   }, []);
 
+  const CustomPreviewTitle = ({channel}) => {
+    const channelNameParts = channel.data.name.split('-');
+    const lastPart = channelNameParts[channelNameParts.length - 1];
+
+    return <Text>{lastPart}</Text>;
+  };
+
+  const CustomPreviewAvatar = () => {
+    return <></>;
+  };
+
   return (
     <ChannelList
+      refreshing={true}
+      PreviewTitle={CustomPreviewTitle}
+      PreviewAvatar={CustomPreviewAvatar}
       onSelect={channel => {
         const {navigation} = props;
         setChannel(channel);
