@@ -4,9 +4,9 @@ import {useAppContext} from '../components/Chat/AppContext';
 import {useEffect, useState} from 'react';
 import {getCurrentUserInfos} from '../utils/getCurrentUserInfos';
 import {Text, StyleSheet} from 'react-native';
-import { useTheme } from '../utils/ThemeContext';
-import { View, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
+import {useTheme} from '../utils/ThemeContext';
+import {View, TouchableOpacity} from 'react-native';
+import {useSelector} from 'react-redux';
 
 const ChannelListScreen = props => {
   const custom = useSelector((state: any) => state.custom.customState.custom);
@@ -59,8 +59,9 @@ const ChannelListScreen = props => {
     initializeChat();
   }, []);
 
-  const CustomChannelPreview = ({ channel, latestMessagePreview, onSelect }) => {
-    const text = latestMessagePreview.previews[latestMessagePreview.status].text;
+  const CustomChannelPreview = ({channel, latestMessagePreview, onSelect}) => {
+    const text =
+      latestMessagePreview.previews[latestMessagePreview.status].text;
     const channelNameParts = channel.data.name.split('-');
     const lastPart = channelNameParts[channelNameParts.length - 1];
     return (
@@ -80,7 +81,7 @@ const ChannelListScreen = props => {
 
   return (
     <ChannelList
-      Preview={(props) => (
+      Preview={props => (
         <CustomChannelPreview {...props} onSelect={handleNavigation} />
       )}
       filters={filters}
