@@ -12,45 +12,11 @@ export type BasicEmployeeProps = {
   email: string;
 };
 
-const getEmployeeJob = async (id: number) => {
-  try {
-    const response = await fetch(
-      `${getCustomState()['company-api-url']}/employees/${id}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Group-Authorization': getCustomState()['group-token'],
-          Authorization: 'Bearer ' + getTokens()['masurao-token'],
-        },
-      },
-    );
-
-    if (!response.ok) {
-      console.error(`Request failed with status ${response.status}`);
-      return null;
-    }
-
-    const json = await response.json();
-    return json.work;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
 const ProfileCard = (props: BasicEmployeeProps) => {
   const navigation = useNavigation();
   const photoURL: string = `${getCustomState()['company-api-url']}/employees/${
     props.id
   }/image`;
-  const [job, setJob] = useState<string | null>(null);
-
-  useEffect(() => {
-    getEmployeeJob(props.id).then(employeeJob => {
-      setJob(employeeJob);
-    });
-  }, [props.id]);
 
   return (
     <TouchableHighlight
@@ -71,7 +37,7 @@ const ProfileCard = (props: BasicEmployeeProps) => {
           style={styles.employeeCardImage}
         />
         <Text style={styles.employeeCardNameText}>
-          {props.name} {props.surname} {job !== null ? `Job: ${job}` : ''}
+          {props.name} {props.surname}
         </Text>
       </View>
     </TouchableHighlight>
