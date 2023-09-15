@@ -36,20 +36,16 @@ const ChannelListScreen = props => {
     initializeChat();
   }, []);
 
-  const CustomPreviewTitle = ({ channel }) => {
+  const CustomPreviewTitle = ({channel}) => {
     const channelNameParts = channel.data.name.split('-');
     const lastPart = channelNameParts[channelNameParts.length - 1];
 
-    return (
-      <Text>
-        {lastPart}
-      </Text>
-    );
+    return <Text>{lastPart}</Text>;
   };
 
   const CustomPreviewAvatar = () => {
-    return (<></>);
-  }
+    return <></>;
+  };
 
   return (
     <ChannelList
