@@ -46,4 +46,3 @@ const Widgets = () => {
 };
 
 export default Widgets;
-
