@@ -10,7 +10,7 @@ import {useTheme} from '../utils/ThemeContext';
 
 import {ADMIN_API_URL} from '@env';
 import {getCurrentUserInfos} from '../utils/getCurrentUserInfos';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 export const getUserInfos = async (id: number) => {
   try {

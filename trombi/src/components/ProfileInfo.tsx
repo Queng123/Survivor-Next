@@ -4,7 +4,7 @@ import FastImage from 'react-native-fast-image';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
 import {useTheme} from '../utils/ThemeContext';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 interface ProfileInfoProps {
   id: string;

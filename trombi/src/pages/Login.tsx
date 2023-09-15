@@ -13,7 +13,7 @@ import LoginInputField from '../components/LoginInputField';
 import handleLogin from '../utils/LoginFunctions';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 const Login = () => {
   const navigation = useNavigation();
