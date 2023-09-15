@@ -31,7 +31,7 @@ block content
               input(type="text", class="form-control", name="extern-api-token[gpt3]", value="")
             div(class="col-md-6")
             div(class="col-md-6")
-              label(for="gpt3") APOD:
+              label(for="apod") APOD:
               input(type="text", class="form-control", name="extern-api-token[apod]", value="")
             div(class="col-md-6")
           br
@@ -214,7 +214,8 @@ block content
             "extern-api-token": {
               "weather": document.querySelector("input[name='extern-api-token[weather]']").value,
               "stock": document.querySelector("input[name='extern-api-token[stock]']").value,
-              "gpt3": document.querySelector("input[name='extern-api-token[gpt3]']").value
+              "gpt3": document.querySelector("input[name='extern-api-token[gpt3]']").value,
+              "apod": document.querySelector("input[name='extern-api-token[apod]']").value
             },
             "custom": {
               "background-1": document.querySelector("input[name='custom[background-1]']").value,
@@ -292,6 +293,7 @@ block content
           document.querySelector("input[name='extern-api-token[weather]']").value = data['extern-api-token'].weather;
           document.querySelector("input[name='extern-api-token[stock]']").value = data['extern-api-token'].stock;
           document.querySelector("input[name='extern-api-token[gpt3]']").value = data['extern-api-token'].gpt3;
+          document.querySelector("input[name='extern-api-token[apod]']").value = data['extern-api-token'].apod;
           document.querySelector("input[name='custom[background-1]']").value = data['custom']['background-1'];
           document.querySelector("input[name='custom[background-1-dark]']").value = data['custom']['background-1-dark'];
           document.querySelector("input[name='custom[background-2]']").value = data['custom']['background-2'];
