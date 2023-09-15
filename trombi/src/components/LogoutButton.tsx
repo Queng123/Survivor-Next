@@ -14,12 +14,14 @@ import {
   setTokensInLocalStorage,
   getTokens,
 } from '../utils/TokenFunctions';
+import { useTheme } from '../utils/ThemeContext';
 
 const api_key = CHAT_KEY;
 const serverClient = StreamChat.getInstance(api_key);
 function LogoutButton() {
   const {t} = useTranslation();
   const navigation = useNavigation();
+  const theme = useTheme().theme === 'dark' ? '-dark' : '';
 
   const disconnect = () => {
     serverClient.disconnectUser();
@@ -36,13 +38,13 @@ function LogoutButton() {
 
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: getCustomState().custom['button-primary'],
-      padding: 10,
+      backgroundColor: getCustomState().custom[`button-primary${theme}`],
+      padding: 15,
       borderRadius: 3,
       alignItems: 'center',
     },
     button_text: {
-      color: getCustomState().custom['button-primary-foreground'],
+      color: getCustomState().custom[`button-primary-foreground${theme}`],
       fontSize: 16,
       fontWeight: 'bold',
     },

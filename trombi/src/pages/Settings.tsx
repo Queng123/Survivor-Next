@@ -17,6 +17,7 @@ import {
   findEmailFromBearer,
 } from '../utils/GoogleLogin';
 import {useSelector} from 'react-redux';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Settings = () => {
   const navigation = useNavigation();
@@ -38,10 +39,13 @@ const Settings = () => {
     }
   }, [tokens]);
 
+  const darkTheme = theme === 'dark' ? '-dark' : '';
+
   const styles = StyleSheet.create({
     container: {
       padding: 10,
-      zIndex: 1,
+      backgroundColor: getCustomState().custom[`background-1${darkTheme}`],
+      flex: 1,
     },
     header: {
       flexDirection: 'row',
@@ -51,12 +55,13 @@ const Settings = () => {
     },
     title: {
       fontSize: 30,
+      marginRight: 'auto',
       fontWeight: 'bold',
       textAlign: 'center',
-      color: getCustomState().custom['title-primary'],
+      color: getCustomState().custom[`title-primary${darkTheme}`],
     },
     text: {
-      color: getCustomState().custom['text-primary'],
+      color: getCustomState().custom[`text-primary${darkTheme}`],
       fontSize: 20,
       fontWeight: 'bold',
       textAlign: 'center',
@@ -80,28 +85,40 @@ const Settings = () => {
       marginLeft: 'auto',
     },
     button: {
-      backgroundColor: getCustomState().custom['button-primary'],
-      padding: 10,
-      borderRadius: 3,
-      alignItems: 'center',
+      padding: 15,
     },
     button_text: {
-      color: getCustomState().custom['button-primary-foreground'],
+      color: getCustomState().custom[`button-primary-foreground${darkTheme}`],
       fontSize: 16,
       fontWeight: 'bold',
     },
     but: {
       marginRight: 'auto',
     },
+    logout: {
+      marginTop: 'auto',
+      margin: 15,
+    },
+    google: {
+      color: getCustomState().custom[`text-primary${darkTheme}`],
+      fontSize: 20,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      marginRight: 10,
+      marginBottom: 10,
+    },
   });
 
   return (
     <View style={styles.container}>
-      <Text>{theme}</Text>
       <View style={styles.header}>
         <View style={styles.but}>
           <TouchableOpacity onPress={goBack} style={styles.button}>
-            <Text style={styles.button_text}>{t('settings.goBack')}</Text>
+          <Ionicons
+            name="arrow-back"
+            size={30}
+            color={getCustomState().custom[`button-secondary${theme}`]}
+          />
           </TouchableOpacity>
         </View>
         <Text style={styles.title}>{t('settings.title')}</Text>
@@ -120,7 +137,7 @@ const Settings = () => {
           </View>
         </View>
         <View>
-          <Text style={styles.text}>
+          <Text style={styles.google}>
             Google:{' '}
             {googleAcc
               ? `${t('settings.connectedAs')} ${googleAcc}`
@@ -132,9 +149,9 @@ const Settings = () => {
             <CustomGoogleLoginButton />
           )}
         </View>
-        <View>
-          <LogoutButton />
-        </View>
+      </View>
+      <View style={styles.logout}>
+        <LogoutButton />
       </View>
     </View>
   );
