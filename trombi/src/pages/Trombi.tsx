@@ -24,7 +24,7 @@ const Trombi = () => {
     searchContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      backgroundColor: getCustomState().custom[`background-1${theme}`],
+      backgroundColor: getCustomState().custom[`background-4${theme}`],
       borderRadius: 20,
       flex: 1,
       marginRight: 8,
@@ -40,7 +40,6 @@ const Trombi = () => {
       height: 40,
       padding: 10,
       color: getCustomState().custom[`text-secondary${theme}`],
-      caretColor: getCustomState().custom[`button-primary${theme}`],
     },
   });
 
@@ -56,7 +55,10 @@ const Trombi = () => {
 
   return (
     <PaperProvider>
-      <View>
+      <View
+        style={{
+          backgroundColor: getCustomState().custom[`background-1${theme}`],
+        }}>
         <View style={styles.header}>
           <View style={customStyles.searchContainer}>
             <Ionicons
