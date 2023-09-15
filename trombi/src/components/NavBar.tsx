@@ -32,7 +32,7 @@ const NavBar = () => {
         headerShown: false,
         tabBarStyle: {
           height: 60,
-          backgroundColor: getCustomState().custom[`background-1${theme}`],
+          backgroundColor: getCustomState().custom[`background-3${theme}`],
         },
         tabBarIcon: ({focused}) => {
           let iconName;

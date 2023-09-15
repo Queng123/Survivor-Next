@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Linking, ActivityIndicator} from 'react-native';
 import {useRoute, useNavigation} from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import ProfileInfo from './ProfileInfo';
 import {CustomButton} from './CustomButton';
@@ -51,6 +52,12 @@ const UserInfo = () => {
       backgroundColor: getCustomState().custom[`background-1${theme}`],
       justifyContent: 'center',
     },
+    backButton: {
+      position: 'absolute',
+      top: 20,
+      left: 20,
+      color: getCustomState().custom[`button-secondary${theme}`],
+    },
   });
   const [chatUserId, setChatUserId] = useState<any>(null);
   const {t} = useTranslation();
@@ -76,6 +83,13 @@ const UserInfo = () => {
 
   return userInfo ? (
     <View style={customStyles.container}>
+      <Ionicons
+        name="arrow-back"
+        size={30}
+        color={getCustomState().custom[`button-secondary${theme}`]}
+        onPress={() => navigation.goBack()}
+        style={customStyles.backButton}
+      />
       <View>
         <ProfileInfo
           id={id}
