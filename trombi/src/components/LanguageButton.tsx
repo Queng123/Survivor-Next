@@ -5,6 +5,7 @@ import '../../locales/index';
 import {useTranslation} from 'react-i18next';
 import {getCustomState} from '../utils/CustomFunctions';
 import {setLanguageInLocalStorage} from '../utils/LanguageFunctions';
+import {useTheme} from '../utils/ThemeContext';
 
 function LanguageButton(): JSX.Element {
   const {i18n} = useTranslation();
@@ -21,18 +22,20 @@ function LanguageButton(): JSX.Element {
     i18n.changeLanguage(value);
   }, [value, i18n]);
 
+  const theme = useTheme().theme === 'dark' ? '-dark' : '';
+
   const styles = {
     style: {
-      backgroundColor: getCustomState()?.custom?.['background-2'],
+      backgroundColor: getCustomState()?.custom?.[`button-primary${theme}`],
     },
     dropDownContainerStyle: {
-      backgroundColor: getCustomState()?.custom?.['background-2'],
+      backgroundColor: getCustomState()?.custom?.[`button-primary${theme}`],
     },
     selectedItemContainerStyle: {
-      backgroundColor: getCustomState()?.custom?.['background-3'],
+      backgroundColor: getCustomState()?.custom?.[`button-secondary${theme}`],
     },
     textStyle: {
-      color: getCustomState()?.custom?.['text-primary'],
+      color: getCustomState()?.custom?.[`button-primary-foreground${theme}`],
     },
   };
 

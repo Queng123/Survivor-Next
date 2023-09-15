@@ -5,6 +5,7 @@ import {
 import {OAuthToken} from './TokenTypes';
 import {getTokens, setTokens, setTokensInLocalStorage} from './TokenFunctions';
 import {Alert, Button} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 export const loginAndStoreToken = async (): Promise<OAuthToken> => {
   await GoogleSignin.hasPlayServices();
@@ -39,6 +40,7 @@ export const findEmailFromBearer = async (token: any) => {
 };
 
 export const CustomGoogleLoginButton = (): JSX.Element => {
+  const {t} = useTranslation();
   const signIn = async () => {
     try {
       await loginAndStoreToken();
@@ -55,10 +57,11 @@ export const CustomGoogleLoginButton = (): JSX.Element => {
       }
     }
   };
-  return <Button onPress={signIn} title="Se connecter avec Google" />;
+  return <Button onPress={signIn} title={t('settings.google.connect')} />;
 };
 
 export const CustomGoogleLogoutButton = (): JSX.Element => {
+  const {t} = useTranslation();
   const signOut = async () => {
     try {
       setTokens({
@@ -70,5 +73,5 @@ export const CustomGoogleLogoutButton = (): JSX.Element => {
       console.error(error);
     }
   };
-  return <Button onPress={signOut} title="Se déconnecter de Google" />;
+  return <Button onPress={signOut} title={t('settings.google.disconnect')} />;
 };

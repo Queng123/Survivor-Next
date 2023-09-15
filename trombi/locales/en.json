@@ -2,6 +2,11 @@
     "any": {
         "loading": "Loading"
     },
+    "login": {
+        "email": "Email",
+        "password": "Password",
+        "login": "Login"
+    },
     "trombi": {
         "title": "Trombi"
     },
@@ -31,13 +36,29 @@
             "noEventsTomorrow": "No events tomorrow",
             "from": "from",
             "to": "to"
+        },
+        "nasaApod": {
+            "title": "Nasa APOD",
+            "description": "View the Nasa Astronomy Picture of the Day"
+        },
+        "crypto": {
+            "title": "Crypto",
+            "description": "View the current crypto prices"
         }
     },
     "chat": {
         "title": "Chat"
     },
+    "userInfo": {
+        "chat": "Chat",
+        "email": "Email"
+    },
     "profile": {
-        "title": "Profile"
+        "title": "Profile",
+        "email": "Email",
+        "work": "Work",
+        "birthDate": "Birth date",
+        "gender": "Gender"
     },
     "settings": {
         "title": "Settings",
@@ -48,6 +69,10 @@
         "light": "light",
         "logout": "Logout",
         "connectedAs": "Connected as",
-        "notConnected": "Not connected"
+        "notConnected": "Not connected",
+        "google": {
+            "connect": "Connect with Google",
+            "disconnect": "Disconnect from Google"
+        }
     }
 }
