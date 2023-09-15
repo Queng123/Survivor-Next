@@ -13,6 +13,8 @@ import LoginInputField from '../components/LoginInputField';
 import handleLogin from '../utils/LoginFunctions';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
+import FastImage from 'react-native-fast-image';
+import {ADMIN_API_URL, COMPANY_UUID} from '@env';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -80,6 +82,14 @@ const Login = () => {
     <KeyboardAvoidingView style={customStyles.container}>
       {!isLoading ? (
         <View style={customStyles.container}>
+          <FastImage
+            style={{width: 150, height: 150}}
+            source={{
+              uri: `${ADMIN_API_URL}/company/logo/${COMPANY_UUID}`,
+            }}
+            resizeMode="contain"
+          />
+          <View style={{marginBottom: 50}} />
           <LoginInputField
             label={'Email'}
             icon={
