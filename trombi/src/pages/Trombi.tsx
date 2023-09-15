@@ -11,7 +11,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 const Trombi = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
