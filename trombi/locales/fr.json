@@ -31,6 +31,10 @@
             "noEventsTomorrow": "Pas d'événements à venir demain",
             "from": "de",
             "to": "à"
+        },
+        "crypto": {
+            "title": "Crypto-monnaies",
+            "description": "Voir les cours des crypto-monnaies"
         }
     },
     "chat": {
