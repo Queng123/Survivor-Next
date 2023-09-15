@@ -13,6 +13,7 @@ import LoginInputField from '../components/LoginInputField';
 import handleLogin from '../utils/LoginFunctions';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
+import {useTranslation} from 'react-i18next';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -48,6 +49,7 @@ const Login = () => {
       backgroundColor: getCustomState().custom[`background-1${theme}`],
     },
   });
+  const {t} = useTranslation();
 
   useEffect(() => {
     setTimeout(() => {
@@ -81,7 +83,7 @@ const Login = () => {
       {!isLoading ? (
         <View style={customStyles.container}>
           <LoginInputField
-            label={'Email'}
+            label={t('login.email')}
             icon={
               <Ionicons
                 name="mail-outline"
@@ -95,7 +97,7 @@ const Login = () => {
             onChangeText={handleEmailChange}
           />
           <LoginInputField
-            label={'Mot de passe'}
+            label={t('login.password')}
             icon={
               <Ionicons
                 name="lock-closed-outline"
@@ -116,7 +118,7 @@ const Login = () => {
                 : customStyles.loginButton
             }
             disabled={isButtonDisabled}>
-            <Text style={customStyles.loginButtonText}>Se connecter</Text>
+            <Text style={customStyles.loginButtonText}>{t('login.login')}</Text>
           </TouchableOpacity>
         </View>
       ) : (

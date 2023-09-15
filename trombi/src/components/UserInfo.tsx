@@ -10,6 +10,7 @@ import {useTheme} from '../utils/ThemeContext';
 
 import {ADMIN_API_URL} from '@env';
 import {getCurrentUserInfos} from '../utils/getCurrentUserInfos';
+import {useTranslation} from 'react-i18next';
 
 export const getUserInfos = async (id: number) => {
   try {
@@ -52,6 +53,7 @@ const UserInfo = () => {
     },
   });
   const [chatUserId, setChatUserId] = useState<any>(null);
+  const {t} = useTranslation();
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -86,7 +88,7 @@ const UserInfo = () => {
       </View>
       <View style={styles.buttonsContainer}>
         <CustomButton
-          title="Chat"
+          title={t('userInfo.chat')}
           iconName="chatbubble-outline"
           onPress={async () => {
             const user2 = `${userInfo?.name + '-' + userInfo?.surname}`;
@@ -96,7 +98,7 @@ const UserInfo = () => {
           }}
         />
         <CustomButton
-          title="Email"
+          title={t('userInfo.email')}
           iconName="mail-outline"
           onPress={() => Linking.openURL(`mailto:${userInfo.email}`)}
         />

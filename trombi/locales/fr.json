@@ -2,6 +2,11 @@
     "any": {
         "loading": "Chargement"
     },
+    "login": {
+        "email": "Courriel",
+        "password": "Mot de passe",
+        "login": "Se connecter"
+    },
     "trombi": {
         "title": "Trombi"
     },
@@ -44,8 +49,16 @@
     "chat": {
         "title": "Chat"
     },
+    "userInfo": {
+        "chat": "Chat",
+        "email": "Courriel"
+    },
     "profile": {
-        "title": "Profil"
+        "title": "Profil",
+        "email": "Courriel",
+        "work": "Travail",
+        "birthDate": "Date de naissance",
+        "gender": "Genre"
     },
     "settings": {
         "title": "Paramètres",

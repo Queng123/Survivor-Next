@@ -2,6 +2,11 @@
     "any": {
         "loading": "Loading"
     },
+    "login": {
+        "email": "Email",
+        "password": "Password",
+        "login": "Login"
+    },
     "trombi": {
         "title": "Trombi"
     },
@@ -44,8 +49,16 @@
     "chat": {
         "title": "Chat"
     },
+    "userInfo": {
+        "chat": "Chat",
+        "email": "Email"
+    },
     "profile": {
-        "title": "Profile"
+        "title": "Profile",
+        "email": "Email",
+        "work": "Work",
+        "birthDate": "Birth date",
+        "gender": "Gender"
     },
     "settings": {
         "title": "Settings",
