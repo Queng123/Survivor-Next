@@ -69,6 +69,10 @@
         "light": "Clair",
         "logout": "Déconnexion",
         "connectedAs": "Connecté en tant que",
-        "notConnected": "Non connecté"
+        "notConnected": "Non connecté",
+        "google": {
+            "connect": "Se connecter avec Google",
+            "disconnect": "Se déconnecter de Google"
+        }
     }
 }
