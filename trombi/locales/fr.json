@@ -8,7 +8,11 @@
         "login": "Se connecter"
     },
     "trombi": {
-        "title": "Trombi"
+        "title": "Trombi",
+        "sort": {
+            "name": "Trier par nom",
+            "surname": "Trier par prénom"
+        }
     },
     "widgets": {
         "title": "Widgets",

@@ -46,7 +46,7 @@ const CryptoDisplay = ({
             flexDirection: 'row',
             flex: 1,
             justifyContent: 'flex-end',
-            gap: 10,
+            gap: 6,
           }}>
           <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
             <Text style={{...styles.cryptoDataText, color: foregroundColor}}>
@@ -160,10 +160,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   cryptoDataText: {
-    fontSize: 16,
+    fontSize: 14,
   },
   cryptoDataTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   cryptoInput: {

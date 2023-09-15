@@ -53,7 +53,6 @@ export const createNoteWidget = (): WidgetData => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     minHeight: 60,
     maxHeight: 140,
   },

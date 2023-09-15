@@ -11,6 +11,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
+import {useTranslation} from 'react-i18next';
 
 const Trombi = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -23,7 +24,7 @@ const Trombi = () => {
     searchContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      backgroundColor: getCustomState().custom[`background-1${theme}`],
+      backgroundColor: getCustomState().custom[`background-4${theme}`],
       borderRadius: 20,
       flex: 1,
       marginRight: 8,
@@ -39,7 +40,6 @@ const Trombi = () => {
       height: 40,
       padding: 10,
       color: getCustomState().custom[`text-secondary${theme}`],
-      caretColor: getCustomState().custom[`button-primary${theme}`],
     },
   });
 
@@ -51,9 +51,14 @@ const Trombi = () => {
     closeMenu();
   };
 
+  const {t} = useTranslation();
+
   return (
     <PaperProvider>
-      <View>
+      <View
+        style={{
+          backgroundColor: getCustomState().custom[`background-1${theme}`],
+        }}>
         <View style={styles.header}>
           <View style={customStyles.searchContainer}>
             <Ionicons
@@ -85,11 +90,11 @@ const Trombi = () => {
             }>
             <Menu.Item
               onPress={() => handleSort(SortEmployeePropSurname)}
-              title={<Text>Sort by surname</Text>}
+              title={<Text>{t('trombi.sort.name')}</Text>}
             />
             <Menu.Item
               onPress={() => handleSort(SortEmployeePropName)}
-              title={<Text>Sort by name</Text>}
+              title={<Text>{t('trombi.sort.surname')}</Text>}
             />
           </Menu>
         </View>
