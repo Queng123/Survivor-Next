@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Linking} from 'react-native';
+import {StyleSheet, View, Linking, ActivityIndicator} from 'react-native';
 import {useRoute, useNavigation} from '@react-navigation/native';
 
 import ProfileInfo from './ProfileInfo';
 import {CustomButton} from './CustomButton';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
+import {useTheme} from '../utils/ThemeContext';
 
 import {ADMIN_API_URL} from '@env';
 import {getCurrentUserInfos} from '../utils/getCurrentUserInfos';
@@ -40,6 +41,16 @@ const UserInfo = () => {
   const route = useRoute();
   const {id} = route.params;
   const [userInfo, setUserInfo] = useState<any>(null);
+  const theme = useTheme().theme === 'dark' ? '-dark' : '';
+  const customStyles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: getCustomState().custom[`background-1${theme}`],
+      justifyContent: 'center',
+    },
+  });
   const [chatUserId, setChatUserId] = useState<any>(null);
 
   useEffect(() => {
@@ -61,8 +72,8 @@ const UserInfo = () => {
     fetchUserInfo();
   }, [id]);
 
-  return (
-    <View style={styles.container}>
+  return userInfo ? (
+    <View style={customStyles.container}>
       <View>
         <ProfileInfo
           id={id}
@@ -91,15 +102,17 @@ const UserInfo = () => {
         />
       </View>
     </View>
+  ) : (
+    <View style={customStyles.container}>
+      <ActivityIndicator
+        size="large"
+        color={getCustomState().custom[`button-primary${theme}`]}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
