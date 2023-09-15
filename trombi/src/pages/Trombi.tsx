@@ -11,6 +11,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useTheme} from '../utils/ThemeContext';
 import {getCustomState} from '../utils/CustomFunctions';
+import { useTranslation } from 'react-i18next';
 
 const Trombi = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -51,6 +52,8 @@ const Trombi = () => {
     closeMenu();
   };
 
+  const {t} = useTranslation();
+
   return (
     <PaperProvider>
       <View>
@@ -85,11 +88,11 @@ const Trombi = () => {
             }>
             <Menu.Item
               onPress={() => handleSort(SortEmployeePropSurname)}
-              title={<Text>Sort by surname</Text>}
+              title={<Text>{t('trombi.sort.name')}</Text>}
             />
             <Menu.Item
               onPress={() => handleSort(SortEmployeePropName)}
-              title={<Text>Sort by name</Text>}
+              title={<Text>{t('trombi.sort.surname')}</Text>}
             />
           </Menu>
         </View>
