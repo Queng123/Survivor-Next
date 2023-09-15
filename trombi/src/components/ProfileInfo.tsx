@@ -4,6 +4,7 @@ import FastImage from 'react-native-fast-image';
 import {getTokens} from '../utils/TokenFunctions';
 import {getCustomState} from '../utils/CustomFunctions';
 import {useTheme} from '../utils/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 interface ProfileInfoProps {
   id: string;
@@ -26,6 +27,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
     getCustomState()['company-api-url']
   }/employees/${id}/image`;
   const theme = useTheme().theme === 'dark' ? '-dark' : '';
+  const {t} = useTranslation();
   const customStyles = StyleSheet.create({
     name: {
       color: getCustomState().custom[`title-primary${theme}`],
@@ -65,13 +67,13 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
         <Text style={customStyles.name}>{name}</Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={customStyles.infoLabel}>Poste</Text>
+        <Text style={customStyles.infoLabel}>{t('profile.work')}</Text>
         <Text style={customStyles.info}>{post}</Text>
-        <Text style={customStyles.infoLabel}>Email</Text>
+        <Text style={customStyles.infoLabel}>{t('profile.email')}</Text>
         <Text style={customStyles.info}>{email}</Text>
-        <Text style={customStyles.infoLabel}>Anniversaire</Text>
+        <Text style={customStyles.infoLabel}>{t('profile.birthDate')}</Text>
         <Text style={customStyles.info}>{birthday}</Text>
-        <Text style={customStyles.infoLabel}>Genre</Text>
+        <Text style={customStyles.infoLabel}>{t('profile.gender')}</Text>
         <Text style={customStyles.info}>{gender}</Text>
       </View>
     </View>

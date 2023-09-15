@@ -42,7 +42,11 @@
         "title": "Chat"
     },
     "profile": {
-        "title": "Profile"
+        "title": "Profile",
+        "email": "Email",
+        "work": "Work",
+        "birthDate": "Birth date",
+        "gender": "Gender"
     },
     "settings": {
         "title": "Settings",
